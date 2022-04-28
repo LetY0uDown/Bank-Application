@@ -1,0 +1,26 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- <SolidColorBrush x:Key="" Color=""/> -->
+
+    <SolidColorBrush x:Key="MainColor" Color="#175EEB"/>
+    <SolidColorBrush x:Key="LightTransparentMainColor" Color="#59175EEB"/>
+    <SolidColorBrush x:Key="MediumTransparentMainColor" Color="#AF175EEB"/>
+
+    <SolidColorBrush x:Key="MainBackground" Color="#252628"/>
+    <SolidColorBrush x:Key="DarkerMainBackground" Color="#0B0C0E"/>
+
+    <SolidColorBrush x:Key="MainForeground" Color="#4499FF"/>
+    <SolidColorBrush x:Key="LighterMainForeground" Color="#67ACFF"/>
+    <SolidColorBrush x:Key="AlterForeground" Color="#090F1F"/>
+
+    <SolidColorBrush x:Key="LoginTextBoxBackground" Color="#0B0B0B"/>
+
+    <SolidColorBrush x:Key="LoginButtonSecondColor" Color="#2B73FF"/>
+    <SolidColorBrush x:Key="LoginButtonDisabledBackground" Color="#1748AF"/>
+
+    <SolidColorBrush x:Key="CreateAccountButtonSecondColor" Color="#66BBFF"/>
+
+    <SolidColorBrush x:Key="RegistrationWindowSecondBackground" Color="#1B1B1B"/>
+
+</ResourceDictionary>

@@ -1,0 +1,111 @@
+﻿<Window x:Class="Bank.Views.Windows.RegistrationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewmodels="clr-namespace:Bank.ViewModels"
+        mc:Ignorable="d"
+        Title="RegistrationWindow" Height="600" Width="650"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
+        WindowStyle="None">
+
+    <Window.DataContext>
+        <viewmodels:RegistrationWindowViewModel/>
+    </Window.DataContext>
+
+    <Window.Resources>
+        <Style TargetType="{x:Type Label}">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Foreground" Value="{DynamicResource MainForeground}"/>
+            <Setter Property="Margin" Value="10 0 0 0"/>
+        </Style>
+    </Window.Resources>
+    
+    <Border BorderThickness="2" BorderBrush="{DynamicResource MainColor}"
+            Background="{DynamicResource MainBackground}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="32"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Border Background="{DynamicResource MainColor}">
+                <Grid>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+
+                        <Button Content="_" Width="32"
+                                Click="ExitButton_Click"
+                                Style="{StaticResource AppStateButton}"/>
+
+                        <Button Content="✕" Width="32"
+                                Click="MinimizeButton_Click"
+                                Style="{StaticResource AppStateButton}"/>
+
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <Grid Grid.Row="1">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Border Background="{DynamicResource RegistrationWindowSecondBackground}">
+                    <StackPanel>
+                        <TextBlock Text="Регистрация" Foreground="{DynamicResource MainForeground}"
+                                   FontSize="44" HorizontalAlignment="Center"/>
+
+                        <TextBlock TextWrapping="Wrap" 
+                                   FontSize="20" Foreground="{DynamicResource MainForeground}"
+                                   HorizontalAlignment="Center" Margin="0 35 0 0"
+                                   Text="Какой-то текст"/>
+
+                    </StackPanel>
+                </Border>
+
+                <StackPanel Grid.Column="1" Margin="10 10 10 0">
+
+                    <Label Content="Номер телефона"/>
+                    <TextBox Text="{Binding PhoneNumber, Mode=TwoWay}"
+                             Style="{StaticResource LoginTextBox}"/>
+                    
+                    <Label Content="Имя"/>
+                    <TextBox Text="{Binding FirstName, Mode=TwoWay}"
+                             Style="{StaticResource LoginTextBox}"/>
+                    
+                    <Label Content="Фамилия"/>
+                    <TextBox Text="{Binding Surname, Mode=TwoWay}"
+                             Style="{StaticResource LoginTextBox}"/>
+                    
+                    <Label Content="Отчество"/>
+                    <TextBox Text="{Binding LastName, Mode=TwoWay}"
+                             Style="{StaticResource LoginTextBox}"/>
+
+
+                    <Label Content="Дата Рождения"/>
+                    <TextBox Text="{Binding Birthday, Mode=TwoWay}"
+                             Style="{StaticResource LoginTextBox}"/>
+
+                    <Label Content="Пароль"/>
+                    <PasswordBox Style="{StaticResource PasswordBox}"
+                                 x:Name="firstPasswordBox"
+                                 PasswordChanged="PasswordBox_PasswordChanged"/>
+
+                    <Label Content="Повтор пароля"/>
+                    <PasswordBox Style="{StaticResource PasswordBox}"
+                                 x:Name="secondPasswordBox"
+                                 PasswordChanged="PasswordBox_PasswordChanged_1"/>
+
+                    <Button Content="Создать аккаунт" 
+                            Margin="0 20 0 0" Height="50"
+                            Command="{Binding CreateAccountCommand}"
+                            Style="{StaticResource LoginButton}"/>
+
+                </StackPanel>
+                
+            </Grid>            
+        </Grid>
+    </Border>
+</Window>
