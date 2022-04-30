@@ -1,4 +1,5 @@
 ﻿using Bank.Core.Objects;
+using Bank.Core.Objects.Abstract;
 using Bank.Models;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,24 +8,36 @@ namespace Bank.Core.Tools;
 
 public static class DataProvider
 {
-    public static void AddUser(User user)
+    public static void AddEntity<T>(Entity entity) where T : Entity
     {
         using DataBaseContext db = new();
-        db.Users.Add(user);
+
+        if (typeof(T) == typeof(User))
+            db.Users.Add((User)entity);
+
+        else if (typeof(T) == typeof(Transaction))
+            db.Transactions.Add((Transaction)entity);
+
         db.SaveChanges();
     }
 
-    public static void RemoveUser(User user) 
+    public static void RemoveEntity<T>(Entity entity) where T : Entity 
     {
         using DataBaseContext db = new();
-        db.Users.Remove(user);
+
+        if (typeof(T) == typeof(User))
+            db.Users.Remove((User)entity);
+
+        else if (typeof (T) == typeof(Transaction))
+            db.Transactions.Remove((Transaction)entity);
+
         db.SaveChanges();
     }
 
-    public static void UpdateUser(User user)
+    public static void UpdateEntity<T>(Entity entity) where T : Entity
     {
         using DataBaseContext db = new();
-        db.Update(user);
+        db.Update(entity);
         db.SaveChanges();
     }
 
@@ -35,6 +48,7 @@ public static class DataProvider
         using(DataBaseContext db = new())
         {
             List<User> dbUsers = new(db.Users);
+
             foreach (var user in dbUsers)
                 users.Add(user.SetTransactions());
         }
@@ -49,6 +63,7 @@ public static class DataProvider
         using(DataBaseContext db = new())
         {
             List<Transaction> dbTransactions = new(db.Transactions);
+
             foreach (var transaction in dbTransactions)
             {
                 transaction.Sender = GetUserByID(transaction.SenderID);
@@ -59,6 +74,18 @@ public static class DataProvider
         }
 
         return transactions;
+    }
+
+    public static User TryGetUserByPhoneNumber(string phoneNumber)
+    {
+        List<User> users;
+
+        using (DataBaseContext db = new())
+        {
+            users = new(db.Users);
+        }
+
+        return (from user in users where user.PhoneNumber.Equals(phoneNumber) select user).FirstOrDefault()!;
     }
 
     private static User GetUserByID(int id)
@@ -75,12 +102,12 @@ public static class DataProvider
 
     private static User SetTransactions(this User user)
     {
-        foreach (var transaction in user.Transactions!)
+        foreach (var transaction in GetTransactions())
         {
-            if(transaction.SenderID == user.ID)
+            if (transaction.SenderID == user.ID)
                 user.SendedTransactions!.Add(transaction);
 
-            else
+            else if (transaction.RecieverID == user.ID)
                 user.RecievedTransactions!.Add(transaction);
         }
 

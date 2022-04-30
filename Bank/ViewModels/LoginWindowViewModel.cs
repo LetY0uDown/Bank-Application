@@ -1,5 +1,6 @@
 ﻿using Bank.Core.Objects;
 using Bank.Core.Objects.Abstract;
+using Bank.Core.Tools;
 using System.Windows;
 using Bank.Views.Windows;
 
@@ -11,6 +12,16 @@ public sealed class LoginWindowViewModel : ObservableObject
     {
         LoginCommand = new(o =>
         {
+            var user = DataProvider.TryGetUserByPhoneNumber(PhoneNumber!);
+
+            if (user is not null && Password!.Equals(user.Password))
+                App.CurrentUser = user;
+            else
+            {
+                new WarningWindow("Ошибка входа", "Неверный номер телефона и(или) пароль. Попробуйте ввести их ещё раз").Show();
+                return;
+            }
+
             LoginWindow.Instance.Hide();
             App.Start();
 
@@ -26,7 +37,7 @@ public sealed class LoginWindowViewModel : ObservableObject
     public Command MinimizeCommand { get; } = new(o =>
         LoginWindow.Instance.WindowState = WindowState.Minimized);
 
-    public Command LoginCommand { get; init; } 
+    public Command LoginCommand { get; } 
 
     public Command CreateAccountCommand { get; } = new(o =>
     {

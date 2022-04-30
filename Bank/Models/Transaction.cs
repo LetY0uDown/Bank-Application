@@ -1,4 +1,5 @@
 ﻿using Bank.Core.Objects.Abstract;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Bank.Models;
@@ -12,7 +13,8 @@ public sealed class Transaction : Entity
     public int RecieverID { get; init; }
     public User? Reciever { get; set; }
 
+    [DataType("DECIMAL(65, 10)")]
     public decimal Sum { get; init; }
 
-    public string? Comment { get; init; }
+    public string? Message { get; init; }
 }
