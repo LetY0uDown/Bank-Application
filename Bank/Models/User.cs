@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Bank.Models;
 
-[Table("Users")]
+[Table("User")]
 public sealed class User : Entity
 {
     public string PhoneNumber { get; set; }
@@ -21,6 +21,8 @@ public sealed class User : Entity
 
     [DataType("DECIMAL(65, 10)")]
     public decimal Balance { get; set; }
+
+    public List<Payment> Payments { get; } = new();
 
     [NotMapped]
     public List<Transaction> RecievedTransactions { get; } = new();
@@ -44,6 +46,7 @@ public sealed class User : Entity
 
         Balance -= sum;
         SendedTransactions.Add(transaction);
+        Payments.Add(new(sum, PaymentType.Transactions));
 
         reciever.RecieveTransaction(transaction);
 

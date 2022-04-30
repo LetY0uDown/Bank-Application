@@ -35,4 +35,8 @@
     <SolidColorBrush x:Key="AppStateButtonHoveredColor" Color="#59FFFFFF"/>
     <SolidColorBrush x:Key="AppStateButtonPressedColor" Color="#AFFFFFFF"/>
 
+    <SolidColorBrush x:Key="CheckBoxBackground" Color="Black"/>
+    <SolidColorBrush x:Key="CheckBoxTrueStateColor" Color="#359BFF"/>
+    <SolidColorBrush x:Key="CheckBoxFalseStateColor" Color="Black"/>
+
 </ResourceDictionary>

@@ -13,7 +13,7 @@ public partial class App : Application
         Surname = "Фамилия",
         LastName = "Отчество",
         Birthday = System.DateTime.Now,
-        Balance = 12954M
+        Balance = 1295442.1235325M
     };
 
     public static ResourceDictionary ThemesDictionary => Current.Resources.MergedDictionaries[0];

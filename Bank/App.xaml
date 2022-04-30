@@ -17,6 +17,7 @@
                 <ResourceDictionary Source="pack://application:,,,/Resources/Styles/OKButtonStyle.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Resources/Styles/NavigationButtonStyle.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Resources/Styles/SettingsButtonStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/RememberCheckBoxStyle.xaml"/>
 
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

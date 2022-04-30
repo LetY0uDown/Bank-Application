@@ -25,7 +25,7 @@ public sealed class RegistrationWindowViewModel
                 Password = Password!
             };
 
-            DataProvider.AddEntity<User>(user);
+            //DataProvider.AddEntity<User>(user);
 
             App.CurrentUser = user;
 
@@ -58,7 +58,7 @@ public sealed class RegistrationWindowViewModel
     {
         if (!_birthdayRegex.IsMatch(Birthday!))
         {
-            new WarningWindow("Ошибка ввода даты", "Дата введена в неверном формате. Попробуйте ввести её в одном из приведённых ниже форматов:\nДД.ММ.ГГГГ\nДД-ММ-ГГГГ\nДД/ММ/ГГГГ").Show();
+            new WarningWindow("Ошибка формата ввода даты", "Дата введена в неверном формате. Попробуйте ввести её в одном из приведённых ниже форматов:\nДД.ММ.ГГГГ\nДД-ММ-ГГГГ\nДД/ММ/ГГГГ").Show();
             return false;
         }
 

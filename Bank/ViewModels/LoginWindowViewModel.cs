@@ -3,6 +3,7 @@ using Bank.Core.Objects.Abstract;
 using Bank.Core.Tools;
 using System.Windows;
 using Bank.Views.Windows;
+using Bank.Properties;
 
 namespace Bank.ViewModels;
 
@@ -12,15 +13,20 @@ public sealed class LoginWindowViewModel : ObservableObject
     {
         LoginCommand = new(o =>
         {
-            var user = DataProvider.TryGetUserByPhoneNumber(PhoneNumber!);
+            //var user = DataProvider.TryGetUserByPhoneNumber(PhoneNumber!);
 
-            if (user is not null && Password!.Equals(user.Password))
-                App.CurrentUser = user;
+            //if (user is not null && Password!.Equals(user.Password))
+            //    App.CurrentUser = user;
+            //else
+            //{
+            //    new WarningWindow("Ошибка входа", "Неверный номер телефона и(или) пароль. Попробуйте ввести их ещё раз").Show();
+            //    return;
+            //}
+
+            if (RememberUser)
+                SaveUserData();
             else
-            {
-                new WarningWindow("Ошибка входа", "Неверный номер телефона и(или) пароль. Попробуйте ввести их ещё раз").Show();
-                return;
-            }
+                DeleteUserData();
 
             LoginWindow.Instance.Hide();
             App.Start();
@@ -28,8 +34,10 @@ public sealed class LoginWindowViewModel : ObservableObject
         }, b => !string.IsNullOrEmpty(Password) && !string.IsNullOrEmpty(PhoneNumber));
     }
 
-    public string? PhoneNumber { get; set; }
-    public static string? Password { get; set; }
+    public string? PhoneNumber { get; set; } = Settings.Default.SavedPhoneNumber;
+    public static string? Password { get; set; } = Settings.Default.SavedPassword;
+
+    public static bool RememberUser { get; set; } = true;
 
     public Command ExitCommand { get; } = new(o =>
         Application.Current.Shutdown());
@@ -44,4 +52,17 @@ public sealed class LoginWindowViewModel : ObservableObject
         LoginWindow.Instance.Hide();
         RegistrationWindow.Instance.Show();
     });
+
+    private void DeleteUserData()
+    {
+        Settings.Default.SavedPassword = null;
+        Settings.Default.SavedPhoneNumber = null;
+        Settings.Default.Save();
+    }
+    private void SaveUserData()
+    {
+        Settings.Default.SavedPassword = Password;
+        Settings.Default.SavedPhoneNumber = PhoneNumber;
+        Settings.Default.Save();
+    }
 }

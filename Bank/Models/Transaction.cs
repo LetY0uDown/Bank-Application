@@ -4,13 +4,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Bank.Models;
 
-[Table("Transactions")]
+[Table("Transaction")]
 public sealed class Transaction : Entity
 {
-    public int SenderID { get; init; }
+    public int SenderID { get; set; }
     public User? Sender { get; set; }
 
-    public int RecieverID { get; init; }
+    public int RecieverID { get; set; }
     public User? Reciever { get; set; }
 
     [DataType("DECIMAL(65, 10)")]
