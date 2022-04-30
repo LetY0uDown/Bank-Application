@@ -3,6 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:b="clr-namespace:Bank"
+        xmlns:tool="clr-namespace:Bank.Core.Tools"        
         xmlns:fa="http://schemas.fontawesome.io/icons/"
         xmlns:viewmodels="clr-namespace:Bank.ViewModels"
         mc:Ignorable="d"
@@ -13,6 +15,10 @@
     <Window.DataContext>
         <viewmodels:AppWindowViewModel/>
     </Window.DataContext>
+
+    <Window.Resources>
+        <tool:BalanceValueConverter x:Key="BalanceConverter"/>
+    </Window.Resources>
 
     <Border BorderThickness="2" BorderBrush="{DynamicResource MainColor}"
             Background="{DynamicResource MainBackground}">
@@ -25,8 +31,18 @@
             <Border Background="{DynamicResource MainColor}">
                 <Border Background="{DynamicResource MainColor}">
                     <Grid>
-                        <TextBlock Foreground="Black" FontSize="24"
-                                   Text="Банк" Margin="5 0 0 0"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+
+                            <TextBlock Text="Ваш баланс: " Foreground="{DynamicResource AlterForeground}"
+                                       FontSize="22" FontWeight="DemiBold"
+                                       VerticalAlignment="Center"/>
+
+                            <TextBlock Text="{Binding Balance, Converter={StaticResource BalanceConverter}}"
+                                       Foreground="{DynamicResource AlterForeground}"
+                                       FontSize="22" FontWeight="DemiBold"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+                        
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
 
                             <Button Content="_" Width="32"
@@ -68,6 +84,10 @@
 
                         <StackPanel VerticalAlignment="Center" Width="50">
 
+                            <RadioButton Style="{StaticResource NavigationButton}">
+                                <fa:ImageAwesome Icon="CreditCard" Foreground="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=RadioButton},  Path=Foreground}"/>
+                            </RadioButton>
+                            
                             <RadioButton Style="{StaticResource NavigationButton}" Command="{Binding ShowCurrencyExchangeCommand}">
                                 <fa:ImageAwesome Icon="Exchange" Foreground="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=RadioButton},  Path=Foreground}"/>
                             </RadioButton>

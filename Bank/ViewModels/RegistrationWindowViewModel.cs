@@ -68,7 +68,7 @@ public sealed class RegistrationWindowViewModel
             return false;
         }
 
-        if (!Password!.Equals(SecondPassword))
+        if (Password! != SecondPassword)
         {
             new WarningWindow("Ошибка при вводе паролей", "Введённые пароли не совпадают! Попробуйте ввести их заного").Show();
             return false;

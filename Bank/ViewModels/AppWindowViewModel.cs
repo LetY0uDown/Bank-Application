@@ -18,6 +18,11 @@ public sealed class AppWindowViewModel : ObservableObject
     }
 
     public User CurrentUser => App.CurrentUser!;
+    public decimal Balance
+    {
+        get => App.CurrentUser!.Balance;
+        set => App.CurrentUser!.Balance = value;
+    }
 
     public Command ShowSettingsCommand { get; }
     public Command ShowCurrencyExchangeCommand { get; }

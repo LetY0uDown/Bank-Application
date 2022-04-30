@@ -1,6 +1,5 @@
 ﻿using Bank.ViewModels;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace Bank.Views.Windows;
 
@@ -12,12 +11,12 @@ public partial class RegistrationWindow : Window
 
     private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
     {
-        RegistrationWindowViewModel.Password = ((PasswordBox)sender).SecurePassword.ToString();
+        RegistrationWindowViewModel.Password = firstPasswordBox.Password;
     }
 
     private void PasswordBox_PasswordChanged_1(object sender, RoutedEventArgs e)
     {
-        RegistrationWindowViewModel.SecondPassword = ((PasswordBox)sender).SecurePassword.ToString();
+        RegistrationWindowViewModel.SecondPassword = secondPasswordBox.Password;
     }
 
     private void ExitButton_Click(object sender, RoutedEventArgs e)

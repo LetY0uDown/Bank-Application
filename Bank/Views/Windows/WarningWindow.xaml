@@ -29,7 +29,7 @@
                 </Grid>
             </Border>
 
-            <TextBlock Text="{Binding Message}" FontSize="18"
+            <TextBlock Text="{Binding Message}" FontSize="14"
                        Grid.Row="1" Foreground="{DynamicResource MainForeground}"
                        TextWrapping="Wrap" Margin="5 5 5 25"/>
 
