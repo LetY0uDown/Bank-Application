@@ -12,8 +12,8 @@
                 <ResourceDictionary Source="pack://application:,,,/Resources/Styles/LoginButtonStyle.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Resources/Styles/CreateAccountButtonStyle.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Resources/Styles/LoginTextBoxStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/CurrencyExchangerTextBoxStyle.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Resources/Styles/PasswordBoxStyle.xaml"/>
-                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/DatePickerStyle.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Resources/Styles/OKButtonStyle.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Resources/Styles/NavigationButtonStyle.xaml"/>
 

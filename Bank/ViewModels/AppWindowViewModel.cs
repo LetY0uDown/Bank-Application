@@ -12,11 +12,15 @@ public sealed class AppWindowViewModel : ObservableObject
     {
         ShowSettingsCommand = new(o =>
             CurrentPage = new SettingsPage());
+
+        ShowCurrencyExchangeCommand = new(o =>
+            CurrentPage = new CurrencyExchangePage());
     }
 
     public User CurrentUser => App.CurrentUser!;
 
     public Command ShowSettingsCommand { get; }
+    public Command ShowCurrencyExchangeCommand { get; }
 
     public Page? CurrentPage { get; set; }
 }

@@ -68,7 +68,7 @@
 
                         <StackPanel VerticalAlignment="Center" Width="50">
 
-                            <RadioButton Style="{StaticResource NavigationButton}" Command="{Binding ShowCurrencyRateCommand}">
+                            <RadioButton Style="{StaticResource NavigationButton}" Command="{Binding ShowCurrencyExchangeCommand}">
                                 <fa:ImageAwesome Icon="Exchange" Foreground="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=RadioButton},  Path=Foreground}"/>
                             </RadioButton>
 

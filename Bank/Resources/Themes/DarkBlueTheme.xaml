@@ -7,7 +7,9 @@
 
     <SolidColorBrush x:Key="MainBackground" Color="#252628"/>
     <SolidColorBrush x:Key="DarkerMainBackground" Color="#0B0C0E"/>
-    <SolidColorBrush x:Key="ExchangeRateBackground" Color="#020205"/>
+    <SolidColorBrush x:Key="CurrencyExchangerBackground" Color="#0B0C0E"/>
+    <SolidColorBrush x:Key="CurrencyExchangeTextBoxBackground" Color="#414250"/>
+    <SolidColorBrush x:Key="CurrencyExchangeTextBoxFocusedBackground" Color="#525463"/>
 
     <SolidColorBrush x:Key="MainForeground" Color="#4499FF"/>
     <SolidColorBrush x:Key="LighterMainForeground" Color="#67ACFF"/>
@@ -15,6 +17,8 @@
     <SolidColorBrush x:Key="NavigationButtonForeground" Color="#2A70FF"/>
     <SolidColorBrush x:Key="NavigationButtonHoveredForeground" Color="#1A50BB"/>
     <SolidColorBrush x:Key="NavigationButtonPressedForeground" Color="#1540B0"/>
+
+    <SolidColorBrush x:Key="ExchangeTextBoxErrorBorderBrush" Color="Red"/>
 
     <SolidColorBrush x:Key="LoginTextBoxBackground" Color="#0B0B0B"/>
 

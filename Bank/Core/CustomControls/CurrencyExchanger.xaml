@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="Bank.Core.CustomControls.CurrencyExchangerControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
+             mc:Ignorable="d" 
+             d:DesignHeight="250" d:DesignWidth="400">
+    <Border Background="{DynamicResource CurrencyExchangerBackground}"
+            CornerRadius="25">
+        <Grid>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top">
+                <TextBlock Text="{Binding FirstCurrency}" FontSize="34" Foreground="{DynamicResource MainForeground}"/>
+
+                <fa:ImageAwesome Icon="Exchange" Height="20" Margin="15 5 15 0"
+                                 Foreground="{DynamicResource MainForeground}"/>
+
+                <TextBlock Text="{Binding SecondCurrency}" FontSize="34" Foreground="{DynamicResource MainForeground}"/>
+            </StackPanel>
+
+            <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Left"
+                        Margin="15">
+                <TextBlock Text="{Binding FirstCurrency}" FontSize="34" Foreground="{DynamicResource MainForeground}"
+                           HorizontalAlignment="Center"/>
+
+                <TextBox Style="{StaticResource CurrencyTextBox}" Width="150"
+                         Text="{Binding ExchangableCurrencyAmount, UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+
+            <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Right"
+                        Margin="15">
+                <TextBlock Text="{Binding SecondCurrency}" FontSize="34" Foreground="{DynamicResource MainForeground}"
+                           HorizontalAlignment="Center"/>
+
+                <TextBox Style="{StaticResource CurrencyTextBox}" Width="150" IsReadOnly="True" Focusable="False"
+                         Text="{Binding SecondCurrencyAmount}"/>
+            </StackPanel>
+        </Grid> 
+    </Border>
+</UserControl>
