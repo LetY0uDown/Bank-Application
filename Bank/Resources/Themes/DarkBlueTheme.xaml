@@ -4,15 +4,17 @@
     <!-- <SolidColorBrush x:Key="" Color=""/> -->
 
     <SolidColorBrush x:Key="MainColor" Color="#175EEB"/>
-    <SolidColorBrush x:Key="LightTransparentMainColor" Color="#59175EEB"/>
-    <SolidColorBrush x:Key="MediumTransparentMainColor" Color="#AF175EEB"/>
 
     <SolidColorBrush x:Key="MainBackground" Color="#252628"/>
     <SolidColorBrush x:Key="DarkerMainBackground" Color="#0B0C0E"/>
+    <SolidColorBrush x:Key="ExchangeRateBackground" Color="#020205"/>
 
     <SolidColorBrush x:Key="MainForeground" Color="#4499FF"/>
     <SolidColorBrush x:Key="LighterMainForeground" Color="#67ACFF"/>
     <SolidColorBrush x:Key="AlterForeground" Color="#090F1F"/>
+    <SolidColorBrush x:Key="NavigationButtonForeground" Color="#2A70FF"/>
+    <SolidColorBrush x:Key="NavigationButtonHoveredForeground" Color="#1A50BB"/>
+    <SolidColorBrush x:Key="NavigationButtonPressedForeground" Color="#1540B0"/>
 
     <SolidColorBrush x:Key="LoginTextBoxBackground" Color="#0B0B0B"/>
 
@@ -22,5 +24,11 @@
     <SolidColorBrush x:Key="CreateAccountButtonSecondColor" Color="#66BBFF"/>
 
     <SolidColorBrush x:Key="RegistrationWindowSecondBackground" Color="#1B1B1B"/>
+
+    <SolidColorBrush x:Key="ExchangeRateBorderColor" Color="#252628"/>
+    <SolidColorBrush x:Key="ExchangeRateTextBoxBackground" Color="#151618"/>
+    
+    <SolidColorBrush x:Key="AppStateButtonHoveredColor" Color="#59FFFFFF"/>
+    <SolidColorBrush x:Key="AppStateButtonPressedColor" Color="#AFFFFFFF"/>
 
 </ResourceDictionary>

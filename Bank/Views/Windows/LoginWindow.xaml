@@ -50,13 +50,13 @@
                     <Label Content="Номер телефона"
                            Foreground="{DynamicResource MainForeground}"
                            FontSize="18" Margin="5 0 0 0"/>
-                    <TextBox Text="{Binding PhoneNumber}"
+                    <TextBox Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}"
                              Style="{StaticResource LoginTextBox}"/>
 
                     <Label Content="Пароль"
                            Foreground="{DynamicResource MainForeground}"
                            FontSize="18" Margin="5 5 0 0"/>
-                    <PasswordBox Style="{StaticResource PasswordBox}" x:Name="passwordBox"
+                    <PasswordBox Style="{StaticResource PasswordBox}"
                                  PasswordChanged="PasswordBox_PasswordChanged"/>
                 </StackPanel>
 

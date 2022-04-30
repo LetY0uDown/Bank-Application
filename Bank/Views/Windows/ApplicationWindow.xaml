@@ -66,7 +66,16 @@
                             </fa:ImageAwesome.Style>
                         </fa:ImageAwesome>
 
-                        <Button Content="⚙" Foreground="{DynamicResource MainForeground}"
+                        <StackPanel VerticalAlignment="Center" Width="50">
+
+                            <RadioButton Style="{StaticResource NavigationButton}" Command="{Binding ShowCurrencyRateCommand}">
+                                <fa:ImageAwesome Icon="Exchange" Foreground="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=RadioButton},  Path=Foreground}"/>
+                            </RadioButton>
+
+                        </StackPanel>
+
+                        <Button Content="⚙" Command="{Binding ShowSettingsCommand}"
+                                Foreground="{DynamicResource MainForeground}"
                                 HorizontalAlignment="Left" VerticalAlignment="Bottom"
                                 FontSize="32" Background="Transparent"
                                 BorderThickness="0" Margin="5"/>

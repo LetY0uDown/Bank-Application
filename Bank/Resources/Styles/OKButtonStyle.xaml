@@ -8,7 +8,7 @@
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Border BorderThickness="2 2 0 0" BorderBrush="{DynamicResource MainColor}"
                                 Background="{TemplateBinding Background}">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 -3 0 0"/>
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
@@ -29,6 +29,6 @@
                 <Setter Property="Background" Value="{DynamicResource MediumTransparentMainColor}"/>
             </Trigger>
         </Style.Triggers>
-        
+
     </Style>
 </ResourceDictionary>
