@@ -2,12 +2,78 @@
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:fa="http://schemas.fontawesome.io/icons/"
+      xmlns:tool="clr-namespace:Bank.Core.Tools"
+      xmlns:b="clr-namespace:Bank"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:viewmodels="clr-namespace:Bank.ViewModels"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="618" d:DesignWidth="950"
+      d:Background="{DynamicResource MainBackground}"
       Title="SettingsPage">
 
-    <Viewbox>
-        <Label Content="Settings page" Foreground="{DynamicResource MainForeground}"/>
-    </Viewbox>
+    <Page.DataContext>
+        <viewmodels:SettingsPageViewModel/>
+    </Page.DataContext>
+
+    <Page.Resources>
+        <Style TargetType="{x:Type TextBlock}" x:Key="PropertyTextBlock">
+            <Setter Property="Foreground" Value="{DynamicResource MainForeground}"/>
+            <Setter Property="FontSize" Value="22"/>
+            <Setter Property="Margin" Value="10 10 0 0"/>
+        </Style>
+
+        <tool:BalanceValueConverter x:Key="BalanceConverter"/>
+    </Page.Resources>
+
+    <Grid>
+        <Border Background="{DynamicResource DarkerMainBackground}" CornerRadius="25"
+                Width="500" Height="500" Margin="15"
+                HorizontalAlignment="Left" VerticalAlignment="Top">
+            
+            <Grid>
+                
+                <fa:ImageAwesome Icon="UserCircle" VerticalAlignment="Top"
+                                 HorizontalAlignment="Left"
+                                 Margin="20" Foreground="{DynamicResource MainForeground}"
+                                 Height="150" Width="150"/>
+
+                <StackPanel VerticalAlignment="Bottom" Margin="15">
+
+                    <TextBlock Text="Имя" Style="{StaticResource PropertyTextBlock}"/>
+                    <TextBox DataContext="{x:Static b:App.CurrentUser}" Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource CurrencyTextBox}"/>
+
+                    <TextBlock Text="Фамилия" Style="{StaticResource PropertyTextBlock}"/>
+                    <TextBox DataContext="{x:Static b:App.CurrentUser}" Text="{Binding Surname, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource CurrencyTextBox}"/>
+
+                    <TextBlock Text="Отчество" Style="{StaticResource PropertyTextBlock}"/>
+                    <TextBox DataContext="{x:Static b:App.CurrentUser}" Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource CurrencyTextBox}"/>
+
+                    <TextBlock Text="Дата Рождения" Style="{StaticResource PropertyTextBlock}"/>
+                    <TextBox Text="{Binding Birthday, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource CurrencyTextBox}"/>
+
+                </StackPanel>
+
+                <StackPanel VerticalAlignment="Top" HorizontalAlignment="Right"
+                            Width="300" Margin="0 0 20 0">
+
+                    <TextBlock Text="Баланс" Style="{StaticResource PropertyTextBlock}"/>
+                    <TextBox DataContext="{x:Static b:App.CurrentUser}" Text="{Binding Balance, Mode=OneTime, Converter={StaticResource BalanceConverter}}" Style="{StaticResource CurrencyTextBox}"
+                             IsReadOnly="True"/>
+
+                    <TextBlock Text="Номер телефона" Style="{StaticResource PropertyTextBlock}"/>
+                    <TextBox DataContext="{x:Static b:App.CurrentUser}" Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource CurrencyTextBox}"/>
+
+                </StackPanel>
+                
+            </Grid>
+        </Border>
+
+        <Button Content="Сохранить данные аккаунта" Style="{StaticResource LoginButton}"
+                Command="{Binding SaveAccountCommand}"
+                VerticalAlignment="Bottom" HorizontalAlignment="Left"
+                Width="500" Margin="15 0 0 15" Height="75" FontSize="36"/>
+
+    </Grid>
+    
 </Page>

@@ -75,10 +75,8 @@
                         </StackPanel>
 
                         <Button Content="⚙" Command="{Binding ShowSettingsCommand}"
-                                Foreground="{DynamicResource MainForeground}"
                                 HorizontalAlignment="Left" VerticalAlignment="Bottom"
-                                FontSize="32" Background="Transparent"
-                                BorderThickness="0" Margin="5"/>
+                                Margin="5" Style="{StaticResource SettingsButton}"/>
 
                     </Grid>
                 </Border>

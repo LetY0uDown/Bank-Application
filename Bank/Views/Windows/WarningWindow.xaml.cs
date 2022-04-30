@@ -9,7 +9,7 @@ public partial class WarningWindow : Window
         InitializeComponent();
         DataContext = this;
 
-        Title = title;
+        MessageTitle = title;
         Message = message;
     }
 

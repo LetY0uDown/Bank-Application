@@ -16,6 +16,7 @@
                 <ResourceDictionary Source="pack://application:,,,/Resources/Styles/PasswordBoxStyle.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Resources/Styles/OKButtonStyle.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Resources/Styles/NavigationButtonStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/SettingsButtonStyle.xaml"/>
 
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

@@ -12,7 +12,7 @@ public partial class App : Application
         FirstName = "Имя",
         Surname = "Фамилия",
         LastName = "Отчество",
-        Birthday = System.DateOnly.FromDateTime(System.DateTime.Now),
+        Birthday = System.DateTime.Now,
         Balance = 12954M
     };
 

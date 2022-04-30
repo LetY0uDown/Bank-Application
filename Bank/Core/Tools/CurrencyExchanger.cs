@@ -2,7 +2,7 @@
 
 namespace Bank.Core.Tools;
 
-public class CurrencyExchanger
+public sealed class CurrencyExchanger
 {
     public CurrencyExchanger(string firstCurrency, string secondCurrency)
     {
@@ -14,7 +14,7 @@ public class CurrencyExchanger
         ["$-₽"] = 71.35M,
         ["₽-$"] = 0.014M,
         ["€-₽"] = 75.23M,
-        ["₽-€"] = 0.013M, ["-"] = 15
+        ["₽-€"] = 0.013M
     };
 
     public decimal ExchangeRate { get; set; }

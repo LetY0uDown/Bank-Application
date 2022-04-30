@@ -1,8 +1,6 @@
 ﻿using Bank.Core.Objects;
-using Bank.Views.Windows;
 using Bank.Models;
-using Bank.Core.Tools;
-using System.Windows;
+using Bank.Views.Windows;
 using System;
 using System.Text.RegularExpressions;
 
@@ -22,7 +20,7 @@ public sealed class RegistrationWindowViewModel
                 FirstName = FirstName!,
                 Surname = Surname!,
                 LastName = LastName!,
-                Birthday = DateOnly.Parse(Birthday!),
+                Birthday = DateTime.Parse(Birthday!),
                 Password = Password!
             };
 
@@ -59,7 +57,7 @@ public sealed class RegistrationWindowViewModel
     {
         if (!_birthdayRegex.IsMatch(Birthday!))
         {
-            new WarningWindow("Ошибка ввода даты","Дата введена в неверном формате. Попробуйте ввести её в одном из приведённых ниже форматов:\nДД.ММ.ГГГГ\nДД-ММ-ГГГГ\nДД/ММ/ГГГГ").Show();
+            new WarningWindow("Ошибка ввода даты", "Дата введена в неверном формате. Попробуйте ввести её в одном из приведённых ниже форматов:\nДД.ММ.ГГГГ\nДД-ММ-ГГГГ\nДД/ММ/ГГГГ").Show();
             return false;
         }
 
