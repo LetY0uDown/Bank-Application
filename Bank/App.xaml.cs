@@ -6,6 +6,11 @@ namespace Bank;
 
 public partial class App : Application
 {
+    public App()
+    {
+
+    }
+
     public static User? CurrentUser { get; set; } = new() // Это для тестов, потом уберу
     {
         PhoneNumber = "+0-000-000-00-00",

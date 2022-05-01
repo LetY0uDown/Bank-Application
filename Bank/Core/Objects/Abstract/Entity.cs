@@ -1,6 +1,8 @@
-﻿namespace Bank.Core.Objects.Abstract;
+﻿using System;
+
+namespace Bank.Core.Objects.Abstract;
 
 public abstract class Entity
 {
-    public int ID { get; init; }
+    public Guid ID { get; init; } = new Guid();
 }

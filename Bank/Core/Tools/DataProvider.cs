@@ -1,6 +1,7 @@
 ﻿using Bank.Core.Objects;
 using Bank.Core.Objects.Abstract;
 using Bank.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -88,7 +89,7 @@ public static class DataProvider
         return (from user in users where user.PhoneNumber.Equals(phoneNumber) select user).FirstOrDefault()!;
     }
 
-    private static User GetUserByID(int id)
+    private static User GetUserByID(Guid id)
     {
         List<User> users;
 
@@ -97,17 +98,17 @@ public static class DataProvider
             users = new(db.Users);
         }
 
-        return (from user in users where user.ID == id select user).FirstOrDefault()!;
+        return (from user in users where user.ID.Equals(id) select user).FirstOrDefault()!;
     }
 
     private static User SetTransactions(this User user)
     {
         foreach (var transaction in GetTransactions())
         {
-            if (transaction.SenderID == user.ID)
+            if (transaction.SenderID.Equals(user.ID))
                 user.SendedTransactions!.Add(transaction);
 
-            else if (transaction.RecieverID == user.ID)
+            else if (transaction.RecieverID.Equals(user.ID))
                 user.RecievedTransactions!.Add(transaction);
         }
 

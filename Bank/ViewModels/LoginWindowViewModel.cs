@@ -16,7 +16,15 @@ public sealed class LoginWindowViewModel : ObservableObject
             //var user = DataProvider.TryGetUserByPhoneNumber(PhoneNumber!);
 
             //if (user is not null && Password!.Equals(user.Password))
+            //{
+            //    if (user.IsBanned)
+            //    {
+            //        new WarningWindow("Ошибка доступа", "К сожалению, ваш аккаунт заблокирован из-за подозрений в мошенничестве. Но вы можете создать новый").Show();
+            //        return;
+            //    }
+
             //    App.CurrentUser = user;
+            //}
             //else
             //{
             //    new WarningWindow("Ошибка входа", "Неверный номер телефона и(или) пароль. Попробуйте ввести их ещё раз").Show();

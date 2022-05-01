@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewmodels="clr-namespace:Bank.ViewModels"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
         mc:Ignorable="d"
         Title="Банк" Height="550" Width="350"
         WindowStartupLocation="CenterScreen"
@@ -39,8 +40,11 @@
 
             <StackPanel Grid.Row="1" Margin="0 25 0 0">
 
-                <Border Background="Black" CornerRadius="25"
-                        Width="110" Height="110"/>
+                <Border Background="{DynamicResource DarkerMainBackground}" CornerRadius="25"
+                        Width="110" Height="110">
+                    <fa:ImageAwesome Icon="Bank" Foreground="{DynamicResource MainForeground}"
+                                     Margin="10"/>
+                </Border>
 
                 <Label Content="Приветствуем!"
                        HorizontalAlignment="Center" FontSize="32"

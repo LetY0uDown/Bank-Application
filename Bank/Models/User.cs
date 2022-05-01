@@ -2,7 +2,6 @@
 using Bank.Core.Tools;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Bank.Models;
@@ -19,8 +18,12 @@ public sealed class User : Entity
     
     public DateTime Birthday { get; set; }
 
-    [DataType("DECIMAL(65, 10)")]
     public decimal Balance { get; set; }
+
+    public decimal RecievedMoney { get; private set; }
+    public decimal WastedMoney { get; private set; }
+
+    public bool IsBanned { get; set; }
 
     public List<Payment> Payments { get; } = new();
 
@@ -45,6 +48,7 @@ public sealed class User : Entity
             return false;
 
         Balance -= sum;
+        WastedMoney += sum;
         SendedTransactions.Add(transaction);
         Payments.Add(new(sum, PaymentType.Transactions));
 
@@ -58,6 +62,7 @@ public sealed class User : Entity
     public void RecieveTransaction(Transaction transaction)
     {
         Balance += transaction.Sum;
+        RecievedMoney += transaction.Sum;
         RecievedTransactions.Add(transaction);
     }
 }

@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:b="clr-namespace:Bank"
         xmlns:tool="clr-namespace:Bank.Core.Tools"        
         xmlns:fa="http://schemas.fontawesome.io/icons/"
         xmlns:viewmodels="clr-namespace:Bank.ViewModels"
@@ -29,7 +28,7 @@
             </Grid.RowDefinitions>
 
             <Border Background="{DynamicResource MainColor}">
-                <Border Background="{DynamicResource MainColor}">
+                <Border Background="{DynamicResource MainColor}" MouseLeftButtonDown="Border_MouseLeftButtonDown">
                     <Grid>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
 
@@ -84,12 +83,16 @@
 
                         <StackPanel VerticalAlignment="Center" Width="50">
 
-                            <RadioButton Style="{StaticResource NavigationButton}">
+                            <RadioButton Style="{StaticResource NavigationButton}" Command="{Binding ShowTransactionsCommand}">
+                                <fa:ImageAwesome Icon="Exchange" Foreground="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=RadioButton},  Path=Foreground}"/>
+                            </RadioButton>
+
+                            <RadioButton Style="{StaticResource NavigationButton}" Command="{Binding ShowPaymentsCommand}">
                                 <fa:ImageAwesome Icon="CreditCard" Foreground="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=RadioButton},  Path=Foreground}"/>
                             </RadioButton>
                             
                             <RadioButton Style="{StaticResource NavigationButton}" Command="{Binding ShowCurrencyExchangeCommand}">
-                                <fa:ImageAwesome Icon="Exchange" Foreground="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=RadioButton},  Path=Foreground}"/>
+                                <fa:ImageAwesome Icon="Money" Foreground="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=RadioButton},  Path=Foreground}"/>
                             </RadioButton>
 
                         </StackPanel>

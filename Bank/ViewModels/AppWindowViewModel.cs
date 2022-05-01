@@ -15,10 +15,17 @@ public sealed class AppWindowViewModel : ObservableObject
 
         ShowCurrencyExchangeCommand = new(o =>
             CurrentPage = new CurrencyExchangePage());
+
+        ShowTransactionsCommand = new(o =>
+            CurrentPage = new TransactionsPage());
+
+        ShowPaymentsCommand = new(o =>
+            CurrentPage = new PaymentsPage());
     }
 
     public User CurrentUser => App.CurrentUser!;
-    public decimal Balance
+
+    public static decimal Balance
     {
         get => App.CurrentUser!.Balance;
         set => App.CurrentUser!.Balance = value;
@@ -26,6 +33,8 @@ public sealed class AppWindowViewModel : ObservableObject
 
     public Command ShowSettingsCommand { get; }
     public Command ShowCurrencyExchangeCommand { get; }
+    public Command ShowTransactionsCommand { get; }
+    public Command ShowPaymentsCommand { get; }
 
     public Page? CurrentPage { get; set; }
 }

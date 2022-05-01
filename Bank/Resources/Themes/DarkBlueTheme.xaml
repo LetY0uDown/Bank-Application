@@ -39,4 +39,9 @@
     <SolidColorBrush x:Key="CheckBoxTrueStateColor" Color="#359BFF"/>
     <SolidColorBrush x:Key="CheckBoxFalseStateColor" Color="Black"/>
 
+    <SolidColorBrush x:Key="TransactionTextBoxBorderBrush" Color="#BCBCBC"/>
+    <SolidColorBrush x:Key="TransactionTextBoxFocusedBorderBrush" Color="#DFDFDF"/>
+
+    <SolidColorBrush x:Key="TransactionViewButtonBorderBrush" Color="#3591ff"/>
+
 </ResourceDictionary>

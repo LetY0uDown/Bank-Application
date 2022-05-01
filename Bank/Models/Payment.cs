@@ -12,7 +12,7 @@ public sealed class Payment : Entity
         Sum = sum;
         Type = _paymentTypes[type];
     }
-
+    [NotMapped]
     private static readonly Dictionary<PaymentType, string> _paymentTypes = new()
     {
         [PaymentType.Transactions] = "Transactions"

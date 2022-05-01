@@ -9,8 +9,7 @@
       xmlns:viewmodels="clr-namespace:Bank.ViewModels"
       mc:Ignorable="d" 
       d:DesignHeight="618" d:DesignWidth="950"
-      d:Background="{DynamicResource MainBackground}"
-      Title="SettingsPage">
+      d:Background="{DynamicResource MainBackground}">
 
     <Page.DataContext>
         <viewmodels:SettingsPageViewModel/>

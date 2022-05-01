@@ -19,6 +19,8 @@ public class DataBaseContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<User>().HasMany<Payment>(u => u.Payments);
+
         modelBuilder.Entity<Transaction>().HasOne(t => t.Sender);
         modelBuilder.Entity<Transaction>().HasOne(t => t.Reciever);
     }
