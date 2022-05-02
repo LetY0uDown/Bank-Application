@@ -35,6 +35,12 @@
                 <TextBox Style="{StaticResource CurrencyTextBox}" Width="150" IsReadOnly="True" Focusable="False"
                          Text="{Binding SecondCurrencyAmount}"/>
             </StackPanel>
+
+            <Border Background="{DynamicResource ExchangeRateTextBoxBackground}" CornerRadius="25"
+                    Width="130" Height="130" Margin="0 0 0 20">
+                <fa:ImageAwesome Icon="Bank" Foreground="{DynamicResource MainForeground}"
+                                 Margin="10"/>
+            </Border>
         </Grid> 
     </Border>
 </UserControl>

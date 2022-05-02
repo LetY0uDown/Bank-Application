@@ -17,6 +17,8 @@ public sealed class LoginWindowViewModel : ObservableObject
 
             //if (user is not null && Password!.Equals(user.Password))
             //{
+            //    user.IsBanned = user.WastedMoney > user.RecievedMoney;
+
             //    if (user.IsBanned)
             //    {
             //        new WarningWindow("Ошибка доступа", "К сожалению, ваш аккаунт заблокирован из-за подозрений в мошенничестве. Но вы можете создать новый").Show();

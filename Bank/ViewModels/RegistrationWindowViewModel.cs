@@ -25,7 +25,7 @@ public sealed class RegistrationWindowViewModel
                 Password = Password!
             };
 
-            //DataProvider.AddEntity<User>(user);
+            //DataProvider.AddUser(user);
 
             App.CurrentUser = user;
 
@@ -53,6 +53,11 @@ public sealed class RegistrationWindowViewModel
     public static string? SecondPassword { get; set; } = string.Empty;
 
     public Command? CreateAccountCommand { get; }
+    public Command GoBackCommand { get; } = new(o =>
+    {
+        RegistrationWindow.Instance.Hide();
+        LoginWindow.Instance.Show();
+    });
 
     public bool ValidateProperties()
     {

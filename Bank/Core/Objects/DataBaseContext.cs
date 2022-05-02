@@ -11,6 +11,7 @@ public class DataBaseContext : DbContext
 
     public DbSet<User> Users => Set<User>();
     public DbSet<Transaction> Transactions => Set<Transaction>();
+    public DbSet<Payment> Payments => Set<Payment>();
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -21,7 +22,7 @@ public class DataBaseContext : DbContext
     {
         modelBuilder.Entity<User>().HasMany<Payment>(u => u.Payments);
 
-        modelBuilder.Entity<Transaction>().HasOne(t => t.Sender);
+        modelBuilder.Entity<User>().HasMany<Transaction>(u => u.Transactions).WithOne(t => t.Sender).HasForeignKey(t => t.SenderID);
         modelBuilder.Entity<Transaction>().HasOne(t => t.Reciever);
     }
 }

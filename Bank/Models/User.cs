@@ -25,7 +25,21 @@ public sealed class User : Entity
 
     public bool IsBanned { get; set; }
 
-    public List<Payment> Payments { get; } = new();
+    public List<Transaction> Transactions { get; } = new();
+
+    public Payment[] Payments { get; } = new Payment[10]
+    {
+        new (PaymentType.Transactions),
+        new (PaymentType.Animals),
+        new (PaymentType.Transport),
+        new (PaymentType.Utilities),
+        new (PaymentType.Medicine),
+        new (PaymentType.Education),
+        new (PaymentType.Clothes),
+        new (PaymentType.Rest),
+        new (PaymentType.Technic),
+        new (PaymentType.Food)
+    };
 
     [NotMapped]
     public List<Transaction> RecievedTransactions { get; } = new();
@@ -34,27 +48,36 @@ public sealed class User : Entity
 
     public override string ToString() => $"{Surname} {FirstName[0]}. {LastName[0]}.";
 
+    public bool Pay(PaymentType type, decimal sum)
+    {
+        if (Balance - sum < 0)
+            return false;
+
+        Payments[(int)type].Sum += sum;
+        WastedMoney += sum;
+
+        return true;
+    }
+
     public bool SendTransaction(User reciever, decimal sum, string message)
     {
+        if (Balance - sum < decimal.Zero)
+            return false;
+
         Transaction transaction = new()
         {
             Sender = this,
             Reciever = reciever,
             Sum = sum,
             Message = message
-        };
-
-        if (Balance - sum < decimal.Zero)
-            return false;
+        };        
 
         Balance -= sum;
-        WastedMoney += sum;
-        SendedTransactions.Add(transaction);
-        Payments.Add(new(sum, PaymentType.Transactions));
+        WastedMoney += sum; 
+        Payments[0].Sum += sum;
+        SendedTransactions.Add(transaction);        
 
         reciever.RecieveTransaction(transaction);
-
-        DataProvider.AddEntity<Transaction>(transaction);
 
         return true;
     }

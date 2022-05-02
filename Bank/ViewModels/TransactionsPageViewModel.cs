@@ -19,6 +19,7 @@ public sealed class TransactionsPageViewModel : ObservableObject
 
         DoTransactionCommand = new(o =>
         {
+            Message = string.Empty;
            // User reciever = DataProvider.TryGetUserByPhoneNumber(PhoneNumber!);
 
            // if (reciever is null)

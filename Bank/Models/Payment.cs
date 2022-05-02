@@ -7,22 +7,40 @@ namespace Bank.Models;
 [Table("Payment")]
 public sealed class Payment : Entity
 {
-    public Payment(decimal sum, PaymentType type)
+    public Payment(PaymentType type)
     {
-        Sum = sum;
+        Sum = 0;
         Type = _paymentTypes[type];
     }
     [NotMapped]
     private static readonly Dictionary<PaymentType, string> _paymentTypes = new()
     {
-        [PaymentType.Transactions] = "Transactions"
+        [PaymentType.Transactions] = "Переводы",
+        [PaymentType.Animals] = "Животные",
+        [PaymentType.Transport] = "Транспорт",
+        [PaymentType.Utilities] = "Коммунальные услуги",
+        [PaymentType.Medicine] = "Медицина",
+        [PaymentType.Education] = "Образование",
+        [PaymentType.Clothes] = "Одежда",
+        [PaymentType.Rest] = "Отдых",
+        [PaymentType.Technic] = "Техника",
+        [PaymentType.Food] = "Еда",
     };
 
-    public decimal Sum { get; private init; }
+    public decimal Sum { get; set; }
     public string Type { get; private init; }
 }
 
 public enum PaymentType
 {
-    Transactions
+    Transactions,
+    Animals,
+    Transport,
+    Utilities,
+    Medicine,
+    Education,
+    Clothes,
+    Rest,
+    Technic,
+    Food
 }
