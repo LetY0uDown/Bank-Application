@@ -1,0 +1,137 @@
+﻿<Page x:Class="Bank.Views.Pages.ExpensesPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:model="clr-namespace:Bank.Models"
+      xmlns:tool="clr-namespace:Bank.Core.Tools"
+      xmlns:viewmodels="clr-namespace:Bank.ViewModels"
+      mc:Ignorable="d" 
+      d:DesignHeight="618" d:DesignWidth="950"
+      d:Background="{DynamicResource MainBackground}"
+      Title="ExpensesPage">
+
+    <Page.DataContext>
+        <viewmodels:ExpensesPageViewModel/>
+    </Page.DataContext>
+
+    <Page.Resources>
+        <tool:BalanceValueConverter x:Key="MoneyConverter"/>
+        <tool:TransactionRecieverConverter x:Key="RecieverConverter"/>
+        <tool:TransactionSenderConverter x:Key="SenderConverter"/>
+        <tool:TransactionSumConverter x:Key="SumConverter"/>
+
+        <DataTemplate x:Key="TransactionTemplate" DataType="{x:Type model:Transaction}">
+            <Border Margin="5" BorderThickness="0 2 0 2" BorderBrush="{DynamicResource MainColor}"
+                    CornerRadius="5">
+                <StackPanel>
+                    <TextBlock Text="{Binding Sender, Converter={StaticResource SenderConverter}}"
+                               Foreground="{DynamicResource MainForeground}" FontSize="20"/>
+
+                    <TextBlock Text="{Binding Reciever, Converter={StaticResource RecieverConverter}}"
+                               Foreground="{DynamicResource MainForeground}" FontSize="20"/>
+
+                    <TextBlock Text="{Binding Sum, Converter={StaticResource SumConverter}}"
+                               Foreground="{DynamicResource MainForeground}" FontSize="20"/>
+
+                    <TextBlock Text="{Binding Message}" TextWrapping="Wrap" MaxWidth="320"
+                               Margin="0 0 0 10"
+                               Foreground="{DynamicResource MainForeground}" FontSize="20"/>
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+
+        <DataTemplate x:Key="PaymentTemplate" DataType="{x:Type model:Payment}">
+            <Grid Margin="0 2 0 2">
+                <TextBlock Text="{Binding Type}" Foreground="{DynamicResource MainForeground}"
+                           FontSize="24" HorizontalAlignment="Left"/>
+
+                <TextBlock Text="{Binding Sum, Converter={StaticResource MoneyConverter}}"
+                           Foreground="{DynamicResource MainForeground}" FontSize="24"
+                           HorizontalAlignment="Right"/>
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
+
+    <Grid>
+        <StackPanel HorizontalAlignment="Left" Margin="20">
+            <Border Background="{DynamicResource DarkerMainBackground}"
+                    Width="350" Height="120" CornerRadius="25">
+                <StackPanel Margin="15 10 0 10">
+
+                    <Grid Margin="0 0 10 0">
+                        <TextBlock Text="Всего потрачено:" FontSize="24"
+                                   Foreground="{DynamicResource MainForeground}"/>
+
+                        <TextBlock Text="{Binding WastedMoney, 
+                                                  Converter={StaticResource MoneyConverter}}"
+                                   Foreground="{DynamicResource MainForeground}" FontSize="23"
+                                   HorizontalAlignment="Right"/>
+                    </Grid>
+
+                    <Grid Margin="0 20 10 0">
+                        <TextBlock Text="Всего получено:" FontSize="24"
+                                   Foreground="{DynamicResource MainForeground}"/>
+
+                        <TextBlock Text="{Binding RecievedMoney, 
+                                                  Converter={StaticResource MoneyConverter}}"
+                                   Foreground="{DynamicResource MainForeground}" FontSize="24"
+                                   HorizontalAlignment="Right"/>
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+            <TextBlock Text="Траты по категориям" FontSize="26" 
+                       Foreground="{DynamicResource MainForeground}"
+                       HorizontalAlignment="Center" Margin="0 30 0 10"/>
+
+            <Border Background="{DynamicResource DarkerMainBackground}"
+                    Width="350" Height="auto" CornerRadius="25">
+                <ItemsControl ItemsSource="{Binding Payments}" 
+                              ItemTemplate="{StaticResource ResourceKey=PaymentTemplate}"
+                              HorizontalContentAlignment="Stretch" Background="Transparent"
+                              BorderThickness="0" Margin="15 10 15 10"/>
+            </Border>
+        </StackPanel>
+
+        <StackPanel HorizontalAlignment="Right" Margin="0 25 25 25"
+                    Width="350">
+
+            <TextBlock Text="Ваши переводы" FontSize="32" Margin="0 0 0 5"
+                       Foreground="{DynamicResource MainForeground}" HorizontalAlignment="Center"/>
+
+            <Border Background="{DynamicResource DarkerMainBackground}" CornerRadius="25"
+                    Height="500">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="70"/>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <Grid>
+                        <RadioButton Content="Отправленные" 
+                                     Style="{StaticResource TransactionsViewButton}"
+                                     HorizontalAlignment="Left" Margin="25 0 0 0" 
+                                     GroupName="TransactionViewButtons" IsChecked="True"
+                                     Command="{Binding ShowSendedTransactionCommand}"/>
+
+                        <RadioButton Content="Полученные" 
+                                     Style="{StaticResource TransactionsViewButton}"
+                                     HorizontalAlignment="Right" Margin="0 0 25 0" 
+                                     GroupName="TransactionViewButtons"
+                                     Command="{Binding ShowRecievedTransactionCommand}"/>
+                    </Grid>
+
+                    <ItemsControl Grid.Row="1"
+                                  ItemsSource="{Binding TransactionsSource, 
+                                                        UpdateSourceTrigger=PropertyChanged}"
+                                  Background="Transparent" BorderThickness="0"
+                                  Margin="2 2 2 5"
+                                  HorizontalContentAlignment="Stretch"
+                                  ItemTemplate="{StaticResource ResourceKey=TransactionTemplate}"/>
+                </Grid>
+            </Border>
+        </StackPanel>
+
+    </Grid>
+</Page>

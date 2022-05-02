@@ -11,12 +11,6 @@ public sealed class TransactionsPageViewModel : ObservableObject
 {
     public TransactionsPageViewModel()
     {
-        ShowRecievedTransactionCommand = new(o =>
-            TransactionsSource = App.CurrentUser!.RecievedTransactions);
-
-        ShowSendedTransactionCommand = new(o =>
-            TransactionsSource = App.CurrentUser!.SendedTransactions);
-
         DoTransactionCommand = new(o =>
         {
             // User reciever = DataProvider.TryGetUserByPhoneNumber(PhoneNumber!);
@@ -27,7 +21,7 @@ public sealed class TransactionsPageViewModel : ObservableObject
             //     return;
             // }
 
-            //if (!App.CurrentUser.SendTransaction(reciever, Sum, Message!))
+            //if (!App.CurrentUser.SendTransaction(reciever, TransactionSum, Message!))
             // {
             //     new WarningWindow("Ошибка!", "На вашем счёте недостаточно средств для совершения перевода").Show();
             //     return;
@@ -35,17 +29,27 @@ public sealed class TransactionsPageViewModel : ObservableObject
 
             Message = string.Empty;
 
-        }, b => !string.IsNullOrEmpty(PhoneNumber) && !string.IsNullOrEmpty(Sum.ToString()));
+        }, b => !string.IsNullOrEmpty(PhoneNumber) && TransactionSum > decimal.Zero);
+
+        PayCommand = new(o =>
+        {
+            //App.CurrentUser.Pay(PaymentType!, PaymentSum);
+
+        }, b => !string.IsNullOrEmpty(SelectedType)
+                && !string.IsNullOrEmpty(AccountNumber)
+                && PaymentSum > decimal.Zero);
     }
 
     public string PhoneNumber { get; set; }
-    public decimal Sum { get; set; }
+    public decimal TransactionSum { get; set; }
     public string? Message { get; set; }
 
-    public List<Transaction> TransactionsSource { get; set; } = App.CurrentUser!.SendedTransactions;
+    public string SelectedType { get; set; }
+    public string AccountNumber { get; set; }
+    public decimal PaymentSum { get; set; }
+
+    public List<Payment> Payments => App.CurrentUser!.Payments;
 
     public Command DoTransactionCommand { get; }
-
-    public Command ShowSendedTransactionCommand { get; }
-    public Command ShowRecievedTransactionCommand { get; }
+    public Command PayCommand { get; }
 }

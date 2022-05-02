@@ -71,15 +71,18 @@
 
                         <StackPanel VerticalAlignment="Center" Width="50">
 
-                            <RadioButton Style="{StaticResource NavigationButton}" Command="{Binding ShowTransactionsCommand}">
+                            <RadioButton Style="{StaticResource NavigationButton}" 
+                                         Command="{Binding ShowTransactionsCommand}">
                                 <fa:ImageAwesome Icon="Exchange" Foreground="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=RadioButton},  Path=Foreground}"/>
                             </RadioButton>
 
-                            <RadioButton Style="{StaticResource NavigationButton}" Command="{Binding ShowPaymentsCommand}">
+                            <RadioButton Style="{StaticResource NavigationButton}" 
+                                         Command="{Binding ShowExpensesCommand}">
                                 <fa:ImageAwesome Icon="CreditCard" Foreground="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=RadioButton},  Path=Foreground}"/>
                             </RadioButton>
                             
-                            <RadioButton Style="{StaticResource NavigationButton}" Command="{Binding ShowCurrencyExchangeCommand}">
+                            <RadioButton Style="{StaticResource NavigationButton}" 
+                                         Command="{Binding ShowCurrencyExchangeCommand}">
                                 <fa:ImageAwesome Icon="Money" Foreground="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=RadioButton},  Path=Foreground}"/>
                             </RadioButton>
 

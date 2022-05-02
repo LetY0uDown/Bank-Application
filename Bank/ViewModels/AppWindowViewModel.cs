@@ -18,14 +18,14 @@ public sealed class AppWindowViewModel : ObservableObject
         ShowTransactionsCommand = new(o =>
             CurrentPage = new TransactionsPage());
 
-        ShowPaymentsCommand = new(o =>
-            CurrentPage = new PaymentsPage());
+        ShowExpensesCommand = new(o =>
+            CurrentPage = new ExpensesPage());
     }
 
     public Command ShowSettingsCommand { get; }
     public Command ShowCurrencyExchangeCommand { get; }
     public Command ShowTransactionsCommand { get; }
-    public Command ShowPaymentsCommand { get; }
+    public Command ShowExpensesCommand { get; }
 
     public Page? CurrentPage { get; set; }
 }

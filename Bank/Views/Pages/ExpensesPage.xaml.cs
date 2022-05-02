@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Bank.Views.Pages
 {
     /// <summary>
-    /// Interaction logic for PaymentsPage.xaml
+    /// Interaction logic for ExpensesPage.xaml
     /// </summary>
-    public partial class PaymentsPage : Page
+    public partial class ExpensesPage : Page
     {
-        public PaymentsPage()
+        public ExpensesPage()
         {
             InitializeComponent();
         }
