@@ -6,18 +6,17 @@
       xmlns:ctrl="clr-namespace:Bank.Core.CustomControls"
       mc:Ignorable="d" 
       d:DesignHeight="618" d:DesignWidth="950" 
-      d:Background="{DynamicResource MainBackground}"
-      Title="CurrencyExchangePage">
+      d:Background="{DynamicResource MainBackground}">
 
     <UniformGrid Columns="2" Rows="2">
 
-        <ctrl:CurrencyExchangerControl Margin="20" FirstCurrency="₽" SecondCurrency="$"/>
+        <ctrl:CurrencyExchangerControl Margin="40" FirstCurrency="₽" SecondCurrency="$"/>
 
-        <ctrl:CurrencyExchangerControl Margin="20" FirstCurrency="$" SecondCurrency="₽"/>
+        <ctrl:CurrencyExchangerControl Margin="40" FirstCurrency="$" SecondCurrency="₽"/>
 
-        <ctrl:CurrencyExchangerControl Margin="20" FirstCurrency="₽" SecondCurrency="€"/>
+        <ctrl:CurrencyExchangerControl Margin="40" FirstCurrency="₽" SecondCurrency="€"/>
 
-        <ctrl:CurrencyExchangerControl Margin="20" FirstCurrency="€" SecondCurrency="₽"/>
+        <ctrl:CurrencyExchangerControl Margin="40" FirstCurrency="€" SecondCurrency="₽"/>
         
     </UniformGrid>
 </Page>

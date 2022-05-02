@@ -67,11 +67,11 @@
                                      Command="{Binding ShowRecievedTransactionCommand}"/>
                     </Grid>
 
-                    <ListBox Grid.Row="1" ItemsSource="{Binding TransactionsSource, UpdateSourceTrigger=PropertyChanged}"
-                             Background="Transparent" BorderThickness="0"
-                             Margin="2 2 2 5"
-                             HorizontalContentAlignment="Stretch"
-                             ItemTemplate="{StaticResource ResourceKey=TransactionTemplate}"/>
+                    <ItemsControl Grid.Row="1" ItemsSource="{Binding TransactionsSource, UpdateSourceTrigger=PropertyChanged}"
+                                  Background="Transparent" BorderThickness="0"
+                                  Margin="2 2 2 5"
+                                  HorizontalContentAlignment="Stretch"
+                                  ItemTemplate="{StaticResource ResourceKey=TransactionTemplate}"/>
                 </Grid>
             </Border>
         </StackPanel>
@@ -93,7 +93,7 @@
                                    HorizontalAlignment="Left" Margin="25 15 0 0"/>
 
                         <TextBox Style="{StaticResource TransactionTextBox}" HorizontalAlignment="Right"
-                                 Width="300" Margin="0 0 15 0"/>
+                                 Width="300" Margin="0 0 15 0" Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}"/>
                     </Grid>
 
                     <Grid Margin="0 5 0 5">
@@ -102,7 +102,7 @@
                                    HorizontalAlignment="Left" Margin="25 15 0 0"/>
 
                         <TextBox Style="{StaticResource TransactionTextBox}" HorizontalAlignment="Right"
-                                 Width="300" Margin="0 0 15 0"/>
+                                 Width="300" Margin="0 0 15 0" Text="{Binding Sum, UpdateSourceTrigger=PropertyChanged}"/>
                     </Grid>
 
                     <Grid Margin="0 5 0 5">
@@ -112,11 +112,11 @@
 
                         <TextBox Style="{StaticResource TransactionTextBox}" HorizontalAlignment="Right"
                                  Width="300" Margin="0 0 15 0" TextWrapping="Wrap"
-                                 MaxHeight="290" MaxLength="150"/>
+                                 MaxHeight="290" MaxLength="150" Text="{Binding Message}"/>
                     </Grid>
 
                     <Button Content="Перевести" Margin="25 25 25 15" Height="50"
-                            Style="{StaticResource LoginButton}"/>
+                            Style="{StaticResource LoginButton}" Command="{Binding DoTransactionCommand}"/>
                 </StackPanel>
             </Border>
         </StackPanel>

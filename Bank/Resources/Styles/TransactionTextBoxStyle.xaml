@@ -31,6 +31,10 @@
                 <Setter Property="BorderBrush" Value="{DynamicResource TransactionTextBoxFocusedBorderBrush}"/>
             </Trigger>
 
+            <Trigger Property="Validation.HasError" Value="True">
+                <Setter Property="BorderBrush" Value="{DynamicResource ExchangeTextBoxErrorBorderBrush}"/>
+            </Trigger>
+
         </Style.Triggers>
 
     </Style>

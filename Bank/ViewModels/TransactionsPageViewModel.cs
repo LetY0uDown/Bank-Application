@@ -19,27 +19,28 @@ public sealed class TransactionsPageViewModel : ObservableObject
 
         DoTransactionCommand = new(o =>
         {
+            // User reciever = DataProvider.TryGetUserByPhoneNumber(PhoneNumber!);
+
+            // if (reciever is null)
+            // {
+            //     new WarningWindow("Ошибка ввода", "Данный пользователь не найден. Проверьте правильность ввода или попробуйте ввести номер в формате +0-000-000-00-00").Show();
+            //     return;
+            // }
+
+            //if (!App.CurrentUser.SendTransaction(reciever, Sum, Message!))
+            // {
+            //     new WarningWindow("Ошибка!", "На вашем счёте недостаточно средств для совершения перевода").Show();
+            //     return;
+            // }
+
             Message = string.Empty;
-           // User reciever = DataProvider.TryGetUserByPhoneNumber(PhoneNumber!);
-
-           // if (reciever is null)
-           // {
-           //     new WarningWindow("Ошибка ввода", "Данный пользователь не найден. Проверьте правильность ввода или попробуйте ввести номер в формате +0-000-000-00-00").Show();
-           //     return;
-           // }
-
-           //if (!App.CurrentUser.SendTransaction(reciever, Sum, Message!))
-           // {
-           //     new WarningWindow("Ошибка!", "На вашем счёте недостаточно средств для совершения перевода").Show();
-           //     return;
-           // }
 
         }, b => !string.IsNullOrEmpty(PhoneNumber) && !string.IsNullOrEmpty(Sum.ToString()));
     }
 
     public string PhoneNumber { get; set; }
     public decimal Sum { get; set; }
-    public string Message { get; set; }
+    public string? Message { get; set; }
 
     public List<Transaction> TransactionsSource { get; set; } = App.CurrentUser!.SendedTransactions;
 

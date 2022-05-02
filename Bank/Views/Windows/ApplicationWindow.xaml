@@ -30,18 +30,6 @@
             <Border Background="{DynamicResource MainColor}">
                 <Border Background="{DynamicResource MainColor}" MouseLeftButtonDown="Border_MouseLeftButtonDown">
                     <Grid>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-
-                            <TextBlock Text="Ваш баланс: " Foreground="{DynamicResource AlterForeground}"
-                                       FontSize="22" FontWeight="DemiBold"
-                                       VerticalAlignment="Center"/>
-
-                            <TextBlock Text="{Binding Balance, Converter={StaticResource BalanceConverter}}"
-                                       Foreground="{DynamicResource AlterForeground}"
-                                       FontSize="22" FontWeight="DemiBold"
-                                       VerticalAlignment="Center"/>
-                        </StackPanel>
-                        
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
 
                             <Button Content="_" Width="32"

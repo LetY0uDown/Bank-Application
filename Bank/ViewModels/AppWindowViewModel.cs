@@ -1,7 +1,6 @@
 ﻿using Bank.Core.Objects;
 using Bank.Core.Objects.Abstract;
 using Bank.Views.Pages;
-using Bank.Models;
 using System.Windows.Controls;
 
 namespace Bank.ViewModels;
@@ -21,14 +20,6 @@ public sealed class AppWindowViewModel : ObservableObject
 
         ShowPaymentsCommand = new(o =>
             CurrentPage = new PaymentsPage());
-    }
-
-    public User CurrentUser => App.CurrentUser!;
-
-    public static decimal Balance
-    {
-        get => App.CurrentUser!.Balance;
-        set => App.CurrentUser!.Balance = value;
     }
 
     public Command ShowSettingsCommand { get; }

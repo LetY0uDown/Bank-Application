@@ -15,10 +15,10 @@ public sealed class User : Entity
     public string FirstName { get; set; }
     public string Surname { get; set; }
     public string LastName { get; set; }
-    
+
     public DateTime Birthday { get; set; }
 
-    public decimal Balance { get; set; }
+    public decimal Balance { get; private set; }
 
     public decimal RecievedMoney { get; private set; }
     public decimal WastedMoney { get; private set; }
@@ -27,18 +27,18 @@ public sealed class User : Entity
 
     public List<Transaction> Transactions { get; } = new();
 
-    public Payment[] Payments { get; } = new Payment[10]
+    public List<Payment> Payments { get; } = new()
     {
-        new (PaymentType.Transactions),
-        new (PaymentType.Animals),
-        new (PaymentType.Transport),
-        new (PaymentType.Utilities),
-        new (PaymentType.Medicine),
-        new (PaymentType.Education),
-        new (PaymentType.Clothes),
-        new (PaymentType.Rest),
-        new (PaymentType.Technic),
-        new (PaymentType.Food)
+        new ("Переводы"),
+        new ("Животные"),
+        new ("Транспорт"),
+        new ("Ком. Услуги"),
+        new ("Медицина"),
+        new ("Образование"),
+        new ("Одежда"),
+        new ("Отдых"),
+        new ("Техника"),
+        new ("Еда")
     };
 
     [NotMapped]
@@ -48,13 +48,16 @@ public sealed class User : Entity
 
     public override string ToString() => $"{Surname} {FirstName[0]}. {LastName[0]}.";
 
-    public bool Pay(PaymentType type, decimal sum)
+    public bool Pay(string type, decimal sum)
     {
         if (Balance - sum < 0)
             return false;
 
-        Payments[(int)type].Sum += sum;
+        int index = Payment.PaymentTypes.IndexOf(type);
+        Payments[index].Sum += sum;
         WastedMoney += sum;
+
+        DataProvider.UpdateUser(this);
 
         return true;
     }
@@ -70,14 +73,17 @@ public sealed class User : Entity
             Reciever = reciever,
             Sum = sum,
             Message = message
-        };        
+        };
 
         Balance -= sum;
-        WastedMoney += sum; 
+        WastedMoney += sum;
         Payments[0].Sum += sum;
-        SendedTransactions.Add(transaction);        
+        Transactions.Add(transaction);
+        SendedTransactions.Add(transaction);
 
         reciever.RecieveTransaction(transaction);
+
+        DataProvider.UpdateUser(this);        
 
         return true;
     }
@@ -87,5 +93,8 @@ public sealed class User : Entity
         Balance += transaction.Sum;
         RecievedMoney += transaction.Sum;
         RecievedTransactions.Add(transaction);
+        Transactions.Add(transaction);
+
+        DataProvider.UpdateUser(this);
     }
 }
