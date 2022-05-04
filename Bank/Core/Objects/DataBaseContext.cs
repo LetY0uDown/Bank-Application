@@ -22,7 +22,7 @@ public class DataBaseContext : DbContext
     {
         modelBuilder.Entity<User>().HasMany<Payment>(u => u.Payments);
 
-        modelBuilder.Entity<User>().HasMany<Transaction>(u => u.Transactions).WithOne(t => t.Sender).HasForeignKey(t => t.SenderID);
-        modelBuilder.Entity<Transaction>().HasOne(t => t.Reciever);
+        modelBuilder.Entity<Transaction>().HasOne(t => t.Sender).WithMany(u => u.SendedTransactions).HasForeignKey(t => t.SenderID);
+        modelBuilder.Entity<Transaction>().HasOne(t => t.Reciever).WithMany(u => u.RecievedTransactions).HasForeignKey(t => t.RecieverID);
     }
 }

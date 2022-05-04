@@ -17,15 +17,16 @@ public sealed class RegistrationWindowViewModel
 
             User user = new()
             {
+                ID = Guid.NewGuid(),
                 PhoneNumber = PhoneNumber!,
                 FirstName = FirstName!,
                 Surname = Surname!,
                 LastName = LastName!,
-                Birthday = DateTime.Parse(Birthday!),
+                Birthday = DateOnly.Parse(Birthday!),
                 Password = Password!
             };
 
-            //DataProvider.AddUser(user);
+            DataProvider.AddUser(user);
 
             App.CurrentUser = user;
 
@@ -73,7 +74,7 @@ public sealed class RegistrationWindowViewModel
             return false;
         }
 
-        if (Password! != SecondPassword)
+        if (!Password!.Equals(SecondPassword))
         {
             new WarningWindow("Ошибка при вводе паролей", "Введённые пароли не совпадают! Попробуйте ввести их заного").Show();
             return false;

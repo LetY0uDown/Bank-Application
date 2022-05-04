@@ -28,29 +28,40 @@
                     <Grid Margin="0 5 0 5">
                         <TextBlock Text="Телефон" FontSize="26"
                                    Foreground="{DynamicResource MainForeground}"
-                                   HorizontalAlignment="Left" Margin="25 15 0 0"/>
+                                   HorizontalAlignment="Left" Margin="15 15 0 0"/>
 
-                        <TextBox Style="{StaticResource TransactionTextBox}" HorizontalAlignment="Right"
-                                 Width="280" Margin="0 0 15 0" Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBox Style="{StaticResource TransactionTextBox}" 
+                                 HorizontalAlignment="Right"
+                                 Width="280" Margin="0 0 15 0" 
+                                 Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}"/>
                     </Grid>
 
                     <Grid Margin="0 5 0 5">
                         <TextBlock Text="Сумма" FontSize="26"
                                    Foreground="{DynamicResource MainForeground}"
-                                   HorizontalAlignment="Left" Margin="25 15 0 0"/>
+                                   HorizontalAlignment="Left" Margin="15 15 0 0"/>
 
-                        <TextBox Style="{StaticResource TransactionTextBox}" HorizontalAlignment="Right"
-                                 Width="280" Margin="0 0 15 0" Text="{Binding TransactionSum, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBox Style="{StaticResource TransactionTextBox}" 
+                                 HorizontalAlignment="Right"
+                                 Width="280" Margin="0 0 15 0" 
+                                 Text="{Binding TransactionSum, UpdateSourceTrigger=PropertyChanged}"/>
                     </Grid>
 
                     <Grid Margin="0 5 0 5">
-                        <TextBlock Text="Текст" FontSize="26"
-                                   Foreground="{DynamicResource MainForeground}"
-                                   HorizontalAlignment="Left" Margin="25 15 0 0"/>
 
-                        <TextBox Style="{StaticResource TransactionTextBox}" HorizontalAlignment="Right"
+                        <TextBlock Text="Текст" FontSize="26"
+                                   HorizontalAlignment="Left" Margin="15 15 0 0"
+                                   Foreground="{DynamicResource MainForeground}"/>
+
+                        <TextBlock Text="{Binding RemainingMessageLength}" 
+                                   Foreground="{DynamicResource LighterMainForeground}"
+                                   FontSize="16" Margin="87 23 0 0"/>
+
+                        <TextBox Style="{StaticResource TransactionTextBox}" 
+                                 HorizontalAlignment="Right"
                                  Width="280" Margin="0 0 15 0" TextWrapping="Wrap"
-                                 MaxHeight="280" MaxLength="150" Text="{Binding Message}"/>
+                                 MaxHeight="280" MaxLength="150" 
+                                 Text="{Binding Message, UpdateSourceTrigger=PropertyChanged}"/>
                     </Grid>
 
                     <Button Content="Перевести" Margin="25 25 25 15" Height="50"
@@ -93,7 +104,7 @@
                     </Grid>
 
                     <ComboBox Margin="15" ItemsSource="{Binding Payments}"
-                              SelectedValue="{Binding SelectedType}"
+                              SelectedItem="{Binding SelectedType}"
                               DisplayMemberPath="Type"
                               Height="40"
                               FontSize="20" Foreground="{DynamicResource MainForeground}"/>

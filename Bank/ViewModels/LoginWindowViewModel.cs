@@ -13,25 +13,25 @@ public sealed class LoginWindowViewModel : ObservableObject
     {
         LoginCommand = new(o =>
         {
-            //var user = DataProvider.TryGetUserByPhoneNumber(PhoneNumber!);
+            var user = DataProvider.TryGetUserByPhoneNumber(PhoneNumber!);
 
-            //if (user is not null && Password!.Equals(user.Password))
-            //{
-            //    user.IsBanned = user.WastedMoney > user.RecievedMoney;
+            if (user is not null && Password!.Equals(user.Password))
+            {
+                user.IsBanned = user.WastedMoney > user.RecievedMoney;
 
-            //    if (user.IsBanned)
-            //    {
-            //        new WarningWindow("Ошибка доступа", "К сожалению, ваш аккаунт заблокирован из-за подозрений в мошенничестве. Но вы можете создать новый").Show();
-            //        return;
-            //    }
+                if (user.IsBanned)
+                {
+                    new WarningWindow("Ошибка доступа", "К сожалению, ваш аккаунт заблокирован из-за подозрений в мошенничестве. Но вы можете создать новый").Show();
+                    return;
+                }
 
-            //    App.CurrentUser = user;
-            //}
-            //else
-            //{
-            //    new WarningWindow("Ошибка входа", "Неверный номер телефона и(или) пароль. Попробуйте ввести их ещё раз").Show();
-            //    return;
-            //}
+                App.CurrentUser = user;
+            }
+            else
+            {
+                new WarningWindow("Ошибка входа", "Неверный номер телефона и(или) пароль. Попробуйте ввести их ещё раз").Show();
+                return;
+            }
 
             if (RememberUser)
                 SaveUserData();
@@ -42,6 +42,17 @@ public sealed class LoginWindowViewModel : ObservableObject
             App.Start();
 
         }, b => !string.IsNullOrEmpty(Password) && !string.IsNullOrEmpty(PhoneNumber));
+
+        CreateAccountCommand = new(o =>
+        {
+            if (RememberUser)
+                SaveUserData();
+            else
+                DeleteUserData();
+
+            LoginWindow.Instance.Hide();
+            RegistrationWindow.Instance.Show();
+        });
     }
 
     public string? PhoneNumber { get; set; } = Settings.Default.SavedPhoneNumber;
@@ -57,11 +68,7 @@ public sealed class LoginWindowViewModel : ObservableObject
 
     public Command LoginCommand { get; } 
 
-    public Command CreateAccountCommand { get; } = new(o =>
-    {
-        LoginWindow.Instance.Hide();
-        RegistrationWindow.Instance.Show();
-    });
+    public Command CreateAccountCommand { get; } 
 
     private void DeleteUserData()
     {

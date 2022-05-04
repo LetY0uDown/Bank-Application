@@ -13,19 +13,19 @@ public sealed class TransactionsPageViewModel : ObservableObject
     {
         DoTransactionCommand = new(o =>
         {
-            // User reciever = DataProvider.TryGetUserByPhoneNumber(PhoneNumber!);
+            User reciever = DataProvider.TryGetUserByPhoneNumber(PhoneNumber!);
 
-            // if (reciever is null)
-            // {
-            //     new WarningWindow("Ошибка ввода", "Данный пользователь не найден. Проверьте правильность ввода или попробуйте ввести номер в формате +0-000-000-00-00").Show();
-            //     return;
-            // }
+            if (reciever is null)
+            {
+                new WarningWindow("Ошибка ввода", "Данный пользователь не найден. Проверьте правильность ввода или попробуйте ввести номер в формате +0-000-000-00-00").Show();
+                return;
+            }
 
-            //if (!App.CurrentUser.SendTransaction(reciever, TransactionSum, Message!))
-            // {
-            //     new WarningWindow("Ошибка!", "На вашем счёте недостаточно средств для совершения перевода").Show();
-            //     return;
-            // }
+            if (!App.CurrentUser!.SendTransaction(reciever, TransactionSum, Message!))
+            {
+                new WarningWindow("Ошибка!", "На вашем счёте недостаточно средств для совершения перевода").Show();
+                return;
+            }
 
             Message = string.Empty;
 
@@ -33,19 +33,31 @@ public sealed class TransactionsPageViewModel : ObservableObject
 
         PayCommand = new(o =>
         {
-            //App.CurrentUser.Pay(PaymentType!, PaymentSum);
+            App.CurrentUser!.Pay(SelectedType!, PaymentSum);
 
         }, b => !string.IsNullOrEmpty(SelectedType)
                 && !string.IsNullOrEmpty(AccountNumber)
                 && PaymentSum > decimal.Zero);
     }
+    private const int _maxMessageLength = 150;
+    private string? _message;
 
-    public string PhoneNumber { get; set; }
+    public string? PhoneNumber { get; set; }
     public decimal TransactionSum { get; set; }
-    public string? Message { get; set; }
+    public string? Message
+    {
+        get => _message;
+        set
+        {
+            _message = value;
+            RemainingMessageLength = _maxMessageLength - value!.Length;
+        }
+    }
 
-    public string SelectedType { get; set; }
-    public string AccountNumber { get; set; }
+    public int RemainingMessageLength { get; set; } = 150;
+
+    public string? SelectedType { get; set; }
+    public string? AccountNumber { get; set; }
     public decimal PaymentSum { get; set; }
 
     public List<Payment> Payments => App.CurrentUser!.Payments;

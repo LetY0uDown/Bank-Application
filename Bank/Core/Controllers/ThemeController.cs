@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using Bank.Properties;
 
 namespace Bank.Core.Controllers;
 
@@ -8,12 +8,9 @@ public record Theme(Uri Path, string Title);
 
 public static class ThemeController
 {
-    static ThemeController()
-    {
+    static ThemeController() => SetTheme(Themes[Settings.Default.SavedTheme]);
 
-    }
-
-    private static readonly Dictionary<string, Theme> _themes = new()
+    public static Dictionary<string, Theme> Themes { get; } = new()
     {
         ["Dark Blue"] = new(Path: new("pack://application:,,,/Resources/Themes/DarkBlueTheme.xaml", UriKind.RelativeOrAbsolute),
                             Title: "Dark Blue"),
@@ -22,18 +19,15 @@ public static class ThemeController
                               Title: "Light Green")
     };
 
-    public static Themes CurrentTheme { get; private set; }
+    public static Theme? CurrentTheme { get; private set; }
 
-    public static void SetTheme(Themes theme)
+    public static void SetTheme(Theme theme)
     {
         CurrentTheme = theme;
 
-        App.ThemesDictionary.Source = _themes.Values.ToList()[(int)theme].Path;
-    }
-}
+        App.ThemesDictionary.Source = Themes[theme.Title].Path;
 
-public enum Themes
-{
-    DarkBlue,
-    LightGreen
+        Settings.Default.SavedTheme = theme.Title;
+        Settings.Default.Save();
+    }
 }

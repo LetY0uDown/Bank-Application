@@ -1,6 +1,10 @@
-﻿using Bank.Core.Objects;
+﻿using Bank.Core.Controllers;
+using Bank.Core.Objects;
 using Bank.Core.Objects.Abstract;
+using Bank.Core.Tools;
 using Bank.Views.Windows;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace Bank.ViewModels;
@@ -13,23 +17,42 @@ public class SettingsPageViewModel : ObservableObject
         {
             if (!ValidateProperties()) return;
 
-            App.CurrentUser.Birthday = System.DateTime.Parse(Birthday);
-
-            new WarningWindow("Успешно!", "Данные сохранены").Show();
+            App.CurrentUser.Birthday = System.DateOnly.Parse(Birthday);
+            DataProvider.UpdateUser(App.CurrentUser);
 
         }, b => !string.IsNullOrEmpty(App.CurrentUser!.PhoneNumber)
                 && !string.IsNullOrEmpty(App.CurrentUser!.FirstName)
                 && !string.IsNullOrEmpty(App.CurrentUser!.Surname)
                 && !string.IsNullOrEmpty(App.CurrentUser!.LastName)
                 && !string.IsNullOrEmpty(Birthday));
+
+        DepositMoneyCommand = new(o => Balance += 500M);
     }
 
     private readonly Regex _birthdayRegex = new(@"^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$");
     private readonly Regex _phoneRegex = new(@"^\+?[0-9]-[0-9]{3}-[0-9]{3}-[0-9]{2}-[0-9]{2}$");
 
     public string Birthday { get; set; } = App.CurrentUser!.Birthday.ToShortDateString();
+    private decimal _balance = App.CurrentUser!.Balance;
+    public decimal Balance
+    {
+        get => _balance;
+        set
+        {
+            _balance = value;
+            App.CurrentUser!.DepositMoney(value);
+        }
+    }
+
+    public List<Theme> Themes { get; } = ThemeController.Themes.Values.ToList();
+    public Theme SelectedTheme
+    {
+        get => ThemeController.CurrentTheme!;
+        set => ThemeController.SetTheme(value);
+    }
 
     public Command? SaveAccountCommand { get; }
+    public Command DepositMoneyCommand { get; }
 
     public bool ValidateProperties()
     {

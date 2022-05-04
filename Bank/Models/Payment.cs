@@ -26,4 +26,6 @@ public sealed class Payment : Entity
 
     public decimal Sum { get; set; }
     public string Type { get; private init; }
+
+    public override string ToString() => Type;
 }

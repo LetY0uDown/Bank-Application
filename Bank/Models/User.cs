@@ -16,16 +16,14 @@ public sealed class User : Entity
     public string Surname { get; set; }
     public string LastName { get; set; }
 
-    public DateTime Birthday { get; set; }
+    public DateOnly Birthday { get; set; }
 
     public decimal Balance { get; private set; }
 
-    public decimal RecievedMoney { get; private set; }
+    public decimal RecievedMoney { get; private set; } 
     public decimal WastedMoney { get; private set; }
 
     public bool IsBanned { get; set; }
-
-    public List<Transaction> Transactions { get; } = new();
 
     public List<Payment> Payments { get; } = new()
     {
@@ -41,9 +39,7 @@ public sealed class User : Entity
         new ("Еда")
     };
 
-    [NotMapped]
     public List<Transaction> RecievedTransactions { get; } = new();
-    [NotMapped]
     public List<Transaction> SendedTransactions { get; } = new();
 
     public override string ToString() => $"{Surname} {FirstName[0]}. {LastName[0]}.";
@@ -56,6 +52,7 @@ public sealed class User : Entity
         int index = Payment.PaymentTypes.IndexOf(type);
         Payments[index].Sum += sum;
         WastedMoney += sum;
+        Balance -= sum;
 
         DataProvider.UpdateUser(this);
 
@@ -69,21 +66,21 @@ public sealed class User : Entity
 
         Transaction transaction = new()
         {
-            Sender = this,
-            Reciever = reciever,
+            ID = Guid.NewGuid(),
+            Sender = this, SenderID = this.ID,
+            Reciever = reciever, RecieverID = reciever.ID,
             Sum = sum,
             Message = message
         };
-
+        
         Balance -= sum;
         WastedMoney += sum;
         Payments[0].Sum += sum;
-        Transactions.Add(transaction);
         SendedTransactions.Add(transaction);
 
         reciever.RecieveTransaction(transaction);
 
-        DataProvider.UpdateUser(this);        
+        DataProvider.UpdateUser(this);
 
         return true;
     }
@@ -93,8 +90,12 @@ public sealed class User : Entity
         Balance += transaction.Sum;
         RecievedMoney += transaction.Sum;
         RecievedTransactions.Add(transaction);
-        Transactions.Add(transaction);
-
         DataProvider.UpdateUser(this);
+    }
+
+    public void DepositMoney(decimal sum)
+    {
+        RecievedMoney += sum;
+        Balance += sum;
     }
 }

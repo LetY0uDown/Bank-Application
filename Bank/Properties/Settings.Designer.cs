@@ -46,5 +46,17 @@ namespace Bank.Properties {
                 this["SavedPassword"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string SavedTheme {
+            get {
+                return ((string)(this["SavedTheme"]));
+            }
+            set {
+                this["SavedTheme"] = value;
+            }
+        }
     }
 }

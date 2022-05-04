@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Input;
 
 namespace Bank.Views.Windows;
 
@@ -8,7 +9,10 @@ public partial class ApplicationWindow : Window
 
     private void ExitButton_Click(object sender, RoutedEventArgs e) => Application.Current.Shutdown();    
 
-    private void MinimizeButton_Click(object sender, RoutedEventArgs e) => WindowState = WindowState.Minimized;    
+    private void MinimizeButton_Click(object sender, RoutedEventArgs e) => WindowState = WindowState.Minimized;
 
-    private void Border_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e) => DragMove();
+    private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+    {
+        DragMove();
+    }
 }

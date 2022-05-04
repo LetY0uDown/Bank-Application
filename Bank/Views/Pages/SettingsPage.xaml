@@ -40,16 +40,23 @@
                 <StackPanel VerticalAlignment="Bottom" Margin="15">
 
                     <TextBlock Text="Имя" Style="{StaticResource PropertyTextBlock}"/>
-                    <TextBox DataContext="{x:Static b:App.CurrentUser}" Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource CurrencyTextBox}"/>
+                    <TextBox DataContext="{x:Static b:App.CurrentUser}" 
+                             Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged}" 
+                             Style="{StaticResource CurrencyTextBox}"/>
 
                     <TextBlock Text="Фамилия" Style="{StaticResource PropertyTextBlock}"/>
-                    <TextBox DataContext="{x:Static b:App.CurrentUser}" Text="{Binding Surname, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource CurrencyTextBox}"/>
+                    <TextBox DataContext="{x:Static b:App.CurrentUser}" 
+                             Text="{Binding Surname, UpdateSourceTrigger=PropertyChanged}" 
+                             Style="{StaticResource CurrencyTextBox}"/>
 
                     <TextBlock Text="Отчество" Style="{StaticResource PropertyTextBlock}"/>
-                    <TextBox DataContext="{x:Static b:App.CurrentUser}" Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource CurrencyTextBox}"/>
+                    <TextBox DataContext="{x:Static b:App.CurrentUser}" 
+                             Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}" 
+                             Style="{StaticResource CurrencyTextBox}"/>
 
                     <TextBlock Text="Дата Рождения" Style="{StaticResource PropertyTextBlock}"/>
-                    <TextBox Text="{Binding Birthday, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource CurrencyTextBox}"/>
+                    <TextBox Text="{Binding Birthday, UpdateSourceTrigger=PropertyChanged}" 
+                             Style="{StaticResource CurrencyTextBox}"/>
 
                 </StackPanel>
 
@@ -57,11 +64,27 @@
                             Width="300" Margin="0 0 20 0">
 
                     <TextBlock Text="Баланс" Style="{StaticResource PropertyTextBlock}"/>
-                    <TextBox DataContext="{x:Static b:App.CurrentUser}" Text="{Binding Balance, Mode=OneTime, Converter={StaticResource BalanceConverter}}" Style="{StaticResource CurrencyTextBox}"
-                             IsReadOnly="True"/>
+                    
+                    <StackPanel Orientation="Horizontal">                        
+                    <TextBox Text="{Binding Balance, Converter={StaticResource BalanceConverter}}"
+                             Style="{StaticResource CurrencyTextBox}"
+                             IsReadOnly="True" Width="250" HorizontalAlignment="Left"/>
 
+                        <Button Height="30" Width="30" Margin="10 0 0 0" 
+                                Style="{StaticResource CreateAccountButton}"
+                                Command="{Binding DepositMoneyCommand}">
+                            <fa:ImageAwesome Icon="Plus" 
+                                             Foreground="{Binding RelativeSource={RelativeSource 
+                                                                                  Mode=FindAncestor,
+                                                                                  AncestorType=Button},
+                                                                  Path=Foreground}"/>
+                        </Button>
+                    
+                    </StackPanel>
                     <TextBlock Text="Номер телефона" Style="{StaticResource PropertyTextBlock}"/>
-                    <TextBox DataContext="{x:Static b:App.CurrentUser}" Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource CurrencyTextBox}"/>
+                    <TextBox DataContext="{x:Static b:App.CurrentUser}" 
+                             Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}" 
+                             Style="{StaticResource CurrencyTextBox}"/>
 
                 </StackPanel>
                 
@@ -72,6 +95,26 @@
                 Command="{Binding SaveAccountCommand}"
                 VerticalAlignment="Bottom" HorizontalAlignment="Left"
                 Width="500" Margin="15 0 0 15" Height="75" FontSize="36"/>
+
+        <Border Background="{DynamicResource DarkerMainBackground}"
+                HorizontalAlignment="Right" Width="385"
+                CornerRadius="25" Margin="15">
+            <Grid Margin="15">
+                <StackPanel>
+                    <TextBlock Text="Цветовая тема приложения"
+                               Foreground="{DynamicResource MainForeground}"
+                               FontSize="20" Margin="10 0 0 5"/>
+                    <ComboBox Height="40" ItemsSource="{Binding Themes}"
+                              SelectedValue="{Binding SelectedTheme}"
+                              DisplayMemberPath="Title" FontSize="18"/>
+                </StackPanel>
+                
+                <!-- Добавить сюда:
+                     - Возможность указать, можно ли перемещать 
+                           приложение по экрану с помощью мышки
+                     - -->
+            </Grid>
+        </Border>
 
     </Grid>
     
