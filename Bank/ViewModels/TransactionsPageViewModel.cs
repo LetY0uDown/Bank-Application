@@ -21,7 +21,8 @@ public sealed class TransactionsPageViewModel : ObservableObject
                 return;
             }
 
-            if (!App.CurrentUser!.SendTransaction(reciever, TransactionSum, Message!))
+            //if (!App.CurrentUser!.SendTransaction(reciever, TransactionSum, Message!))
+            if (App.CurrentUser!.Balance < TransactionSum)
             {
                 new WarningWindow("Ошибка!", "На вашем счёте недостаточно средств для совершения перевода").Show();
                 return;

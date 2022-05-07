@@ -20,7 +20,7 @@ public class DataBaseContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<User>().HasMany<Payment>(u => u.Payments);
+        modelBuilder.Entity<User>().HasMany(u => u.Payments);
 
         modelBuilder.Entity<Transaction>().HasOne(t => t.Sender).WithMany(u => u.SendedTransactions).HasForeignKey(t => t.SenderID);
         modelBuilder.Entity<Transaction>().HasOne(t => t.Reciever).WithMany(u => u.RecievedTransactions).HasForeignKey(t => t.RecieverID);

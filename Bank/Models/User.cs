@@ -66,7 +66,6 @@ public sealed class User : Entity
 
         Transaction transaction = new()
         {
-            ID = Guid.NewGuid(),
             Sender = this, SenderID = this.ID,
             Reciever = reciever, RecieverID = reciever.ID,
             Sum = sum,

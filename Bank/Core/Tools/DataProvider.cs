@@ -20,7 +20,7 @@ public static class DataProvider
     {
         using DataBaseContext db = new();
 
-        db.Update(user); 
+        db.Users.Update(user); 
 
         db.SaveChanges();
     }
@@ -35,13 +35,6 @@ public static class DataProvider
         }
 
         var user = (from u in users where u.PhoneNumber.Equals(phoneNumber) select u).FirstOrDefault()!;
-
-        //using (DataBaseContext db = new())
-        //{
-        //    List<Transaction> transactions = new(from t in db.Transactions where t.SenderID.Equals(user.ID) || t.RecieverID.Equals(user.ID) select t);
-        //    foreach (var t in transactions)
-        //        user.Transactions.Add(t);
-        //}
 
         return user!;
     }

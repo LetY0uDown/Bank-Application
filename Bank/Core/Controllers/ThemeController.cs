@@ -4,12 +4,10 @@ using Bank.Properties;
 
 namespace Bank.Core.Controllers;
 
-public record Theme(Uri Path, string Title);
+public sealed record class Theme(Uri Path, string Title);
 
 public static class ThemeController
 {
-    static ThemeController() => SetTheme(Themes[Settings.Default.SavedTheme]);
-
     public static Dictionary<string, Theme> Themes { get; } = new()
     {
         ["Dark Blue"] = new(Path: new("pack://application:,,,/Resources/Themes/DarkBlueTheme.xaml", UriKind.RelativeOrAbsolute),

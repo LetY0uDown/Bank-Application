@@ -23,7 +23,7 @@
 
             <Border Background="{DynamicResource DarkerMainBackground}" CornerRadius="25"
                     VerticalAlignment="Top" MinHeight="280"
-                    Height="auto" Margin="0 5 25 0">
+                    Height="auto" Margin="0 5 25 0">                
                 <StackPanel>
                     <Grid Margin="0 5 0 5">
                         <TextBlock Text="Телефон" FontSize="26"
