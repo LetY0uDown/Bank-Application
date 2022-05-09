@@ -10,6 +10,7 @@
 
                 <ResourceDictionary Source="pack://application:,,,/Resources/Styles/Buttons/AppStateButtonStyle.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Resources/Styles/Buttons/LoginButtonStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/Buttons/SaveAccountDataButtonStyle.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Resources/Styles/Buttons/ViewTransactionsButtonStyle.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Resources/Styles/Buttons/SettingsButtonStyle.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Resources/Styles/Buttons/NavigationButtonStyle.xaml"/>

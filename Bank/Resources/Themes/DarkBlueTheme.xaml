@@ -39,6 +39,7 @@
 
     <SolidColorBrush x:Key="LoginButtonBackground" Color="#175EEB"/>
     <SolidColorBrush x:Key="LoginButtonHoveredBackground" Color="#2B73FF"/>
+    <SolidColorBrush x:Key="LoginButtonPressedBackground" Color="#2060FF"/>
     <SolidColorBrush x:Key="LoginButtonDisabledBackground" Color="#1748AF"/>
     <SolidColorBrush x:Key="LoginButtonForeground" Color="#090F1F"/>
 
@@ -52,5 +53,7 @@
     <SolidColorBrush x:Key="CurrencyExchangerBackground" Color="#0B0C0E"/>
     <SolidColorBrush x:Key="CurrencyExchangeTextBoxBackground" Color="#414250"/>
     <SolidColorBrush x:Key="CurrencyExchangeTextBoxFocusedBackground" Color="#525463"/>
+
+    <SolidColorBrush x:Key="ScrollBarColor" Color="#175EEB"/>
 
 </ResourceDictionary>

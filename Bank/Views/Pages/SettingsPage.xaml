@@ -91,7 +91,8 @@
             </Grid>
         </Border>
 
-        <Button Content="Сохранить данные аккаунта" Style="{StaticResource LoginButton}"
+        <Button Content="Сохранить данные аккаунта" 
+                Style="{StaticResource SaveAccountDataButton}"
                 Command="{Binding SaveAccountCommand}"
                 VerticalAlignment="Bottom" HorizontalAlignment="Left"
                 Width="500" Margin="15 0 0 15" Height="75" FontSize="36"/>
