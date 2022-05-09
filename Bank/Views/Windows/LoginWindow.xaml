@@ -25,6 +25,12 @@
 
             <Border Background="{DynamicResource AppStatePanel}">
                 <Grid>
+
+                    <TextBlock Text="Pearl Bank" FontSize="24"
+                               FontWeight="DemiBold" Margin="5 0 0 0"
+                               HorizontalAlignment="Left" VerticalAlignment="Center"
+                               Foreground="{DynamicResource AppSecondForeground}"/>
+
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
 
                         <Button Content="_" Width="32"

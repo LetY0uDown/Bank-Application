@@ -32,9 +32,9 @@
                         MouseLeftButtonDown="Border_MouseLeftButtonDown">
                     <Grid>
 
-                        <TextBlock Text="Банковское приложение" FontSize="22" 
-                                   VerticalAlignment="Center" HorizontalAlignment="Left"
-                                   Margin="5" FontWeight="DemiBold"
+                        <TextBlock Text="Приложение Pearl Bank" FontSize="24"
+                                   FontWeight="DemiBold" Margin="5 0 0 0"
+                                   HorizontalAlignment="Left" VerticalAlignment="Center"
                                    Foreground="{DynamicResource AppSecondForeground}"/>
 
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">

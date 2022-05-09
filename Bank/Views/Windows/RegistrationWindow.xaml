@@ -32,6 +32,12 @@
 
             <Border Background="{DynamicResource AppStatePanel}">
                 <Grid>
+
+                    <TextBlock Text="Pearl Bank" FontSize="24"
+                               FontWeight="DemiBold" Margin="5 0 0 0"
+                               HorizontalAlignment="Left" VerticalAlignment="Center"
+                               Foreground="{DynamicResource AppSecondForeground}"/>
+
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
 
                         <Button Content="_" Width="32"
@@ -58,15 +64,32 @@
                         <TextBlock Text="Регистрация" Foreground="{DynamicResource AppForeground}"
                                    FontSize="44" HorizontalAlignment="Center"/>
 
-                        <Border Background="{DynamicResource BankIconBackground}" 
-                                CornerRadius="25" VerticalAlignment="Top"
-                                Margin="0 90 0 0"
-                                Width="140" Height="140">
-                            <fa:ImageAwesome Icon="Bank" 
-                                             Foreground="{DynamicResource AppForeground}"
-                                             Margin="10"/>
-                        </Border>
+                        <StackPanel>
+                            <Border Background="{DynamicResource BankIconBackground}" 
+                                    CornerRadius="25" VerticalAlignment="Top"
+                                    Margin="0 70 0 0"
+                                    Width="140" Height="140">
+                                <fa:ImageAwesome Icon="Bank" 
+                                                 Foreground="{DynamicResource AppForeground}"
+                                                 Margin="10"/>
+                            </Border>
 
+                            <TextBlock Text="Pearl Bank приветствует вас!" 
+                                       FontSize="22" HorizontalAlignment="Center"
+                                       TextWrapping="Wrap"
+                                       Foreground="{DynamicResource AppForeground}"/>
+
+                            <TextBlock Text="Наша команда гарантирует, что вы не разочаруетесь, пользуясь нашим банком" 
+                                       FontSize="22" HorizontalAlignment="Center"
+                                       TextWrapping="Wrap" Margin="5 10 5 0"
+                                       Foreground="{DynamicResource AppForeground}"/>
+
+                            <TextBlock Text="Помните - не доверяйте свои личные данные посторонним лицам, и ваши финансы будут в безопасности" 
+                                       FontSize="22" HorizontalAlignment="Center"
+                                       TextWrapping="Wrap" Margin="5 10 5 0"
+                                       Foreground="{DynamicResource AppForeground}"/>
+
+                        </StackPanel>
                         <Button Content="Уже есть аккаунт?" 
                                 Style="{StaticResource GoToCreateAccountButton}"
                                 VerticalAlignment="Bottom" Margin="0 0 0 31"
