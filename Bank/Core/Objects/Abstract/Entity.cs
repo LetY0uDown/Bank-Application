@@ -1,8 +1,9 @@
-﻿using System;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Bank.Core.Objects.Abstract;
 
 public abstract class Entity
 {
-    public Guid ID { get; init; } = Guid.NewGuid();
+    [Column(nameof(ID))]
+    public System.Guid ID { get; set; } = System.Guid.NewGuid();
 }

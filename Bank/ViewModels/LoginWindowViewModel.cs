@@ -4,6 +4,7 @@ using Bank.Core.Tools;
 using System.Windows;
 using Bank.Views.Windows;
 using Bank.Properties;
+using Bank.Core.Controllers;
 
 namespace Bank.ViewModels;
 
@@ -11,6 +12,8 @@ public sealed class LoginWindowViewModel : ObservableObject
 {
     public LoginWindowViewModel()
     {
+        ThemeController.SetTheme(ThemeController.Themes[Settings.Default.SavedTheme]);
+
         LoginCommand = new(o =>
         {
             var user = DataProvider.TryGetUserByPhoneNumber(PhoneNumber!);
@@ -24,6 +27,9 @@ public sealed class LoginWindowViewModel : ObservableObject
                     new WarningWindow("Ошибка доступа", "К сожалению, ваш аккаунт заблокирован из-за подозрений в мошенничестве. Но вы можете создать новый").Show();
                     return;
                 }
+
+                user.SetTransactions(DataProvider.GetTransactions(user));
+                user.InitPayments(false);
 
                 App.CurrentUser = user;
             }

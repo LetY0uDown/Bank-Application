@@ -13,6 +13,14 @@ public sealed class TransactionsPageViewModel : ObservableObject
     {
         DoTransactionCommand = new(o =>
         {
+
+            if (PhoneNumber!.Equals(App.CurrentUser!.PhoneNumber))
+            {
+                new WarningWindow("Ошибка перевода", "Вы не можете переводить деньги сами себе!").ShowDialog();
+                PhoneNumber = string.Empty;
+                return;
+            }
+
             User reciever = DataProvider.TryGetUserByPhoneNumber(PhoneNumber!);
 
             if (reciever is null)
@@ -21,20 +29,34 @@ public sealed class TransactionsPageViewModel : ObservableObject
                 return;
             }
 
-            //if (!App.CurrentUser!.SendTransaction(reciever, TransactionSum, Message!))
-            if (App.CurrentUser!.Balance < TransactionSum)
+            if (string.IsNullOrEmpty(Message))
+                Message = " ";
+
+            if (!App.CurrentUser!.SendTransaction(reciever, TransactionSum, Message!))
             {
                 new WarningWindow("Ошибка!", "На вашем счёте недостаточно средств для совершения перевода").Show();
+                TransactionSum = decimal.Zero;
                 return;
             }
 
+            PhoneNumber = string.Empty;
+            TransactionSum = decimal.Zero;
             Message = string.Empty;
 
         }, b => !string.IsNullOrEmpty(PhoneNumber) && TransactionSum > decimal.Zero);
 
         PayCommand = new(o =>
         {
-            App.CurrentUser!.Pay(SelectedType!, PaymentSum);
+            if (!App.CurrentUser!.Pay(SelectedType!, PaymentSum))
+            {
+                new WarningWindow("Ошибка!", "На вашем счёте недостаточно средств для оплаты").Show();
+                PaymentSum = decimal.Zero;
+                return;
+            }
+
+            SelectedType = string.Empty;
+            AccountNumber = string.Empty;
+            PaymentSum = decimal.Zero;
 
         }, b => !string.IsNullOrEmpty(SelectedType)
                 && !string.IsNullOrEmpty(AccountNumber)
@@ -61,7 +83,7 @@ public sealed class TransactionsPageViewModel : ObservableObject
     public string? AccountNumber { get; set; }
     public decimal PaymentSum { get; set; }
 
-    public List<Payment> Payments => App.CurrentUser!.Payments;
+    public static List<Payment> Payments => App.CurrentUser!.Payments!;
 
     public Command DoTransactionCommand { get; }
     public Command PayCommand { get; }

@@ -4,16 +4,21 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Bank.Models;
 
-[Table("Transaction")]
-public sealed class Transaction : Entity
+[Table("transactions")]
+public class Transaction : Entity
 {
-    public Guid SenderID { get; set; }
     public User? Sender { get; set; }
-
-    public Guid RecieverID { get; set; }
     public User? Reciever { get; set; }
 
-    public decimal Sum { get; init; }
+    [Column(nameof(SenderID))]
+    public Guid SenderID { get; set; }
 
-    public string? Message { get; init; }
+    [Column(nameof(RecieverID))]
+    public Guid RecieverID { get; set; }
+
+    [Column(nameof(Sum))]
+    public decimal Sum { get; set; }
+
+    [Column(nameof(Message))]
+    public string? Message { get; set; }
 }

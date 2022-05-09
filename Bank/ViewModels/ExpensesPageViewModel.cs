@@ -21,7 +21,7 @@ public sealed class ExpensesPageViewModel : ObservableObject
 
     public List<Transaction> TransactionsSource { get; set; } = App.CurrentUser!.SendedTransactions;
 
-    public List<Payment> Payments => App.CurrentUser!.Payments;
+    public static List<Payment> Payments => App.CurrentUser!.Payments!;
 
     public Command ShowSendedTransactionCommand { get; }
     public Command ShowRecievedTransactionCommand { get; }

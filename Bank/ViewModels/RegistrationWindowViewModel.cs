@@ -2,7 +2,6 @@
 using Bank.Core.Tools;
 using Bank.Models;
 using Bank.Views.Windows;
-using System;
 using System.Text.RegularExpressions;
 
 namespace Bank.ViewModels;
@@ -17,16 +16,16 @@ public sealed class RegistrationWindowViewModel
 
             User user = new()
             {
-                ID = Guid.NewGuid(),
                 PhoneNumber = PhoneNumber!,
                 FirstName = FirstName!,
                 Surname = Surname!,
                 LastName = LastName!,
-                Birthday = DateOnly.Parse(Birthday!),
+                Birthday = Birthday!,
                 Password = Password!
             };
 
-            DataProvider.AddUser(user);
+            DataProvider.Insert(user);
+            user.InitPayments(true);
 
             App.CurrentUser = user;
 
