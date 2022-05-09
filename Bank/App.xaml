@@ -16,11 +16,15 @@
                 <ResourceDictionary Source="pack://application:,,,/Resources/Styles/Buttons/NavigationButtonStyle.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Resources/Styles/Buttons/WarningWindowOKButtonStyle.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Resources/Styles/Buttons/GoToCreateAccountButtonStyle.xaml"/>
+                
                 <ResourceDictionary Source="pack://application:,,,/Resources/Styles/TextBoxes/LoginInputBoxStyle.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Resources/Styles/TextBoxes/LoginPasswordBoxStyle.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Resources/Styles/TextBoxes/TransactionInputBoxStyle.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Resources/Styles/TextBoxes/CurrencyExchangerTextBoxStyle.xaml"/>
+                
                 <ResourceDictionary Source="pack://application:,,,/Resources/Styles/CheckBoxes/RememberUserCheckBox.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/CheckBoxes/SettingsCheckBoxStyle.xaml"/>
+                
                 <ResourceDictionary Source="pack://application:,,,/Resources/Styles/ComplexControls/ComboBoxStyle.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Resources/Styles/ComplexControls/ScrollBarStyle.xaml"/>
 

@@ -108,12 +108,12 @@
                     <ComboBox Height="40" ItemsSource="{Binding Themes}"
                               SelectedValue="{Binding SelectedTheme}"
                               DisplayMemberPath="Title" FontSize="18"/>
+
+                    <CheckBox Content="Перемещение приложения по экрану" 
+                              Foreground="{DynamicResource AppForeground}"
+                              FontSize="18" IsChecked="{Binding IsDraggable}"
+                              Margin="0 15 0 0" Style="{StaticResource SettingsCheckBox}"/>
                 </StackPanel>
-                
-                <!-- Добавить сюда:
-                     - Возможность указать, можно ли перемещать 
-                           приложение по экрану с помощью мышки
-                     - -->
             </Grid>
         </Border>
 

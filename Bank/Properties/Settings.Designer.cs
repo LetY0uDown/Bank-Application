@@ -106,5 +106,17 @@ namespace Bank.Properties {
                 this["DBServer"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool IsWindowDraggable {
+            get {
+                return ((bool)(this["IsWindowDraggable"]));
+            }
+            set {
+                this["IsWindowDraggable"] = value;
+            }
+        }
     }
 }

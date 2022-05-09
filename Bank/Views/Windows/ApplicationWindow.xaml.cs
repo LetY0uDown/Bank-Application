@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using Bank.Properties;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Bank.Views.Windows;
@@ -13,6 +14,7 @@ public partial class ApplicationWindow : Window
 
     private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
     {
-        DragMove();
+        if (Settings.Default.IsWindowDraggable)
+            DragMove();
     }
 }

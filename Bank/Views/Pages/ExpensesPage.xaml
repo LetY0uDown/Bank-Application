@@ -122,13 +122,13 @@
                                      Command="{Binding ShowRecievedTransactionCommand}"/>
                     </Grid>
 
-                    <ListBox Grid.Row="1"
-                             ItemsSource="{Binding TransactionsSource, 
-                                                   UpdateSourceTrigger=PropertyChanged}"
-                             Background="Transparent" BorderThickness="0"
-                             Margin="2 2 2 5"
-                             HorizontalContentAlignment="Stretch"
-                             ItemTemplate="{StaticResource ResourceKey=TransactionTemplate}"/>
+                    <ScrollViewer Grid.Row="1" Margin="2 2 2 5">
+                         <ItemsControl ItemsSource="{Binding TransactionsSource}"
+                                       Background="Transparent" BorderThickness="0"
+                                       HorizontalContentAlignment="Stretch"
+                                       ItemTemplate="{StaticResource TransactionTemplate}"/>
+                    </ScrollViewer>
+                   
                 </Grid>
             </Border>
         </StackPanel>

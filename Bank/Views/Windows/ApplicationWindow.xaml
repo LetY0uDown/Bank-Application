@@ -9,7 +9,8 @@
         mc:Ignorable="d"
         Title="ApplicationWindow" Height="650" Width="1050"
         WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
-        WindowStyle="None">
+        WindowStyle="None"
+        Icon="pack://application:,,,/Resources/Images/BankIcon.png">
 
     <Window.DataContext>
         <viewmodels:AppWindowViewModel/>
@@ -110,6 +111,20 @@
                                      GroupName="NavigationButtons" IsChecked="True"
                                      FontSize="32"/>
 
+                        <!--#region Sign Out Button [Not Used] -->
+                        <!--<Button VerticalAlignment="Bottom" HorizontalAlignment="Right"
+                                Height="40" Width="40"
+                                Margin="5" Style="{StaticResource GoToCreateAccountButton}">
+                            <Viewbox>
+                                <fa:ImageAwesome Foreground="{Binding
+                                                              RelativeSource={RelativeSource
+                                                                              Mode=FindAncestor,
+                                                                              AncestorType=Button}, 
+                                                              Path=Foreground}"
+                                                 Icon="SignOut"/>
+                            </Viewbox>
+                        </Button>-->                        
+                        <!-- #endregion -->
                     </Grid>
                 </Border>
 

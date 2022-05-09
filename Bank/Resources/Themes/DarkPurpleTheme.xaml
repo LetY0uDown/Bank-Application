@@ -50,6 +50,10 @@
     <SolidColorBrush x:Key="RememberCheckBoxTrueState" Color="#8440AF"/>
     <SolidColorBrush x:Key="RememberCheckBoxFalseState" Color="#000000"/>
 
+    <SolidColorBrush x:Key="SettingsCheckBoxBackground" Color="#686870"/>
+    <SolidColorBrush x:Key="SettingsCheckBoxTrueState" Color="#9F8FC4"/>
+    <SolidColorBrush x:Key="SettingsCheckBoxFalseState" Color="Transparent"/>
+
     <SolidColorBrush x:Key="CurrencyExchangerBackground" Color="#0B0C0E"/>
     <SolidColorBrush x:Key="CurrencyExchangeTextBoxBackground" Color="#414250"/>
     <SolidColorBrush x:Key="CurrencyExchangeTextBoxFocusedBackground" Color="#525463"/>

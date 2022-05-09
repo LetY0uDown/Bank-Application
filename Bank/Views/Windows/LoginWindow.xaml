@@ -8,7 +8,8 @@
         mc:Ignorable="d"
         Title="Банк" Height="550" Width="350"
         WindowStartupLocation="CenterScreen"
-        WindowStyle="None" ResizeMode="NoResize">
+        WindowStyle="None" ResizeMode="NoResize"
+        Icon="pack://application:,,,/Resources/Images/BankIcon.png">
 
     <Window.DataContext>
         <viewmodels:LoginWindowViewModel/>

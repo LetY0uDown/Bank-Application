@@ -8,10 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Resources\Images\**" />
-    <EmbeddedResource Remove="Resources\Images\**" />
-    <None Remove="Resources\Images\**" />
-    <Page Remove="Resources\Images\**" />
+    <None Remove="Resources\Images\BankIcon.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,6 +19,12 @@
     <PackageReference Include="FontAwesome.WPF" Version="4.7.0.9" />
     <PackageReference Include="MySql.Data" Version="8.0.29" />
     <PackageReference Include="PropertyChanged.Fody" Version="3.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Images\BankIcon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>
