@@ -1,53 +1,53 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <SolidColorBrush x:Key="MainColor" Color="#175EEB"/>
+    <SolidColorBrush x:Key="MainColor" Color="#7B2E9F"/>
     <SolidColorBrush x:Key="AppBackground" Color="#252628"/>
-    <SolidColorBrush x:Key="AppForeground" Color="#4499FF"/>
-    
+    <SolidColorBrush x:Key="AppForeground" Color="#9B78A8"/>
+
     <SolidColorBrush x:Key="AppSecondBackground" Color="#1B1B1B"/>
     <SolidColorBrush x:Key="AppThirdBackground" Color="#0B0C0E"/>
     <SolidColorBrush x:Key="AppSecondForeground" Color="#090F1F"/>
 
-    <SolidColorBrush x:Key="ApplicationBorder" Color="#175EEB"/>
-    <SolidColorBrush x:Key="AppStatePanel" Color="#175EEB"/>
+    <SolidColorBrush x:Key="ApplicationBorder" Color="#7B2E9F"/>
+    <SolidColorBrush x:Key="AppStatePanel" Color="#7B2E9F"/>
 
     <SolidColorBrush x:Key="TextBoxErrorBorderBrush" Color="Red"/>
 
     <SolidColorBrush x:Key="NavigationPanelBackground" Color="#0B0C0E"/>
 
-    <SolidColorBrush x:Key="NavigationButtonForeground" Color="#2A70FF"/>
-    <SolidColorBrush x:Key="NavigationButtonHoveredForeground" Color="#1A50BB"/>
-    <SolidColorBrush x:Key="NavigationButtonPressedForeground" Color="#1540B0"/>
+    <SolidColorBrush x:Key="NavigationButtonForeground" Color="#8377B5"/>
+    <SolidColorBrush x:Key="NavigationButtonHoveredForeground" Color="#9F8FC4"/>
+    <SolidColorBrush x:Key="NavigationButtonPressedForeground" Color="#7057A1"/>
 
-    <SolidColorBrush x:Key="WarningWinOKButtonHovered" Color="#35FFFFFF"/> 
-    <SolidColorBrush x:Key="WarningWinOKButtonPressed" Color="#85FFFFFF"/> 
+    <SolidColorBrush x:Key="WarningWinOKButtonHovered" Color="#35FFFFFF"/>
+    <SolidColorBrush x:Key="WarningWinOKButtonPressed" Color="#85FFFFFF"/>
 
-    <SolidColorBrush x:Key="TransactionViewButtonBorderBrush" Color="#3591FF"/>
+    <SolidColorBrush x:Key="TransactionViewButtonBorderBrush" Color="#7B2E9F"/>
 
     <SolidColorBrush x:Key="TransactionTextBoxBorderBrush" Color="#BCBCBC"/>
     <SolidColorBrush x:Key="TransactionTextBoxFocusedBorderBrush" Color="#DFDFDF"/>
-    
+
     <SolidColorBrush x:Key="BankIconBackground" Color="#0B0C0E"/>
 
     <SolidColorBrush x:Key="LoginWinStateButtonHovered" Color="#59FFFFFF"/>
     <SolidColorBrush x:Key="LoginWinStateButtonPressed" Color="#AFFFFFFF"/>
 
     <SolidColorBrush x:Key="LoginInputBoxBackground" Color="#0B0B0B"/>
-    <SolidColorBrush x:Key="LoginInputBoxForeground" Color="#4499FF"/>
-    <SolidColorBrush x:Key="LoginInputBoxBorderBrush" Color="#175EEB"/>
+    <SolidColorBrush x:Key="LoginInputBoxForeground" Color="#9B78A8"/>
+    <SolidColorBrush x:Key="LoginInputBoxBorderBrush" Color="#7B2E9F"/>
 
-    <SolidColorBrush x:Key="LoginButtonBackground" Color="#175EEB"/>
-    <SolidColorBrush x:Key="LoginButtonHoveredBackground" Color="#2B73FF"/>
-    <SolidColorBrush x:Key="LoginButtonDisabledBackground" Color="#1748AF"/>
+    <SolidColorBrush x:Key="LoginButtonBackground" Color="#7B2E9F"/>
+    <SolidColorBrush x:Key="LoginButtonHoveredBackground" Color="#8835AA"/>
+    <SolidColorBrush x:Key="LoginButtonDisabledBackground" Color="#603580"/>
     <SolidColorBrush x:Key="LoginButtonForeground" Color="#090F1F"/>
 
-    <SolidColorBrush x:Key="GoToRegistrationButtonForeground" Color="#4499FF"/>
-    <SolidColorBrush x:Key="GoToRegistrationButtonHoveredForeground" Color="#66BBFF"/>
+    <SolidColorBrush x:Key="GoToRegistrationButtonForeground" Color="#8377B5"/>
+    <SolidColorBrush x:Key="GoToRegistrationButtonHoveredForeground" Color="#9F8FC4"/>
 
     <SolidColorBrush x:Key="RememberUserCheckBoxBackground" Color="#000000"/>
-    <SolidColorBrush x:Key="RememberCheckBoxTrueState" Color="#359BFF"/>
-    <SolidColorBrush x:Key="RememberCheckBoxFalseState" Color="Black"/>
+    <SolidColorBrush x:Key="RememberCheckBoxTrueState" Color="#8440AF"/>
+    <SolidColorBrush x:Key="RememberCheckBoxFalseState" Color="#000000"/>
 
     <SolidColorBrush x:Key="CurrencyExchangerBackground" Color="#0B0C0E"/>
     <SolidColorBrush x:Key="CurrencyExchangeTextBoxBackground" Color="#414250"/>

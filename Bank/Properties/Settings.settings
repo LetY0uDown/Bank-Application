@@ -9,7 +9,7 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="SavedTheme" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Dark Blue</Value>
+      <Value Profile="(Default)">Bloody Red</Value>
     </Setting>
     <Setting Name="DBUser" Type="System.String" Scope="User">
       <Value Profile="(Default)">root</Value>

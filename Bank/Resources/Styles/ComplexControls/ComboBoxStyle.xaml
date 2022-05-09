@@ -17,7 +17,7 @@
                             </Grid.ColumnDefinitions>
                             
                             <!-- Сам ComboBox -->
-                            <Border x:Name="Border" Grid.ColumnSpan="2" Background="{DynamicResource MainBackground}" 
+                            <Border x:Name="Border" Grid.ColumnSpan="2" Background="{DynamicResource AppBackground}" 
                                     BorderBrush="{DynamicResource MainColor}" BorderThickness="2"/>
                             
                             <!-- Разделитель между стрелочками и выбранным элементом -->
@@ -46,14 +46,13 @@
         </Setter>
     </Style>
     
-    <!-- Не знаю, что это, он лучше наверное не трогать -->
     <ControlTemplate x:Key="ComboBoxTextBox" TargetType="{x:Type TextBox}">
         <Border x:Name="PART_ContentHost" Focusable="False" Background="{TemplateBinding Background}"/>
     </ControlTemplate>
 
     <Style x:Key="{x:Type ComboBox}" TargetType="{x:Type ComboBox}">
         <Setter Property="Padding" Value="4"/>
-        <Setter Property="Foreground" Value="{DynamicResource MainForeground}"/>
+        <Setter Property="Foreground" Value="{DynamicResource AppForeground}"/>
         <Setter Property="HorizontalContentAlignment" Value="Left"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="OverridesDefaultStyle" Value="True"/>
@@ -105,7 +104,7 @@
                                   MinWidth="{TemplateBinding ActualWidth}" 
                                   MaxHeight="{TemplateBinding MaxDropDownHeight}">
 
-                                <Border x:Name="DropDownBorder" Background="{DynamicResource MainBackground}" 
+                                <Border x:Name="DropDownBorder" Background="{DynamicResource AppBackground}" 
                                         BorderThickness="2"
                                         BorderBrush="{DynamicResource MainColor}"/>
 

@@ -24,6 +24,9 @@
             <Trigger Property="IsPressed" Value="True">
                 <Setter Property="Foreground" Value="{DynamicResource NavigationButtonPressedForeground}"/>
             </Trigger>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource NavigationButtonPressedForeground}"/>
+            </Trigger>
         </Style.Triggers>
     </Style>
 </ResourceDictionary>

@@ -70,40 +70,45 @@
                         <StackPanel VerticalAlignment="Center" Width="50">
 
                             <RadioButton Style="{StaticResource NavigationButton}" 
-                                         Command="{Binding ShowTransactionsCommand}">
+                                         Command="{Binding ShowTransactionsCommand}"
+                                         GroupName="NavigationButtons">
                                 <fa:ImageAwesome Icon="Exchange" 
                                                  Foreground="{Binding 
                                                               RelativeSource={RelativeSource
-                                                                              Mode=FindAncestor,
-                                                                              AncestorType=RadioButton},
+                                                                          Mode=FindAncestor,
+                                                                          AncestorType=RadioButton},
                                                               Path=Foreground}"/>
                             </RadioButton>
 
                             <RadioButton Style="{StaticResource NavigationButton}" 
-                                         Command="{Binding ShowExpensesCommand}">
+                                         Command="{Binding ShowExpensesCommand}"
+                                         GroupName="NavigationButtons">
                                 <fa:ImageAwesome Icon="CreditCard" 
                                                  Foreground="{Binding
                                                               RelativeSource={RelativeSource
-                                                                              Mode=FindAncestor, 
-                                                                              AncestorType=RadioButton},
+                                                                          Mode=FindAncestor, 
+                                                                          AncestorType=RadioButton},
                                                               Path=Foreground}"/>
                             </RadioButton>
                             
-                            <RadioButton Style="{StaticResource NavigationButton}" 
-                                         Command="{Binding ShowCurrencyExchangeCommand}">
+                            <RadioButton Style="{StaticResource NavigationButton}"
+                                         Command="{Binding ShowCurrencyExchangeCommand}"
+                                         GroupName="NavigationButtons">
                                 <fa:ImageAwesome Icon="Money" 
                                                  Foreground="{Binding 
                                                               RelativeSource={RelativeSource 
-                                                                              Mode=FindAncestor,
-                                                                              AncestorType=RadioButton},
+                                                                          Mode=FindAncestor,
+                                                                          AncestorType=RadioButton},
                                                               Path=Foreground}"/>
                             </RadioButton>
 
                         </StackPanel>
 
-                        <Button Content="⚙" Command="{Binding ShowSettingsCommand}"
-                                HorizontalAlignment="Left" VerticalAlignment="Bottom"
-                                Margin="5" Style="{StaticResource SettingsButton}"/>
+                        <RadioButton Content="⚙" Command="{Binding ShowSettingsCommand}"
+                                     HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                                     Margin="5" Style="{StaticResource NavigationButton}"
+                                     GroupName="NavigationButtons" IsChecked="True"
+                                     FontSize="32"/>
 
                     </Grid>
                 </Border>

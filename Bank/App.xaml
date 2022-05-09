@@ -13,7 +13,7 @@
                 <ResourceDictionary Source="pack://application:,,,/Resources/Styles/Buttons/ViewTransactionsButtonStyle.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Resources/Styles/Buttons/SettingsButtonStyle.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Resources/Styles/Buttons/NavigationButtonStyle.xaml"/>
-                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/Buttons/WarningWindowOKButtonStyle.xaml"/> <!-- Переделать цвета в триггерах -->
+                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/Buttons/WarningWindowOKButtonStyle.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Resources/Styles/Buttons/GoToCreateAccountButtonStyle.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Resources/Styles/TextBoxes/LoginInputBoxStyle.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Resources/Styles/TextBoxes/LoginPasswordBoxStyle.xaml"/>

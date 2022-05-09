@@ -27,7 +27,7 @@
         <Style.Triggers>
 
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Foreground" Value="{DynamicResource AppSecondForeground}"/>
+                <Setter Property="Foreground" Value="{DynamicResource NavigationButtonHoveredForeground}"/>
             </Trigger>
 
         </Style.Triggers>

@@ -10,16 +10,20 @@ public sealed class AppWindowViewModel : ObservableObject
     public AppWindowViewModel()
     {
         ShowSettingsCommand = new(o =>
-            CurrentPage = new SettingsPage());
+            CurrentPage = new SettingsPage(),
+            b => CurrentPage is not SettingsPage);
 
         ShowCurrencyExchangeCommand = new(o =>
-            CurrentPage = new CurrencyExchangePage());
+            CurrentPage = new CurrencyExchangePage(),
+            b => CurrentPage is not CurrencyExchangePage);
 
         ShowTransactionsCommand = new(o =>
-            CurrentPage = new TransactionsPage());
+            CurrentPage = new TransactionsPage(),
+            b => CurrentPage is not TransactionsPage);
 
         ShowExpensesCommand = new(o =>
-            CurrentPage = new ExpensesPage());
+            CurrentPage = new ExpensesPage(),
+            b => CurrentPage is not ExpensesPage);
     }
 
     public Command ShowSettingsCommand { get; }
@@ -27,5 +31,5 @@ public sealed class AppWindowViewModel : ObservableObject
     public Command ShowTransactionsCommand { get; }
     public Command ShowExpensesCommand { get; }
 
-    public Page? CurrentPage { get; set; }
+    public Page? CurrentPage { get; set; } = new SettingsPage();
 }

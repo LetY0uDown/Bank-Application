@@ -43,11 +43,11 @@
 
         <DataTemplate x:Key="PaymentTemplate" DataType="{x:Type model:Payment}">
             <Grid Margin="0 2 0 2">
-                <TextBlock Text="{Binding Type}" Foreground="{DynamicResource MainForeground}"
+                <TextBlock Text="{Binding Type}" Foreground="{DynamicResource AppForeground}"
                            FontSize="24" HorizontalAlignment="Left"/>
 
                 <TextBlock Text="{Binding Sum, Converter={StaticResource MoneyConverter}}"
-                           Foreground="{DynamicResource MainForeground}" FontSize="24"
+                           Foreground="{DynamicResource AppForeground}" FontSize="24"
                            HorizontalAlignment="Right"/>
             </Grid>
         </DataTemplate>
@@ -88,7 +88,7 @@
             <Border Background="{DynamicResource AppThirdBackground}"
                     Width="350" Height="auto" CornerRadius="25">
                 <ItemsControl ItemsSource="{Binding Payments}" 
-                              ItemTemplate="{StaticResource ResourceKey=PaymentTemplate}"
+                              ItemTemplate="{StaticResource PaymentTemplate}"
                               HorizontalContentAlignment="Stretch" Background="Transparent"
                               BorderThickness="0" Margin="15 10 15 10"/>
             </Border>

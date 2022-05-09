@@ -13,8 +13,8 @@ public static class ThemeController
         ["Dark Blue"] = new(Path: new("pack://application:,,,/Resources/Themes/DarkBlueTheme.xaml", UriKind.RelativeOrAbsolute),
                             Title: "Dark Blue"),
 
-        ["Light Green"] = new(Path: new("pack://application:,,,/Resources/Themes/LightGreenTheme.xaml", UriKind.RelativeOrAbsolute),
-                              Title: "Light Green")
+        ["Dark Purple"] = new(Path: new("pack://application:,,,/Resources/Themes/DarkPurpleTheme.xaml", UriKind.RelativeOrAbsolute),
+                              Title: "Dark Purple")
     };
 
     public static Theme? CurrentTheme { get; private set; }

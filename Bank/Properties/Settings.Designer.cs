@@ -49,7 +49,7 @@ namespace Bank.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Dark Blue")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Bloody Red")]
         public string SavedTheme {
             get {
                 return ((string)(this["SavedTheme"]));
