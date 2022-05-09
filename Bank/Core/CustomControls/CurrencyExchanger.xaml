@@ -13,19 +13,19 @@
                         HorizontalAlignment="Center" VerticalAlignment="Top">
                 
                 <TextBlock Text="{Binding FirstCurrency}" FontSize="34" 
-                           Foreground="{DynamicResource MainForeground}"/>
+                           Foreground="{DynamicResource AppForeground}"/>
 
                 <fa:ImageAwesome Icon="Exchange" Height="20" Margin="15 5 15 0"
-                                 Foreground="{DynamicResource MainForeground}"/>
+                                 Foreground="{DynamicResource AppForeground}"/>
 
                 <TextBlock Text="{Binding SecondCurrency}" FontSize="34"
-                           Foreground="{DynamicResource MainForeground}"/>
+                           Foreground="{DynamicResource AppForeground}"/>
             </StackPanel>
 
             <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Left"
                         Margin="15">
                 <TextBlock Text="{Binding FirstCurrency}" FontSize="34" 
-                           Foreground="{DynamicResource MainForeground}"
+                           Foreground="{DynamicResource AppForeground}"
                            HorizontalAlignment="Center"/>
 
                 <TextBox Style="{StaticResource CurrencyTextBox}" Width="150"
@@ -36,7 +36,7 @@
             <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Right"
                         Margin="15">
                 <TextBlock Text="{Binding SecondCurrency}" FontSize="34" 
-                           Foreground="{DynamicResource MainForeground}"
+                           Foreground="{DynamicResource AppForeground}"
                            HorizontalAlignment="Center"/>
 
                 <TextBox Style="{StaticResource CurrencyTextBox}" Width="150" 
@@ -44,13 +44,13 @@
                          Text="{Binding SecondCurrencyAmount}"/>
             </StackPanel>
 
-            <Border Background="{DynamicResource ExchangeRateTextBoxBackground}" CornerRadius="25"
+            <Border Background="{DynamicResource BankIconBackground}" CornerRadius="25"
                     Width="115" Height="115" Margin="0 0 0 20">
                 <fa:ImageAwesome Icon="Bank"
                                  Margin="10">
                     <fa:ImageAwesome.Style>
                         <Style TargetType="{x:Type fa:ImageAwesome}">
-                            <Setter Property="Foreground" Value="{DynamicResource MainForeground}"/>
+                            <Setter Property="Foreground" Value="{DynamicResource AppForeground}"/>
                             <Style.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
                                     <Setter Property="Foreground" 

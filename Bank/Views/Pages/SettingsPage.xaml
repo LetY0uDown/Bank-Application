@@ -9,7 +9,7 @@
       xmlns:viewmodels="clr-namespace:Bank.ViewModels"
       mc:Ignorable="d" 
       d:DesignHeight="618" d:DesignWidth="950"
-      d:Background="{DynamicResource MainBackground}">
+      d:Background="{DynamicResource AppBackground}">
 
     <Page.DataContext>
         <viewmodels:SettingsPageViewModel/>
@@ -17,7 +17,7 @@
 
     <Page.Resources>
         <Style TargetType="{x:Type TextBlock}" x:Key="PropertyTextBlock">
-            <Setter Property="Foreground" Value="{DynamicResource MainForeground}"/>
+            <Setter Property="Foreground" Value="{DynamicResource AppForeground}"/>
             <Setter Property="FontSize" Value="22"/>
             <Setter Property="Margin" Value="10 10 0 0"/>
         </Style>
@@ -26,7 +26,7 @@
     </Page.Resources>
 
     <Grid>
-        <Border Background="{DynamicResource DarkerMainBackground}" CornerRadius="25"
+        <Border Background="{DynamicResource AppThirdBackground}" CornerRadius="25"
                 Width="500" Height="500" Margin="15"
                 HorizontalAlignment="Left" VerticalAlignment="Top">
             
@@ -34,7 +34,7 @@
                 
                 <fa:ImageAwesome Icon="UserCircle" VerticalAlignment="Top"
                                  HorizontalAlignment="Left"
-                                 Margin="20" Foreground="{DynamicResource MainForeground}"
+                                 Margin="20" Foreground="{DynamicResource AppForeground}"
                                  Height="150" Width="150"/>
 
                 <StackPanel VerticalAlignment="Bottom" Margin="15">
@@ -71,7 +71,7 @@
                              IsReadOnly="True" Width="250" HorizontalAlignment="Left"/>
 
                         <Button Height="30" Width="30" Margin="10 0 0 0" 
-                                Style="{StaticResource CreateAccountButton}"
+                                Style="{StaticResource GoToCreateAccountButton}"
                                 Command="{Binding DepositMoneyCommand}">
                             <fa:ImageAwesome Icon="Plus" 
                                              Foreground="{Binding RelativeSource={RelativeSource 
@@ -96,13 +96,13 @@
                 VerticalAlignment="Bottom" HorizontalAlignment="Left"
                 Width="500" Margin="15 0 0 15" Height="75" FontSize="36"/>
 
-        <Border Background="{DynamicResource DarkerMainBackground}"
+        <Border Background="{DynamicResource AppThirdBackground}"
                 HorizontalAlignment="Right" Width="385"
                 CornerRadius="25" Margin="15">
             <Grid Margin="15">
                 <StackPanel>
                     <TextBlock Text="Цветовая тема приложения"
-                               Foreground="{DynamicResource MainForeground}"
+                               Foreground="{DynamicResource AppForeground}"
                                FontSize="20" Margin="10 0 0 5"/>
                     <ComboBox Height="40" ItemsSource="{Binding Themes}"
                               SelectedValue="{Binding SelectedTheme}"

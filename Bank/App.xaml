@@ -8,19 +8,19 @@
 
                 <ResourceDictionary Source="pack://application:,,,/Resources/Themes/DarkBlueTheme.xaml"/>
 
-                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/AppStateButtonStyle.xaml"/>
-                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/LoginButtonStyle.xaml"/>
-                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/CreateAccountButtonStyle.xaml"/>
-                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/LoginTextBoxStyle.xaml"/>
-                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/CurrencyExchangerTextBoxStyle.xaml"/>
-                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/TransactionTextBoxStyle.xaml"/>
-                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/PasswordBoxStyle.xaml"/>
-                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/OKButtonStyle.xaml"/>
-                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/NavigationButtonStyle.xaml"/>
-                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/SettingsButtonStyle.xaml"/>
-                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/RememberCheckBoxStyle.xaml"/>
-                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/TransactionsViewButtonsStyle.xaml"/>
-                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/ComboBoxStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/Buttons/AppStateButtonStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/Buttons/LoginButtonStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/Buttons/ViewTransactionsButtonStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/Buttons/SettingsButtonStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/Buttons/NavigationButtonStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/Buttons/WarningWindowOKButtonStyle.xaml"/> <!-- Переделать цвета в триггерах -->
+                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/Buttons/GoToCreateAccountButtonStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/TextBoxes/LoginInputBoxStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/TextBoxes/LoginPasswordBoxStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/TextBoxes/TransactionInputBoxStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/TextBoxes/CurrencyExchangerTextBoxStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/CheckBoxes/RememberUserCheckBox.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/ComplexControls/ComboBoxStyle.xaml"/>
 
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

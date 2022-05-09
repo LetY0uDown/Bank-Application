@@ -1,32 +1,31 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <Style x:Key="RememberCheckBox" TargetType="{x:Type CheckBox}">
+    <Style TargetType="{x:Type CheckBox}" x:Key="RememberUserCheckBox">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="CheckBox">
                     <StackPanel Orientation="Horizontal">
-                        
+
                         <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0 -4 5 0"/>
 
                         <Border VerticalAlignment="Center"
                                 Width="23" Height="23"
                                 CornerRadius="20"
-                                Background="{DynamicResource CheckBoxBackground}"
+                                Background="{DynamicResource RememberUserCheckBoxBackground}"
                                 BorderThickness="0">
-                            <Border x:Name="StateBorder" Background="{DynamicResource CheckBoxFalseStateColor}"
+                            <Border x:Name="StateBorder" Background="{DynamicResource RememberCheckBoxFalseState}"
                                     Width="10" Height="10" CornerRadius="25"/>
                         </Border>
 
                     </StackPanel>
-                    
+
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsChecked" Value="True">
-                            <Setter TargetName="StateBorder" Property="Background" Value="{DynamicResource ResourceKey=CheckBoxTrueStateColor}"/>
+                            <Setter TargetName="StateBorder" Property="Background" Value="{DynamicResource RememberCheckBoxTrueState}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
-
 </ResourceDictionary>

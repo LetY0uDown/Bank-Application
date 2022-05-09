@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewmodels="clr-namespace:Bank.ViewModels"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
         mc:Ignorable="d"
         Title="RegistrationWindow" Height="600" Width="650"
         WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
@@ -16,20 +17,20 @@
     <Window.Resources>
         <Style TargetType="{x:Type Label}">
             <Setter Property="FontSize" Value="18"/>
-            <Setter Property="Foreground" Value="{DynamicResource MainForeground}"/>
+            <Setter Property="Foreground" Value="{DynamicResource AppForeground}"/>
             <Setter Property="Margin" Value="10 0 0 0"/>
         </Style>
     </Window.Resources>
     
-    <Border BorderThickness="2" BorderBrush="{DynamicResource MainColor}"
-            Background="{DynamicResource MainBackground}">
+    <Border BorderThickness="2" BorderBrush="{DynamicResource ApplicationBorder}"
+            Background="{DynamicResource AppBackground}">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="32"/>
                 <RowDefinition />
             </Grid.RowDefinitions>
 
-            <Border Background="{DynamicResource MainColor}">
+            <Border Background="{DynamicResource AppStatePanel}">
                 <Grid>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
 
@@ -52,17 +53,22 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
-                <Border Background="{DynamicResource RegistrationWindowSecondBackground}">
+                <Border Background="{DynamicResource AppSecondBackground}">
                     <Grid>
-                        <TextBlock Text="Регистрация" Foreground="{DynamicResource MainForeground}"
+                        <TextBlock Text="Регистрация" Foreground="{DynamicResource AppForeground}"
                                    FontSize="44" HorizontalAlignment="Center"/>
 
-                        <TextBlock TextWrapping="Wrap" 
-                                   FontSize="20" Foreground="{DynamicResource MainForeground}"
-                                   HorizontalAlignment="Center" Margin="0 75 0 0"
-                                   Text="Какой-то текст"/>
+                        <Border Background="{DynamicResource BankIconBackground}" 
+                                CornerRadius="25" VerticalAlignment="Top"
+                                Margin="0 90 0 0"
+                                Width="140" Height="140">
+                            <fa:ImageAwesome Icon="Bank" 
+                                             Foreground="{DynamicResource AppForeground}"
+                                             Margin="10"/>
+                        </Border>
 
-                        <Button Content="Уже есть аккаунт?" Style="{StaticResource CreateAccountButton}"
+                        <Button Content="Уже есть аккаунт?" 
+                                Style="{StaticResource GoToCreateAccountButton}"
                                 VerticalAlignment="Bottom" Margin="0 0 0 31"
                                 Command="{Binding GoBackCommand}"/>
 
@@ -73,32 +79,32 @@
 
                     <Label Content="Номер телефона"/>
                     <TextBox Text="{Binding PhoneNumber, Mode=TwoWay}"
-                             Style="{StaticResource LoginTextBox}"/>
+                             Style="{StaticResource LoginInputBox}"/>
                     
                     <Label Content="Имя"/>
                     <TextBox Text="{Binding FirstName, Mode=TwoWay}"
-                             Style="{StaticResource LoginTextBox}"/>
+                             Style="{StaticResource LoginInputBox}"/>
                     
                     <Label Content="Фамилия"/>
                     <TextBox Text="{Binding Surname, Mode=TwoWay}"
-                             Style="{StaticResource LoginTextBox}"/>
+                             Style="{StaticResource LoginInputBox}"/>
                     
                     <Label Content="Отчество"/>
                     <TextBox Text="{Binding LastName, Mode=TwoWay}"
-                             Style="{StaticResource LoginTextBox}"/>
+                             Style="{StaticResource LoginInputBox}"/>
 
 
                     <Label Content="Дата Рождения"/>
                     <TextBox Text="{Binding Birthday, Mode=TwoWay}"
-                             Style="{StaticResource LoginTextBox}"/>
+                             Style="{StaticResource LoginInputBox}"/>
 
                     <Label Content="Пароль"/>
-                    <PasswordBox Style="{StaticResource PasswordBox}"
+                    <PasswordBox Style="{StaticResource LoginPasswordBox}"
                                  x:Name="firstPasswordBox"
                                  PasswordChanged="PasswordBox_PasswordChanged"/>
 
                     <Label Content="Повтор пароля"/>
-                    <PasswordBox Style="{StaticResource PasswordBox}"
+                    <PasswordBox Style="{StaticResource LoginPasswordBox}"
                                  x:Name="secondPasswordBox"
                                  PasswordChanged="PasswordBox_PasswordChanged_1"/>
 

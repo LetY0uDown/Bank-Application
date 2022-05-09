@@ -8,7 +8,7 @@
       xmlns:viewmodels="clr-namespace:Bank.ViewModels"
       mc:Ignorable="d" 
       d:DesignHeight="618" d:DesignWidth="950"
-      d:Background="{DynamicResource MainBackground}"
+      d:Background="{DynamicResource AppBackground}"
       Title="ExpensesPage">
 
     <Page.DataContext>
@@ -26,17 +26,17 @@
                     CornerRadius="5">
                 <StackPanel>
                     <TextBlock Text="{Binding Sender, Converter={StaticResource SenderConverter}}"
-                               Foreground="{DynamicResource MainForeground}" FontSize="20"/>
+                               Foreground="{DynamicResource AppForeground}" FontSize="20"/>
 
                     <TextBlock Text="{Binding Reciever, Converter={StaticResource RecieverConverter}}"
-                               Foreground="{DynamicResource MainForeground}" FontSize="20"/>
+                               Foreground="{DynamicResource AppForeground}" FontSize="20"/>
 
                     <TextBlock Text="{Binding Sum, Converter={StaticResource SumConverter}}"
-                               Foreground="{DynamicResource MainForeground}" FontSize="20"/>
+                               Foreground="{DynamicResource AppForeground}" FontSize="20"/>
 
                     <TextBlock Text="{Binding Message}" TextWrapping="Wrap" MaxWidth="320"
                                Margin="0 0 0 10"
-                               Foreground="{DynamicResource MainForeground}" FontSize="20"/>
+                               Foreground="{DynamicResource AppForeground}" FontSize="20"/>
                 </StackPanel>
             </Border>
         </DataTemplate>
@@ -55,37 +55,37 @@
 
     <Grid>
         <StackPanel HorizontalAlignment="Left" Margin="20">
-            <Border Background="{DynamicResource DarkerMainBackground}"
+            <Border Background="{DynamicResource AppThirdBackground}"
                     Width="350" Height="120" CornerRadius="25">
                 <StackPanel Margin="15 10 0 10">
 
                     <Grid Margin="0 0 10 0">
                         <TextBlock Text="Всего потрачено:" FontSize="24"
-                                   Foreground="{DynamicResource MainForeground}"/>
+                                   Foreground="{DynamicResource AppForeground}"/>
 
                         <TextBlock Text="{Binding WastedMoney, 
                                                   Converter={StaticResource MoneyConverter}}"
-                                   Foreground="{DynamicResource MainForeground}" FontSize="23"
+                                   Foreground="{DynamicResource AppForeground}" FontSize="23"
                                    HorizontalAlignment="Right"/>
                     </Grid>
 
                     <Grid Margin="0 20 10 0">
                         <TextBlock Text="Всего получено:" FontSize="24"
-                                   Foreground="{DynamicResource MainForeground}"/>
+                                   Foreground="{DynamicResource AppForeground}"/>
 
                         <TextBlock Text="{Binding RecievedMoney, 
                                                   Converter={StaticResource MoneyConverter}}"
-                                   Foreground="{DynamicResource MainForeground}" FontSize="24"
+                                   Foreground="{DynamicResource AppForeground}" FontSize="24"
                                    HorizontalAlignment="Right"/>
                     </Grid>
                 </StackPanel>
             </Border>
 
             <TextBlock Text="Траты по категориям" FontSize="26" 
-                       Foreground="{DynamicResource MainForeground}"
+                       Foreground="{DynamicResource AppForeground}"
                        HorizontalAlignment="Center" Margin="0 30 0 10"/>
 
-            <Border Background="{DynamicResource DarkerMainBackground}"
+            <Border Background="{DynamicResource AppThirdBackground}"
                     Width="350" Height="auto" CornerRadius="25">
                 <ItemsControl ItemsSource="{Binding Payments}" 
                               ItemTemplate="{StaticResource ResourceKey=PaymentTemplate}"
@@ -98,9 +98,9 @@
                     Width="350">
 
             <TextBlock Text="Ваши переводы" FontSize="32" Margin="0 0 0 5"
-                       Foreground="{DynamicResource MainForeground}" HorizontalAlignment="Center"/>
+                       Foreground="{DynamicResource AppForeground}" HorizontalAlignment="Center"/>
 
-            <Border Background="{DynamicResource DarkerMainBackground}" CornerRadius="25"
+            <Border Background="{DynamicResource AppThirdBackground}" CornerRadius="25"
                     Height="500">
                 <Grid>
                     <Grid.RowDefinitions>

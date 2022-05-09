@@ -3,12 +3,13 @@
     <Style TargetType="{x:Type TextBox}" x:Key="CurrencyTextBox">
 
         <Style.Setters>
-            
+
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type TextBox}">
                         <Border Background="{TemplateBinding Background}"
-                                BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{DynamicResource ExchangeTextBoxErrorBorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                BorderBrush="{DynamicResource TextBoxErrorBorderBrush}"
                                 CornerRadius="10">
                             <ScrollViewer x:Name="PART_ContentHost"
                                           VerticalAlignment="Center" BorderThickness="0"
@@ -23,7 +24,7 @@
             <Setter Property="BorderThickness" Value="0"/>
 
             <Setter Property="Background" Value="{DynamicResource CurrencyExchangeTextBoxBackground}"/>
-            <Setter Property="Foreground" Value="{DynamicResource MainForeground}"/>
+            <Setter Property="Foreground" Value="{DynamicResource AppForeground}"/>
 
             <Setter Property="FontSize" Value="28"/>
 

@@ -19,8 +19,8 @@
         <tool:BalanceValueConverter x:Key="BalanceConverter"/>
     </Window.Resources>
 
-    <Border BorderThickness="2" BorderBrush="{DynamicResource MainColor}"
-            Background="{DynamicResource MainBackground}">
+    <Border BorderThickness="2" BorderBrush="{DynamicResource ApplicationBorder}"
+            Background="{DynamicResource AppBackground}">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="32"/>
@@ -28,13 +28,14 @@
             </Grid.RowDefinitions>
 
             <Border Background="{DynamicResource MainColor}">
-                <Border Background="{DynamicResource MainColor}" MouseLeftButtonDown="Border_MouseLeftButtonDown">
+                <Border Background="{DynamicResource AppStatePanel}" 
+                        MouseLeftButtonDown="Border_MouseLeftButtonDown">
                     <Grid>
 
                         <TextBlock Text="Банковское приложение" FontSize="22" 
                                    VerticalAlignment="Center" HorizontalAlignment="Left"
                                    Margin="5" FontWeight="DemiBold"
-                                   Foreground="{DynamicResource AlterForeground}"/>
+                                   Foreground="{DynamicResource AppSecondForeground}"/>
 
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
 
@@ -58,23 +59,12 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
-                <Border Background="{DynamicResource DarkerMainBackground}">
+                <Border Background="{DynamicResource NavigationPanelBackground}">
                     <Grid>
                         <fa:ImageAwesome Icon="UserCircle" VerticalAlignment="Top"
                                          Margin="0 12.5 0 0"
-                                         Height="75" Width="75">
-                            <fa:ImageAwesome.Style>
-                                <Style TargetType="fa:ImageAwesome">
-                                    <Setter Property="Foreground" 
-                                            Value="{DynamicResource MainForeground}"/>
-                                    <Style.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Foreground" 
-                                                    Value="{DynamicResource LighterMainForeground}"/>
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </fa:ImageAwesome.Style>
+                                         Height="75" Width="75" 
+                                         Foreground="{DynamicResource AppForeground}">
                         </fa:ImageAwesome>
 
                         <StackPanel VerticalAlignment="Center" Width="50">

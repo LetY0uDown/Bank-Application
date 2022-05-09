@@ -6,7 +6,7 @@
       xmlns:viewmodels="clr-namespace:Bank.ViewModels"
       mc:Ignorable="d" 
       d:DesignHeight="618" d:DesignWidth="950"
-      d:Background="{DynamicResource MainBackground}">
+      d:Background="{DynamicResource AppBackground}">
 
     <Page.DataContext>
         <viewmodels:TransactionsPageViewModel/>
@@ -19,18 +19,18 @@
 
             <TextBlock Text="Совершить перевод" FontSize="32"
                        HorizontalAlignment="Center" Margin="-30 0 0 0"
-                       Foreground="{DynamicResource MainForeground}"/>
+                       Foreground="{DynamicResource AppForeground}"/>
 
-            <Border Background="{DynamicResource DarkerMainBackground}" CornerRadius="25"
+            <Border Background="{DynamicResource AppThirdBackground}" CornerRadius="25"
                     VerticalAlignment="Top" MinHeight="280"
                     Height="auto" Margin="0 5 25 0">                
                 <StackPanel>
                     <Grid Margin="0 5 0 5">
                         <TextBlock Text="Телефон" FontSize="26"
-                                   Foreground="{DynamicResource MainForeground}"
+                                   Foreground="{DynamicResource AppForeground}"
                                    HorizontalAlignment="Left" Margin="15 15 0 0"/>
 
-                        <TextBox Style="{StaticResource TransactionTextBox}" 
+                        <TextBox Style="{StaticResource TransactionInputBox}" 
                                  HorizontalAlignment="Right"
                                  Width="280" Margin="0 0 15 0" 
                                  Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}"/>
@@ -38,10 +38,10 @@
 
                     <Grid Margin="0 5 0 5">
                         <TextBlock Text="Сумма" FontSize="26"
-                                   Foreground="{DynamicResource MainForeground}"
+                                   Foreground="{DynamicResource AppForeground}"
                                    HorizontalAlignment="Left" Margin="15 15 0 0"/>
 
-                        <TextBox Style="{StaticResource TransactionTextBox}" 
+                        <TextBox Style="{StaticResource TransactionInputBox}" 
                                  HorizontalAlignment="Right"
                                  Width="280" Margin="0 0 15 0" 
                                  Text="{Binding TransactionSum, UpdateSourceTrigger=PropertyChanged}"/>
@@ -51,13 +51,13 @@
 
                         <TextBlock Text="Текст" FontSize="26"
                                    HorizontalAlignment="Left" Margin="15 15 0 0"
-                                   Foreground="{DynamicResource MainForeground}"/>
+                                   Foreground="{DynamicResource AppForeground}"/>
 
                         <TextBlock Text="{Binding RemainingMessageLength}" 
-                                   Foreground="{DynamicResource LighterMainForeground}"
+                                   Foreground="{DynamicResource AppSecondForeground}"
                                    FontSize="16" Margin="87 23 0 0"/>
 
-                        <TextBox Style="{StaticResource TransactionTextBox}" 
+                        <TextBox Style="{StaticResource TransactionInputBox}" 
                                  HorizontalAlignment="Right"
                                  Width="280" Margin="0 0 15 0" TextWrapping="Wrap"
                                  MaxHeight="280" MaxLength="150" 
@@ -73,20 +73,20 @@
 
         <StackPanel HorizontalAlignment="Right" Margin="0 25 25 0">
 
-            <TextBlock Text="Совершить оплату" Foreground="{DynamicResource MainForeground}"
+            <TextBlock Text="Совершить оплату" Foreground="{DynamicResource AppForeground}"
                        FontSize="26" HorizontalAlignment="Center" Margin="0 0 0 10"/>
 
-            <Border Background="{DynamicResource DarkerMainBackground}"
+            <Border Background="{DynamicResource AppThirdBackground}"
                     Width="450" Height="auto" CornerRadius="25"
                     MinHeight="280">
                 <StackPanel>
 
                     <Grid Margin="15 15 15 10">
                         <TextBlock Text="Счёт" FontSize="26"
-                                   Foreground="{DynamicResource MainForeground}"
+                                   Foreground="{DynamicResource AppForeground}"
                                    HorizontalAlignment="Left"/>
 
-                        <TextBox Style="{StaticResource TransactionTextBox}" 
+                        <TextBox Style="{StaticResource TransactionInputBox}" 
                                  HorizontalAlignment="Right"
                                  Width="300"
                                  Text="{Binding AccountNumber, UpdateSourceTrigger=PropertyChanged}"/>
@@ -94,10 +94,10 @@
 
                     <Grid Margin="15 5 15 15">
                         <TextBlock Text="Сумма" FontSize="26"
-                                   Foreground="{DynamicResource MainForeground}"
+                                   Foreground="{DynamicResource AppForeground}"
                                    HorizontalAlignment="Left"/>
 
-                        <TextBox Style="{StaticResource TransactionTextBox}" 
+                        <TextBox Style="{StaticResource TransactionInputBox}" 
                                  HorizontalAlignment="Right"
                                  Width="300"
                                  Text="{Binding PaymentSum, UpdateSourceTrigger=PropertyChanged}"/>
@@ -107,7 +107,7 @@
                               SelectedItem="{Binding SelectedType}"
                               DisplayMemberPath="Type"
                               Height="40"
-                              FontSize="20" Foreground="{DynamicResource MainForeground}"/>
+                              FontSize="20" Foreground="{DynamicResource AppForeground}"/>
 
                     <Button Content="Оплатить" Style="{StaticResource LoginButton}"
                             Margin="20" Height="45" Command="{Binding PayCommand}"/>
