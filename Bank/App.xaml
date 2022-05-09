@@ -21,6 +21,7 @@
                 <ResourceDictionary Source="pack://application:,,,/Resources/Styles/TextBoxes/CurrencyExchangerTextBoxStyle.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Resources/Styles/CheckBoxes/RememberUserCheckBox.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Resources/Styles/ComplexControls/ComboBoxStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/ComplexControls/ScrollBarStyle.xaml"/>
 
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

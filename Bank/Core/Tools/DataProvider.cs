@@ -84,7 +84,6 @@ public static class DataProvider
 
     public static List<Transaction> GetTransactions(User user)
     {
-
         List<Transaction> transactions = new();
         string query = $"SELECT * FROM transactions WHERE RecieverID = '{user.ID}' OR SenderID = '{user.ID}'";
 
@@ -99,7 +98,7 @@ public static class DataProvider
 
                     transaction.ID = dr.GetGuid(nameof(transaction.ID));
                     transaction.SenderID = dr.GetGuid(nameof(transaction.SenderID));
-                    transaction.RecieverID = user.ID;
+                    transaction.RecieverID = dr.GetGuid(nameof(transaction.RecieverID));
                     transaction.Sum = dr.GetDecimal(nameof(transaction.Sum));
                     transaction.Message = dr.GetString(nameof(transaction.Message));
 
