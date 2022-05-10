@@ -13,6 +13,7 @@
                 <ResourceDictionary Source="pack://application:,,,/Resources/Styles/Buttons/SaveAccountDataButtonStyle.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Resources/Styles/Buttons/ViewTransactionsButtonStyle.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Resources/Styles/Buttons/SettingsButtonStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/Buttons/DatabaseSettingsButtonStyle.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Resources/Styles/Buttons/NavigationButtonStyle.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Resources/Styles/Buttons/WarningWindowOKButtonStyle.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Resources/Styles/Buttons/GoToCreateAccountButtonStyle.xaml"/>

@@ -74,7 +74,13 @@ public sealed class LoginWindowViewModel : ObservableObject
 
     public Command LoginCommand { get; } 
 
-    public Command CreateAccountCommand { get; } 
+    public Command CreateAccountCommand { get; }
+
+    public Command ShowDatabaseSettingsCommand { get; } = new(o => 
+    {
+        LoginWindow.Instance.Hide();
+        new DatabaseSettingsWindow().ShowDialog(); 
+    });
 
     private void DeleteUserData()
     {

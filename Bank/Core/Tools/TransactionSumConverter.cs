@@ -4,7 +4,7 @@ using System.Windows.Data;
 
 namespace Bank.Core.Tools;
 
-public class TransactionSumConverter : IValueConverter
+public sealed class TransactionSumConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture) => $"Сумма: {value:0.##} ₽";
 

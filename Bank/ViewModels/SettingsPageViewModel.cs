@@ -10,7 +10,7 @@ using System.Text.RegularExpressions;
 
 namespace Bank.ViewModels;
 
-public class SettingsPageViewModel : ObservableObject
+public sealed class SettingsPageViewModel : ObservableObject
 {
     public SettingsPageViewModel()
     {

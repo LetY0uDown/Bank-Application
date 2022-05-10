@@ -27,10 +27,24 @@
             <Border Background="{DynamicResource AppStatePanel}">
                 <Grid>
 
-                    <TextBlock Text="Pearl Bank" FontSize="24"
-                               FontWeight="DemiBold" Margin="5 0 0 0"
-                               HorizontalAlignment="Left" VerticalAlignment="Center"
-                               Foreground="{DynamicResource AppSecondForeground}"/>
+                    <StackPanel Orientation="Horizontal">
+
+                        <Button Style="{StaticResource DatabaseSettingsButton}" Margin="4 4 0 4"
+                                Command="{Binding ShowDatabaseSettingsCommand}">
+                            <fa:ImageAwesome Icon="Database"
+                                             Foreground="{Binding RelativeSource={RelativeSource 
+                                                                                  Mode=FindAncestor,
+                                                                                  AncestorType=Button},
+                                                                   Path=Foreground}"/>
+                        </Button>
+                        
+
+                        <TextBlock Text="Pearl Bank" FontSize="24"
+                                   FontWeight="DemiBold" Margin="5 0 0 3"
+                                   HorizontalAlignment="Left" VerticalAlignment="Center"
+                                   Foreground="{DynamicResource AppSecondForeground}"/>
+                    </StackPanel>
+                    
 
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
 
