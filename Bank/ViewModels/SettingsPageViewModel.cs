@@ -21,6 +21,10 @@ public sealed class SettingsPageViewModel : ObservableObject
             App.CurrentUser.Birthday = Birthday;
             DataProvider.Update(App.CurrentUser);
 
+            App.CurrentUser.SetTransactions(DataProvider.GetTransactions(App.CurrentUser.ID));
+
+            new WarningWindow("Успшено!", "Данные вашего аккаунта успешно сохранены").ShowDialog();
+
         }, b => !string.IsNullOrEmpty(App.CurrentUser!.PhoneNumber)
                 && !string.IsNullOrEmpty(App.CurrentUser!.FirstName)
                 && !string.IsNullOrEmpty(App.CurrentUser!.Surname)
@@ -54,6 +58,8 @@ public sealed class SettingsPageViewModel : ObservableObject
     }
 
     public Command SaveAccountCommand { get; }
+    public Command DeleteAccountCommand { get; }
+
     public Command DepositMoneyCommand { get; }
 
     private bool ValidateProperties()

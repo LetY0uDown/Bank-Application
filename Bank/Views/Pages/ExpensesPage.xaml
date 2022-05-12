@@ -124,7 +124,6 @@
 
                     <ScrollViewer Grid.Row="1" Margin="2 2 2 5">
                          <ItemsControl ItemsSource="{Binding TransactionsSource}"
-                                       Background="Transparent" BorderThickness="0"
                                        HorizontalContentAlignment="Stretch"
                                        ItemTemplate="{StaticResource TransactionTemplate}"/>
                     </ScrollViewer>

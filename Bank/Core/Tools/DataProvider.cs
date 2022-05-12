@@ -17,25 +17,24 @@ public static class DataProvider
         List<Payment> payments = new();
         string query = $"SELECT * FROM payments WHERE UserID = '{user.ID}' ORDER BY Number";
 
-        if (Database.OpenConnection())
+        if (!Database.OpenConnection()) return null!;
+
+        using (MySqlCommand mc = new(query, Database.SqlConnection))
+        using (MySqlDataReader dr = mc.ExecuteReader())
         {
-            using (MySqlCommand mc = new(query, Database.SqlConnection))
-            using (MySqlDataReader dr = mc.ExecuteReader())
+            while (dr.Read())
             {
-                while (dr.Read())
-                {
-                    Payment payment = new(dr.GetString(nameof(payment.Type)));
+                Payment payment = new(dr.GetString(nameof(payment.Type)));
 
-                    payment.ID = dr.GetGuid(nameof(payment.ID));
-                    payment.Sum = dr.GetDecimal(nameof(payment.Sum));
-                    payment.UserID = user.ID;
+                payment.ID = dr.GetGuid(nameof(payment.ID));
+                payment.Sum = dr.GetDecimal(nameof(payment.Sum));
+                payment.UserID = user.ID;
 
-                    payments.Add(payment);
-                }
+                payments.Add(payment);
             }
-
-            Database.CloseConnection();
         }
+
+        Database.CloseConnection();
 
         if (payments.Count == 0) payments = null!;
 
@@ -44,70 +43,65 @@ public static class DataProvider
 
     public static User TryGetUserByPhoneNumber(string phoneNumber)
     {
-        List<User> users = new();
+        User? user = null;
         string query = $"SELECT * FROM users WHERE PhoneNumber = '{phoneNumber}'";
 
-        if (Database.OpenConnection())
+        if (!Database.OpenConnection()) return null!;
+
+        using (MySqlCommand mc = new(query, Database.SqlConnection))
+        using (MySqlDataReader dr = mc.ExecuteReader())
         {
-            using (MySqlCommand mc = new(query, Database.SqlConnection))
-            using (MySqlDataReader dr = mc.ExecuteReader())
+            if (dr.Read())
             {
-                while (dr.Read())
+                user = new(dr.GetDecimal(nameof(user.Balance)),
+                           dr.GetDecimal(nameof(user.WastedMoney)),
+                           dr.GetDecimal(nameof(user.RecievedMoney)))
                 {
-                    User user = new(dr.GetDecimal(nameof(user.Balance)),
-                                    dr.GetDecimal(nameof(user.WastedMoney)),
-                                    dr.GetDecimal(nameof(user.RecievedMoney)))
-                    {
-                        Password = dr.GetString(nameof(user.Password))
-                    };
+                    Password = dr.GetString(nameof(user.Password))
+                };
 
-                    user.ID = dr.GetGuid(nameof(user.ID));
-                    user.FirstName = dr.GetString(nameof(user.FirstName));
-                    user.Surname = dr.GetString(nameof(user.Surname));
-                    user.LastName = dr.GetString(nameof(user.LastName));
-                    user.Birthday = dr.GetString(nameof(user.Birthday));
-                    user.PhoneNumber = dr.GetString(nameof(user.PhoneNumber));
-                    user.IsBanned = dr.GetBoolean(nameof(user.IsBanned));
-
-                    users.Add(user);
-                }
+                user.ID = dr.GetGuid(nameof(user.ID));
+                user.FirstName = dr.GetString(nameof(user.FirstName));
+                user.Surname = dr.GetString(nameof(user.Surname));
+                user.LastName = dr.GetString(nameof(user.LastName));
+                user.Birthday = dr.GetString(nameof(user.Birthday));
+                user.PhoneNumber = dr.GetString(nameof(user.PhoneNumber));
+                user.IsBanned = dr.GetBoolean(nameof(user.IsBanned));
             }
-
-            Database.CloseConnection();
         }
 
-        foreach (var u in users)
-            u.InitPayments(false);
+        Database.CloseConnection();
 
-        return users.FirstOrDefault()!;
+        user?.InitPayments(false);
+
+        return user!;
     }
 
-    public static List<Transaction> GetTransactions(User user)
+    public static List<Transaction> GetTransactions(Guid id)
     {
         List<Transaction> transactions = new();
-        string query = $"SELECT * FROM transactions WHERE RecieverID = '{user.ID}' OR SenderID = '{user.ID}'";
+        string query = $"SELECT * FROM transactions WHERE RecieverID = '{id}' OR SenderID = '{id}'";
 
-        if (Database.OpenConnection())
+        if (!Database.OpenConnection()) return null!;
+
+        using (MySqlCommand mc = new(query, Database.SqlConnection))
+        using (MySqlDataReader dr = mc.ExecuteReader())
         {
-            using (MySqlCommand mc = new(query, Database.SqlConnection))
-            using (MySqlDataReader dr = mc.ExecuteReader())
+            while (dr.Read())
             {
-                while (dr.Read())
-                {
-                    Transaction transaction = new();
+                Transaction transaction = new();
 
-                    transaction.ID = dr.GetGuid(nameof(transaction.ID));
-                    transaction.SenderID = dr.GetGuid(nameof(transaction.SenderID));
-                    transaction.RecieverID = dr.GetGuid(nameof(transaction.RecieverID));
-                    transaction.Sum = dr.GetDecimal(nameof(transaction.Sum));
-                    transaction.Message = dr.GetString(nameof(transaction.Message));
+                transaction.ID = dr.GetGuid(nameof(transaction.ID));
+                transaction.SenderID = dr.GetGuid(nameof(transaction.SenderID));
+                transaction.RecieverID = dr.GetGuid(nameof(transaction.RecieverID));
+                transaction.Sum = dr.GetDecimal(nameof(transaction.Sum));
+                transaction.Message = dr.GetString(nameof(transaction.Message));
 
-                    transactions.Add(transaction);
-                }
+                transactions.Add(transaction);
             }
-
-            Database.CloseConnection();
         }
+
+        Database.CloseConnection();
 
         foreach (var t in transactions)
         {
@@ -120,39 +114,36 @@ public static class DataProvider
 
     private static User TryGetUserByID(Guid id)
     {
-        List<User> users = new();
+        User? user = null;
         string query = $"SELECT * FROM users WHERE ID = '{id}'";
 
-        if (Database.OpenConnection())
+        if (!Database.OpenConnection()) return null!;
+
+        using (MySqlCommand mc = new(query, Database.SqlConnection))
+        using (MySqlDataReader dr = mc.ExecuteReader())
         {
-            using (MySqlCommand mc = new(query, Database.SqlConnection))
-            using (MySqlDataReader dr = mc.ExecuteReader())
+            if (dr.Read())
             {
-                while (dr.Read())
+                user = new(dr.GetDecimal(nameof(user.Balance)),
+                           dr.GetDecimal(nameof(user.WastedMoney)),
+                           dr.GetDecimal(nameof(user.RecievedMoney)))
                 {
-                    User user = new(dr.GetDecimal(nameof(user.Balance)),
-                                    dr.GetDecimal(nameof(user.WastedMoney)),
-                                    dr.GetDecimal(nameof(user.RecievedMoney)))
-                    {
-                        Password = dr.GetString(nameof(user.Password))
-                    };
+                    Password = dr.GetString(nameof(user.Password))
+                };
 
-                    user.ID = dr.GetGuid(nameof(user.ID));
-                    user.FirstName = dr.GetString(nameof(user.FirstName));
-                    user.Surname = dr.GetString(nameof(user.Surname));
-                    user.LastName = dr.GetString(nameof(user.LastName));
-                    user.Birthday = dr.GetString(nameof(user.Birthday));
-                    user.PhoneNumber = dr.GetString(nameof(user.PhoneNumber));
-                    user.IsBanned = dr.GetBoolean(nameof(user.IsBanned));
-
-                    users.Add(user);
-                }
+                user.ID = dr.GetGuid(nameof(user.ID));
+                user.FirstName = dr.GetString(nameof(user.FirstName));
+                user.Surname = dr.GetString(nameof(user.Surname));
+                user.LastName = dr.GetString(nameof(user.LastName));
+                user.Birthday = dr.GetString(nameof(user.Birthday));
+                user.PhoneNumber = dr.GetString(nameof(user.PhoneNumber));
+                user.IsBanned = dr.GetBoolean(nameof(user.IsBanned));
             }
-
-            Database.CloseConnection();
         }
 
-        return users.FirstOrDefault()!;
+        Database.CloseConnection();
+
+        return user!;
     }
 
     public static void Insert<T>(T value)

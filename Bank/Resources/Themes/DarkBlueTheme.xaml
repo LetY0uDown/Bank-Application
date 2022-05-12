@@ -60,4 +60,8 @@
 
     <SolidColorBrush x:Key="ScrollBarColor" Color="#175EEB"/>
 
+    <SolidColorBrush x:Key="DeleteAccountButtonBackground" Color="#901010"/>
+    <SolidColorBrush x:Key="DeleteAccountButtonHoveredBackground" Color="#B01010"/>
+    <SolidColorBrush x:Key="DeleteAccountButtonPressedBackground" Color="#660000"/>
+
 </ResourceDictionary>

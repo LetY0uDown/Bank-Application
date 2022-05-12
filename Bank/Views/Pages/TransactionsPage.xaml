@@ -54,13 +54,13 @@
                                    Foreground="{DynamicResource AppForeground}"/>
 
                         <TextBlock Text="{Binding RemainingMessageLength}" 
-                                   Foreground="{DynamicResource AppSecondForeground}"
+                                   Foreground="{DynamicResource AppForeground}"
                                    FontSize="16" Margin="87 23 0 0"/>
 
                         <TextBox Style="{StaticResource TransactionInputBox}" 
                                  HorizontalAlignment="Right"
                                  Width="280" Margin="0 0 15 0" TextWrapping="Wrap"
-                                 MaxHeight="280" MaxLength="150" 
+                                 MaxHeight="280" MaxLength="100" 
                                  Text="{Binding Message, UpdateSourceTrigger=PropertyChanged}"/>
                     </Grid>
 

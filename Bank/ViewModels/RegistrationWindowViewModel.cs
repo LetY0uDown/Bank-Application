@@ -76,6 +76,12 @@ public sealed class RegistrationWindowViewModel
             return false;
         }
 
+        if (Password!.Length < 6)
+        {
+            new WarningWindow("Ошибка ввода пароля", "Пароль должен быть минимум 6 символов длинной").Show();
+            return false;
+        }
+
         if (!Password!.Equals(SecondPassword))
         {
             new WarningWindow("Ошибка при вводе паролей", "Введённые пароли не совпадают! Попробуйте ввести их заного").Show();

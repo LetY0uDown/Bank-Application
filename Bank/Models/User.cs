@@ -34,8 +34,8 @@ public class User : Entity
 
     public List<Payment>? Payments { get; private set; }
 
-    public List<Transaction> SendedTransactions { get; } = new();
-    public List<Transaction> RecievedTransactions { get; } = new();
+    public List<Transaction> SendedTransactions { get; private set; }
+    public List<Transaction> RecievedTransactions { get; private set; } 
 
     public override string ToString() => $"{Surname} {FirstName![0]}. {LastName![0]}.";
 
@@ -91,6 +91,9 @@ public class User : Entity
 
     public void SetTransactions(List<Transaction> transactions)
     {
+        SendedTransactions = new();
+        RecievedTransactions = new();
+
         foreach (var t in transactions)
         {
             if (t.SenderID.Equals(ID))

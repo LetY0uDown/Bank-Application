@@ -28,7 +28,7 @@ public sealed class LoginWindowViewModel : ObservableObject
                     return;
                 }
 
-                user.SetTransactions(DataProvider.GetTransactions(user));
+                user.SetTransactions(DataProvider.GetTransactions(user.ID));
                 user.InitPayments(false);
 
                 App.CurrentUser = user;
@@ -59,6 +59,14 @@ public sealed class LoginWindowViewModel : ObservableObject
             LoginWindow.Instance.Hide();
             RegistrationWindow.Instance.Show();
         });
+
+        ExitCommand = new(o =>
+        {
+            if (!RememberUser)
+                DeleteUserData();
+
+            Application.Current.Shutdown();
+        });
     }
 
     public string? PhoneNumber { get; set; } = Settings.Default.SavedPhoneNumber;
@@ -66,8 +74,7 @@ public sealed class LoginWindowViewModel : ObservableObject
 
     public static bool RememberUser { get; set; } = true;
 
-    public Command ExitCommand { get; } = new(o =>
-        Application.Current.Shutdown());
+    public Command ExitCommand { get; } 
 
     public Command MinimizeCommand { get; } = new(o =>
         LoginWindow.Instance.WindowState = WindowState.Minimized);

@@ -13,7 +13,6 @@ public sealed class TransactionsPageViewModel : ObservableObject
     {
         DoTransactionCommand = new(o =>
         {
-
             if (PhoneNumber!.Equals(App.CurrentUser!.PhoneNumber))
             {
                 new WarningWindow("Ошибка перевода", "Вы не можете переводить деньги сами себе!").ShowDialog();
@@ -32,7 +31,9 @@ public sealed class TransactionsPageViewModel : ObservableObject
             if (string.IsNullOrEmpty(Message))
                 Message = " ";
 
-            if (!App.CurrentUser!.SendTransaction(reciever, TransactionSum, Message!))
+            bool transactionResult = App.CurrentUser!.SendTransaction(reciever, TransactionSum, Message!);
+
+            if (!transactionResult)
             {
                 new WarningWindow("Ошибка!", "На вашем счёте недостаточно средств для совершения перевода").Show();
                 TransactionSum = decimal.Zero;
@@ -47,7 +48,9 @@ public sealed class TransactionsPageViewModel : ObservableObject
 
         PayCommand = new(o =>
         {
-            if (!App.CurrentUser!.Pay(SelectedType!, PaymentSum))
+            bool paymentResult = App.CurrentUser!.Pay(SelectedType!, PaymentSum);
+
+            if (!paymentResult)
             {
                 new WarningWindow("Ошибка!", "На вашем счёте недостаточно средств для оплаты").Show();
                 PaymentSum = decimal.Zero;
@@ -62,7 +65,7 @@ public sealed class TransactionsPageViewModel : ObservableObject
                 && !string.IsNullOrEmpty(AccountNumber)
                 && PaymentSum > decimal.Zero);
     }
-    private const int _maxMessageLength = 150;
+    private const int MAX_MESSAGE_LENGTH = 100;
     private string? _message;
 
     public string? PhoneNumber { get; set; }
@@ -73,11 +76,11 @@ public sealed class TransactionsPageViewModel : ObservableObject
         set
         {
             _message = value;
-            RemainingMessageLength = _maxMessageLength - value!.Length;
+            RemainingMessageLength = MAX_MESSAGE_LENGTH - value!.Length;
         }
     }
 
-    public int RemainingMessageLength { get; set; } = 150;
+    public int RemainingMessageLength { get; set; } = 100;
 
     public string? SelectedType { get; set; }
     public string? AccountNumber { get; set; }

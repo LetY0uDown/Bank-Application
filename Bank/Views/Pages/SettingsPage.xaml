@@ -114,6 +114,11 @@
                               FontSize="18" IsChecked="{Binding IsDraggable}"
                               Margin="0 15 0 0" Style="{StaticResource SettingsCheckBox}"/>
                 </StackPanel>
+
+                <Button Content="Удалить аккаунт" VerticalAlignment="Bottom"
+                        Height="60" FontSize="30" Command="{Binding DeleteAccountCommand}"
+                        Style="{StaticResource DeleteAccountButton}"/>
+
             </Grid>
         </Border>
 
