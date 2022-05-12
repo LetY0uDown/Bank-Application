@@ -9,23 +9,15 @@ public partial class RegistrationWindow : Window
 
     public static RegistrationWindow Instance { get; } = new();
 
-    private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
-    {
+    private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e) =>
         RegistrationWindowViewModel.Password = firstPasswordBox.Password;
-    }
 
-    private void PasswordBox_PasswordChanged_1(object sender, RoutedEventArgs e)
-    {
+    private void PasswordBox_PasswordChanged_1(object sender, RoutedEventArgs e) =>
         RegistrationWindowViewModel.SecondPassword = secondPasswordBox.Password;
-    }
 
-    private void ExitButton_Click(object sender, RoutedEventArgs e)
-    {
+    private void ExitButton_Click(object sender, RoutedEventArgs e) =>
         Application.Current.Shutdown();
-    }
 
-    private void MinimizeButton_Click(object sender, RoutedEventArgs e)
-    {
+    private void MinimizeButton_Click(object sender, RoutedEventArgs e) =>
         WindowState = WindowState.Minimized;
-    }
 }

@@ -2,4 +2,4 @@
 
 namespace Bank.Views.Pages;
 
-public partial class CurrencyExchangePage : Page { public CurrencyExchangePage() => InitializeComponent(); }
+public sealed partial class CurrencyExchangePage : Page { public CurrencyExchangePage() => InitializeComponent(); }

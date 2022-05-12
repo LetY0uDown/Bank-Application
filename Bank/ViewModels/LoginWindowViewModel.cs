@@ -89,7 +89,7 @@ public sealed class LoginWindowViewModel : ObservableObject
         new DatabaseSettingsWindow().ShowDialog(); 
     });
 
-    private void DeleteUserData()
+    private static void DeleteUserData()
     {
         Settings.Default.SavedPassword = null;
         Settings.Default.SavedPhoneNumber = null;

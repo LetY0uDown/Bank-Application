@@ -2,4 +2,4 @@
 
 namespace Bank.Views.Pages;
 
-public partial class SettingsPage : Page { public SettingsPage() => InitializeComponent(); }
+public sealed partial class SettingsPage : Page { public SettingsPage() => InitializeComponent(); }

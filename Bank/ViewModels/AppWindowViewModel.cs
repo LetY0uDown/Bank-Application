@@ -2,7 +2,6 @@
 using Bank.Core.Objects.Abstract;
 using Bank.Properties;
 using Bank.Views.Pages;
-using Bank.Views.Windows;
 using System.Windows;
 using System.Windows.Controls;
 

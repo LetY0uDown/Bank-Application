@@ -86,7 +86,7 @@ public sealed class TransactionsPageViewModel : ObservableObject
     public string? AccountNumber { get; set; }
     public decimal PaymentSum { get; set; }
 
-    public static List<Payment> Payments => App.CurrentUser!.Payments!;
+    public static List<Payment> Payments => App.CurrentUser!.Payments!.GetRange(1, App.CurrentUser.Payments.Count - 1);
 
     public Command DoTransactionCommand { get; }
     public Command PayCommand { get; }
