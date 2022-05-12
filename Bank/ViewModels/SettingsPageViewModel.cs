@@ -25,10 +25,10 @@ public sealed class SettingsPageViewModel : ObservableObject
 
             new WarningWindow("Успшено!", "Данные вашего аккаунта успешно сохранены").ShowDialog();
 
-        }, b => !string.IsNullOrEmpty(App.CurrentUser!.PhoneNumber)
-                && !string.IsNullOrEmpty(App.CurrentUser!.FirstName)
-                && !string.IsNullOrEmpty(App.CurrentUser!.Surname)
-                && !string.IsNullOrEmpty(App.CurrentUser!.LastName)
+        }, b => !string.IsNullOrEmpty(App.CurrentUser?.PhoneNumber)
+                && !string.IsNullOrEmpty(App.CurrentUser?.FirstName)
+                && !string.IsNullOrEmpty(App.CurrentUser?.Surname)
+                && !string.IsNullOrEmpty(App.CurrentUser?.LastName)
                 && !string.IsNullOrEmpty(Birthday));
 
         DepositMoneyCommand = new(o => DepositMoney(500));

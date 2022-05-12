@@ -9,6 +9,6 @@ public partial class DatabaseSettingsWindow : Window
     private void ExitButton_Click(object sender, RoutedEventArgs e)
     {
         Hide();
-        LoginWindow.Instance.ShowDialog();
+        Application.Current.MainWindow.ShowDialog();
     }
 }

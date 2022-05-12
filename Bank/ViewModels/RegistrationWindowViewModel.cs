@@ -4,6 +4,7 @@ using Bank.Models;
 using Bank.Properties;
 using Bank.Views.Windows;
 using System.Text.RegularExpressions;
+using System.Windows;
 
 namespace Bank.ViewModels;
 
@@ -59,7 +60,7 @@ public sealed class RegistrationWindowViewModel
     public Command GoBackCommand { get; } = new(o =>
     {
         RegistrationWindow.Instance.Hide();
-        LoginWindow.Instance.Show();
+        Application.Current.MainWindow.Show();
     });
 
     public bool ValidateProperties()

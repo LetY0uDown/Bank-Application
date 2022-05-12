@@ -2,6 +2,7 @@
 using Bank.Core.Objects.Abstract;
 using Bank.Properties;
 using Bank.Views.Windows;
+using System.Windows;
 
 namespace Bank.ViewModels;
 
@@ -17,7 +18,7 @@ public sealed class DatabaseSettingsViewModel : ObservableObject
              Settings.Default.DBServer = DatabaseServer;
 
              Settings.Default.Save();
-             LoginWindow.Instance.ShowDialog();
+             Application.Current.MainWindow.ShowDialog();
 
          }, b => !string.IsNullOrEmpty(DatabaseName) &&
                  !string.IsNullOrEmpty(DatabaseUser) &&

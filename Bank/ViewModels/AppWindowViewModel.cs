@@ -48,7 +48,7 @@ public sealed class AppWindowViewModel : ObservableObject
         Settings.Default.SavedPassword = string.Empty;
         Settings.Default.Save();
 
-        LoginWindow.Instance.ShowDialog();
+        App.ShowLoginWindow();
     });
 
     public Page? CurrentPage { get; set; } = new SettingsPage();

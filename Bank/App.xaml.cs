@@ -1,5 +1,4 @@
-﻿using Bank.Core.Objects;
-using Bank.Models;
+﻿using Bank.Models;
 using Bank.Views.Windows;
 using System.Windows;
 
@@ -13,12 +12,20 @@ public partial class App : Application
 
     private void Application_Startup(object sender, StartupEventArgs e)
     {
-        LoginWindow.Instance.ShowDialog();
+        ShowLoginWindow();
     }
 
     public static void Start()
     {
         Current.MainWindow = new ApplicationWindow();
         Current.MainWindow.Show();
+    }
+
+    public static void ShowLoginWindow()
+    {
+        Current.MainWindow?.Hide();
+
+        Current.MainWindow = new LoginWindow();
+        Current.MainWindow.ShowDialog();
     }
 }

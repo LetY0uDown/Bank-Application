@@ -44,7 +44,7 @@ public sealed class LoginWindowViewModel : ObservableObject
             else
                 DeleteUserData();
 
-            LoginWindow.Instance.Hide();
+            Application.Current.MainWindow.Hide();
             App.Start();
 
         }, b => !string.IsNullOrEmpty(Password) && !string.IsNullOrEmpty(PhoneNumber));
@@ -56,7 +56,7 @@ public sealed class LoginWindowViewModel : ObservableObject
             else
                 DeleteUserData();
 
-            LoginWindow.Instance.Hide();
+            Application.Current.MainWindow.Hide();
             RegistrationWindow.Instance.Show();
         });
 
@@ -77,7 +77,7 @@ public sealed class LoginWindowViewModel : ObservableObject
     public Command ExitCommand { get; } 
 
     public Command MinimizeCommand { get; } = new(o =>
-        LoginWindow.Instance.WindowState = WindowState.Minimized);
+        Application.Current.MainWindow.WindowState = WindowState.Minimized);
 
     public Command LoginCommand { get; } 
 
@@ -85,7 +85,7 @@ public sealed class LoginWindowViewModel : ObservableObject
 
     public Command ShowDatabaseSettingsCommand { get; } = new(o => 
     {
-        LoginWindow.Instance.Hide();
+        Application.Current.MainWindow.Hide();
         new DatabaseSettingsWindow().ShowDialog(); 
     });
 
