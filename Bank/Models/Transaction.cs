@@ -7,18 +7,18 @@ namespace Bank.Models;
 [Table("transactions")]
 public class Transaction : Entity
 {
-    public User? Sender { get; init; }
-    public User? Reciever { get; init; }
+    public User? Sender { get; set; }
+    public User? Reciever { get; set; }
 
     [Column(nameof(SenderID))]
-    public Guid SenderID { get; init; }
+    public Guid SenderID { get; set; }
 
     [Column(nameof(RecieverID))]
-    public Guid RecieverID { get; init; }
+    public Guid RecieverID { get; set; }
 
     [Column(nameof(Sum))]
-    public decimal Sum { get; init; }
+    public decimal Sum { get; set; }
 
     [Column(nameof(Message))]
-    public string? Message { get; init; }
+    public string? Message { get; set; }
 }
