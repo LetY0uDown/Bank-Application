@@ -15,7 +15,8 @@ public static class DataProvider
     public static List<Payment> GetPayments(Guid ID)
     {
         List<Payment> payments = new();
-        string query = $"SELECT * FROM payments WHERE UserID = '{ID}' ORDER BY Number";
+        var table = typeof(Payment).Name.ToLower() + "s";
+        string query = $"SELECT * FROM {table} WHERE UserID = '{ID}' ORDER BY Number";
 
         if (!Database.OpenConnection()) return null!;
 
@@ -43,7 +44,8 @@ public static class DataProvider
     public static User TryGetUserByPhoneNumber(string phoneNumber)
     {
         User? user = null;
-        string query = $"SELECT * FROM users WHERE PhoneNumber = '{phoneNumber}'";
+        var table = typeof(User).Name.ToLower() + "s";
+        string query = $"SELECT * FROM {table} WHERE PhoneNumber = '{phoneNumber}'";
 
         if (!Database.OpenConnection()) return null!;
 
@@ -79,7 +81,8 @@ public static class DataProvider
     public static List<Transaction> GetTransactions(Guid id)
     {
         List<Transaction> transactions = new();
-        string query = $"SELECT * FROM transactions WHERE RecieverID = '{id}' OR SenderID = '{id}'";
+        var table = typeof(Transaction).Name.ToLower() + "s";
+        string query = $"SELECT * FROM {table} WHERE RecieverID = '{id}' OR SenderID = '{id}'";
 
         if (!Database.OpenConnection()) return null!;
 
@@ -114,7 +117,8 @@ public static class DataProvider
     private static User TryGetUserByID(Guid id)
     {
         User? user = null;
-        string query = $"SELECT * FROM users WHERE ID = '{id}'";
+        var table = typeof(User).Name.ToLower() + "s";
+        string query = $"SELECT * FROM {table} WHERE ID = '{id}'";
 
         if (!Database.OpenConnection()) return null!;
 
@@ -194,7 +198,7 @@ public static class DataProvider
     private static (string, MySqlParameter[]) CreateUpdateQuery(string table, List<(string, object)> values, Guid id)
     {
         StringBuilder stringBuilder = new();
-        stringBuilder.Append($"UPDATE `{table}` set ");
+        stringBuilder.Append($"UPDATE `{table}` SET ");
 
         List<MySqlParameter> parameters = InitParameters(values, stringBuilder);
 
