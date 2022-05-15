@@ -1,8 +1,8 @@
 ﻿using Bank.Core.Objects;
 using Bank.Core.Objects.Abstract;
 using Bank.Core.Tools;
-using Bank.Views.Windows;
 using Bank.Models;
+using Bank.Views.Windows;
 using System.Collections.Generic;
 
 namespace Bank.ViewModels;
@@ -27,9 +27,6 @@ public sealed class TransactionsPageViewModel : ObservableObject
                 new WarningWindow("Ошибка ввода", "Данный пользователь не найден. Проверьте правильность ввода или попробуйте ввести номер в формате +0-000-000-00-00").Show();
                 return;
             }
-
-            if (string.IsNullOrEmpty(Message))
-                Message = " ";
 
             bool transactionResult = App.CurrentUser!.SendTransaction(reciever, TransactionSum, Message!);
 
@@ -65,8 +62,9 @@ public sealed class TransactionsPageViewModel : ObservableObject
                 && !string.IsNullOrEmpty(AccountNumber)
                 && PaymentSum > decimal.Zero);
     }
-    private const int MAX_MESSAGE_LENGTH = 100;
     private string? _message;
+
+    public int MaxMessageLength { get; } = 100;
 
     public string? PhoneNumber { get; set; }
     public decimal TransactionSum { get; set; }
@@ -76,7 +74,7 @@ public sealed class TransactionsPageViewModel : ObservableObject
         set
         {
             _message = value;
-            RemainingMessageLength = MAX_MESSAGE_LENGTH - value!.Length;
+            RemainingMessageLength = MaxMessageLength - value!.Length;
         }
     }
 

@@ -10,16 +10,16 @@ public sealed class ExpensesPageViewModel : ObservableObject
     public ExpensesPageViewModel()
     {
         ShowRecievedTransactionCommand = new(o =>
-            TransactionsSource = App.CurrentUser!.RecievedTransactions);
+            TransactionsSource = App.CurrentUser!.RecievedTransactions!);
 
         ShowSendedTransactionCommand = new(o =>
-            TransactionsSource = App.CurrentUser!.SendedTransactions);
+            TransactionsSource = App.CurrentUser!.SendedTransactions!);
     }
 
-    public decimal WastedMoney { get; set; } = App.CurrentUser!.WastedMoney;
-    public decimal RecievedMoney { get; set; } = App.CurrentUser!.RecievedMoney;
+    public static decimal WastedMoney => App.CurrentUser!.WastedMoney;
+    public static decimal RecievedMoney => App.CurrentUser!.RecievedMoney;
 
-    public List<Transaction> TransactionsSource { get; set; } = App.CurrentUser!.SendedTransactions;
+    public List<Transaction> TransactionsSource { get; private set; } = App.CurrentUser!.SendedTransactions!;
 
     public static List<Payment> Payments => App.CurrentUser!.Payments!;
 

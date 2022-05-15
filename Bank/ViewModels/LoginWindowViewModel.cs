@@ -18,25 +18,24 @@ public sealed class LoginWindowViewModel : ObservableObject
         {
             var user = DataProvider.TryGetUserByPhoneNumber(PhoneNumber!);
 
-            if (user is not null && Password!.Equals(user.Password))
+            if (user is null)
             {
-                user.IsBanned = user.WastedMoney > user.RecievedMoney;
+                new WarningWindow("Ошибка входа", "Неверный номер телефона. Попробуйте ввести его ещё раз").ShowDialog();
+                return;
+            }
 
-                if (user.IsBanned)
-                {
-                    new WarningWindow("Ошибка доступа", "К сожалению, ваш аккаунт заблокирован из-за подозрений в мошенничестве. Но вы можете создать новый").Show();
-                    return;
-                }
+            if (user.IsBanned)
+            {
+                new WarningWindow("Ошибка доступа", "К сожалению, ваш аккаунт заблокирован из-за подозрений в мошенничестве. Но вы можете создать новый").ShowDialog();
+                return;
+            }
 
+            if (Password!.Equals(user.Password))
+            {
                 user.SetTransactions(DataProvider.GetTransactions(user.ID));
                 user.InitPayments(false);
 
                 App.CurrentUser = user;
-            }
-            else
-            {
-                new WarningWindow("Ошибка входа", "Неверный номер телефона и(или) пароль. Попробуйте ввести их ещё раз").Show();
-                return;
             }
 
             if (RememberUser)
@@ -62,7 +61,9 @@ public sealed class LoginWindowViewModel : ObservableObject
 
         ExitCommand = new(o =>
         {
-            if (!RememberUser)
+            if (RememberUser)
+                SaveUserData();
+            else
                 DeleteUserData();
 
             Application.Current.Shutdown();

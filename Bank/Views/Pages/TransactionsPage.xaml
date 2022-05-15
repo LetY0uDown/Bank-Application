@@ -60,7 +60,7 @@
                         <TextBox Style="{StaticResource TransactionInputBox}" 
                                  HorizontalAlignment="Right"
                                  Width="280" Margin="0 0 15 0" TextWrapping="Wrap"
-                                 MaxHeight="280" MaxLength="100" 
+                                 MaxHeight="280" MaxLength="{Binding MaxMessageLength}" 
                                  Text="{Binding Message, UpdateSourceTrigger=PropertyChanged}"/>
                     </Grid>
 

@@ -8,7 +8,7 @@ namespace Bank.Models;
 [Table("payments")]
 public class Payment : Entity
 {
-    public Payment(string type)
+    private Payment(string type)
     {
         Type = type;
         Number = PaymentTypes.IndexOf(Type!);

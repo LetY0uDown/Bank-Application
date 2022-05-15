@@ -12,10 +12,10 @@ namespace Bank.Core.Tools;
 
 public static class DataProvider
 {
-    public static List<Payment> GetPayments(User user)
+    public static List<Payment> GetPayments(Guid ID)
     {
         List<Payment> payments = new();
-        string query = $"SELECT * FROM payments WHERE UserID = '{user.ID}' ORDER BY Number";
+        string query = $"SELECT * FROM payments WHERE UserID = '{ID}' ORDER BY Number";
 
         if (!Database.OpenConnection()) return null!;
 
@@ -24,11 +24,10 @@ public static class DataProvider
         {
             while (dr.Read())
             {
-                Payment payment = new(dr.GetString(nameof(payment.Type)));
+                Payment payment = new(dr.GetGuid(nameof(payment.ID)), dr.GetString(nameof(payment.Type)));
 
-                payment.ID = dr.GetGuid(nameof(payment.ID));
                 payment.Sum = dr.GetDecimal(nameof(payment.Sum));
-                payment.UserID = user.ID;
+                payment.UserID = ID;
 
                 payments.Add(payment);
             }
@@ -146,7 +145,7 @@ public static class DataProvider
         return user!;
     }
 
-    public static void Insert<T>(T value)
+    public static void Insert<T>(T value) where T : Entity
     {
         GetMetaData(value, out string table, out List<(string, object)> values);
 
@@ -180,21 +179,27 @@ public static class DataProvider
     private static string GetTableName(Type type)
     {
         var tableAtrributes = type.GetCustomAttributes(typeof(TableAttribute), false);
-        return ((TableAttribute)tableAtrributes.First()).Name;
+
+        return (tableAtrributes.First() as TableAttribute)!.Name;
     }
     private static (string, MySqlParameter[]) CreateInsertQuery(string table, List<(string, object)> values)
     {
         StringBuilder stringBuilder = new();
         stringBuilder.Append($"INSERT INTO `{table}` set ");
+
         List<MySqlParameter> parameters = InitParameters(values, stringBuilder);
+
         return (stringBuilder.ToString(), parameters.ToArray());
     }
     private static (string, MySqlParameter[]) CreateUpdateQuery(string table, List<(string, object)> values, Guid id)
     {
         StringBuilder stringBuilder = new();
         stringBuilder.Append($"UPDATE `{table}` set ");
+
         List<MySqlParameter> parameters = InitParameters(values, stringBuilder);
+
         stringBuilder.Append($" WHERE id = '{id}'");
+
         return (stringBuilder.ToString(), parameters.ToArray());
     }
     private static List<MySqlParameter> InitParameters(List<(string, object)> values, StringBuilder stringBuilder)
@@ -219,9 +224,9 @@ public static class DataProvider
 
         var tableAtrributes = type.GetCustomAttributes(typeof(TableAttribute), false);
 
-        table = ((TableAttribute)tableAtrributes.First()).Name;
+        table = (tableAtrributes.First() as TableAttribute)!.Name;
 
-        values = new List<(string, object)>();
+        values = new();
 
         var props = type.GetProperties();
 
@@ -231,7 +236,7 @@ public static class DataProvider
 
             if (columnAttributes.Length > 0)
             {
-                string column = ((ColumnAttribute)columnAttributes.First()).Name!;
+                string column = (columnAttributes.First() as ColumnAttribute)!.Name!;
                 values.Add(new(column, prop.GetValue(value)!));
             }
         }

@@ -6,7 +6,7 @@
         xmlns:viewmodels="clr-namespace:Bank.ViewModels"
         xmlns:fa="http://schemas.fontawesome.io/icons/"
         mc:Ignorable="d"
-        Title="Банк" Height="550" Width="350"
+        Title="Вход" Height="550" Width="350"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None" ResizeMode="NoResize"
         Icon="pack://application:,,,/Resources/Images/BankIcon.png">

@@ -6,7 +6,7 @@
         xmlns:viewmodels="clr-namespace:Bank.ViewModels"
         xmlns:fa="http://schemas.fontawesome.io/icons/"
         mc:Ignorable="d"
-        Title="RegistrationWindow" Height="600" Width="650"
+        Title="Регистрация" Height="600" Width="650"
         WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
         WindowStyle="None"
         Icon="pack://application:,,,/Resources/Images/BankIcon.png">

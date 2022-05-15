@@ -1,4 +1,5 @@
-﻿using Bank.Models;
+﻿using Bank.Core.Tools;
+using Bank.Models;
 using Bank.Views.Windows;
 using System.Windows;
 
@@ -27,5 +28,14 @@ public partial class App : Application
 
         Current.MainWindow = new LoginWindow();
         Current.MainWindow.ShowDialog();
+    }
+
+    private void Application_Exit(object sender, ExitEventArgs e)
+    {
+        if (CurrentUser is not null)
+        {
+            CurrentUser.IsBanned = CurrentUser.WastedMoney > CurrentUser.RecievedMoney;
+            DataProvider.Update(CurrentUser);
+        }
     }
 }

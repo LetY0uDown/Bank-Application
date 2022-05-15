@@ -34,8 +34,8 @@ public class User : Entity
 
     public List<Payment>? Payments { get; private set; }
 
-    public List<Transaction> SendedTransactions { get; private set; }
-    public List<Transaction> RecievedTransactions { get; private set; } 
+    public List<Transaction>? SendedTransactions { get; private set; }
+    public List<Transaction>? RecievedTransactions { get; private set; } 
 
     public override string ToString() => $"{Surname} {FirstName![0]}. {LastName![0]}.";
 
@@ -70,7 +70,7 @@ public class User : Entity
             Reciever = reciever,
             RecieverID = reciever.ID,
             Sum = sum,
-            Message = message
+            Message = message ?? string.Empty
         };
 
         Balance -= sum;
@@ -80,7 +80,7 @@ public class User : Entity
         Payments![index].Sum += sum;
         DataProvider.Update(Payments[index]);
 
-        SendedTransactions.Add(transaction);
+        SendedTransactions!.Add(transaction);
         DataProvider.Insert(transaction);
 
         reciever.RecieveTransaction(transaction);
@@ -109,7 +109,7 @@ public class User : Entity
         if (isFirstTime)
             InsertPayments();        
         else
-            Payments = DataProvider.GetPayments(this);
+            Payments = DataProvider.GetPayments(ID);
     }
 
     public void DepositMoney(decimal sum)
@@ -122,6 +122,7 @@ public class User : Entity
     {
         Balance += transaction.Sum;
         RecievedMoney += transaction.Sum;
+
         DataProvider.Update(this);
     }
 

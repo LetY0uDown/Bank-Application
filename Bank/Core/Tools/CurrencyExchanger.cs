@@ -11,10 +11,10 @@ public sealed class CurrencyExchanger
 
     private static readonly Dictionary<string, decimal> _exchangeRates = new()
     {
-        ["$-₽"] = 71.35M,
-        ["₽-$"] = 0.014M,
-        ["€-₽"] = 75.23M,
-        ["₽-€"] = 0.013M
+        ["$-₽"] = 66.5M,
+        ["₽-$"] = 0.015M,
+        ["€-₽"] = 69.2491M,
+        ["₽-€"] = 0.0144M
     };
 
     public decimal ExchangeRate { get; set; }

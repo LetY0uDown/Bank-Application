@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="WarningWindow" Height="200" Width="350"
+        Title="Предупреждение!" Height="200" Width="350"
         WindowStartupLocation="CenterScreen" WindowStyle="None"
         ResizeMode="NoResize"
         Icon="pack://application:,,,/Resources/Images/BankIcon.png">
@@ -19,7 +19,7 @@
             <Border Background="{DynamicResource MainColor}">
                 <Grid>
 
-                    <TextBlock Text="{Binding MessageTitle}" FontSize="16"
+                    <TextBlock Text="{Binding MessageTitle}" FontSize="18"
                                Foreground="{DynamicResource AppSecondForeground}"
                                VerticalAlignment="Center" Margin="5 0 0 0"/>
 
@@ -30,7 +30,7 @@
                 </Grid>
             </Border>
 
-            <TextBlock Text="{Binding Message}" FontSize="14"
+            <TextBlock Text="{Binding Message}" FontSize="16"
                        Grid.Row="1" Foreground="{DynamicResource AppForeground}"
                        TextWrapping="Wrap" Margin="5 5 5 25"/>
 
