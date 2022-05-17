@@ -41,7 +41,7 @@ public sealed class TransactionsPageViewModel : ObservableObject
             TransactionSum = decimal.Zero;
             Message = string.Empty;
 
-        }, b => !string.IsNullOrEmpty(PhoneNumber) && TransactionSum > decimal.Zero);
+        }, b => !string.IsNullOrEmpty(PhoneNumber));
 
         PayCommand = new(o =>
         {
@@ -59,8 +59,7 @@ public sealed class TransactionsPageViewModel : ObservableObject
             PaymentSum = decimal.Zero;
 
         }, b => !string.IsNullOrEmpty(SelectedType)
-                && !string.IsNullOrEmpty(AccountNumber)
-                && PaymentSum > decimal.Zero);
+                && !string.IsNullOrEmpty(AccountNumber));
     }
     private string? _message;
 
