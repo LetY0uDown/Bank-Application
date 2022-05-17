@@ -112,7 +112,11 @@
                     <CheckBox Content="Перемещение приложения по экрану" 
                               Foreground="{DynamicResource AppForeground}"
                               FontSize="18" IsChecked="{Binding IsDraggable}"
-                              Margin="0 15 0 0" Style="{StaticResource SettingsCheckBox}"/>
+                              Margin="0 20 0 0" Style="{StaticResource SettingsCheckBox}"/>
+
+                    <Button Content="Изменить пароль" 
+                            Style="{StaticResource SaveAccountDataButton}" Margin="0 20 0 0"
+                            Height="45" Command="{Binding ShowPasswordChangeCommand}"/>
                 </StackPanel>
 
                 <Button Content="Удалить аккаунт" VerticalAlignment="Bottom"

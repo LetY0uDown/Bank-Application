@@ -57,11 +57,9 @@ public static class DataProvider
             dr.Read();
 
             user = new(dr.GetDecimal(nameof(user.Balance)),
-                        dr.GetDecimal(nameof(user.WastedMoney)),
-                        dr.GetDecimal(nameof(user.RecievedMoney)))
-            {
-                Password = dr.GetString(nameof(user.Password))
-            };
+                       dr.GetDecimal(nameof(user.WastedMoney)),
+                       dr.GetDecimal(nameof(user.RecievedMoney)),
+                       dr.GetString(nameof(user.Password)));
 
             user.ID = dr.GetGuid(nameof(user.ID));
             user.FirstName = dr.GetString(nameof(user.FirstName));
@@ -111,8 +109,6 @@ public static class DataProvider
             t.Sender = TryGetUserByID(t.SenderID);
             t.Reciever = TryGetUserByID(t.RecieverID);
 
-            if (t.Sender is null)
-                t.Sender = User.Empty;
             if (t.Reciever is null)
                 t.Reciever = User.Empty;
         }
@@ -137,10 +133,8 @@ public static class DataProvider
 
             user = new(dr.GetDecimal(nameof(user.Balance)),
                        dr.GetDecimal(nameof(user.WastedMoney)),
-                       dr.GetDecimal(nameof(user.RecievedMoney)))
-            {
-                Password = dr.GetString(nameof(user.Password))
-            };
+                       dr.GetDecimal(nameof(user.RecievedMoney)),
+                       dr.GetString(nameof(user.Password)));
 
             user.ID = dr.GetGuid(nameof(user.ID));
             user.FirstName = dr.GetString(nameof(user.FirstName));

@@ -9,15 +9,16 @@ namespace Bank.Models;
 [Table("users")]
 public class User : Entity
 {
-    public User() { }
-    public User(decimal balance, decimal wasted, decimal recieved)
+    public User(string pass) => Password = pass;
+    public User(decimal balance, decimal wasted, decimal recieved, string pass)
     {
         Balance = balance;
         WastedMoney = wasted;
         RecievedMoney = recieved;
+        Password = pass;
     }
 
-    public static User Empty { get; } = new(0M, 0M, 0M)
+    public static User Empty { get; } = new(0M, 0M, 0M, string.Empty)
     {
         FirstName = null,
         Surname = "Удалено",
@@ -25,7 +26,7 @@ public class User : Entity
     };
 
     [Column(nameof(PhoneNumber))]   public string?  PhoneNumber     { get; set; }
-    [Column(nameof(Password))]      public string?  Password        { get; init; }
+    [Column(nameof(Password))]      public string?  Password        { get; private set; }
 
     [Column(nameof(FirstName))]     public string?  FirstName       { get; set; }
     [Column(nameof(Surname))]       public string?  Surname         { get; set; }
@@ -129,6 +130,18 @@ public class User : Entity
     {
         Balance += sum;
         RecievedMoney += sum;
+    }
+
+    public bool ChangePassword(string oldPass, string newPass)
+    {
+        if (oldPass.Equals(Password))
+        {
+            Password = newPass;
+            DataProvider.Update(this);
+            return true;
+        }
+
+        return false;
     }
 
     private void RecieveTransaction(Transaction transaction)

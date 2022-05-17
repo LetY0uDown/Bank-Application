@@ -23,14 +23,13 @@ public sealed class RegistrationWindowViewModel
                 return;
             }
 
-            User user = new()
+            User user = new(Password!)
             {
                 PhoneNumber = PhoneNumber!,
                 FirstName = FirstName!,
                 Surname = Surname!,
                 LastName = LastName!,
-                Birthday = Birthday!,
-                Password = Password!
+                Birthday = Birthday!
             };
 
             DataProvider.Insert(user);

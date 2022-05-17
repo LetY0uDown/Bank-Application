@@ -4,9 +4,9 @@ using Bank.Core.Objects.Abstract;
 using Bank.Core.Tools;
 using Bank.Models;
 using Bank.Properties;
+using Bank.Views.Windows;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Windows;
 
 namespace Bank.ViewModels;
@@ -72,6 +72,8 @@ public sealed class SettingsPageViewModel : ObservableObject
 
         App.ShowLoginWindow();
     });
+
+    public Command ShowPasswordChangeCommand { get; } = new(o => new PasswordChangeWindow().ShowDialog());
 
     public Command DepositMoneyCommand { get; }
 
