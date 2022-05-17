@@ -137,7 +137,12 @@ public class User : Entity
         if (oldPass.Equals(Password))
         {
             Password = newPass;
+
+            Properties.Settings.Default.SavedPassword = Password;
+            Properties.Settings.Default.Save();
+
             DataProvider.Update(this);
+
             return true;
         }
 
