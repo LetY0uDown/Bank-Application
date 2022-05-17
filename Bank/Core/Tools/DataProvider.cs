@@ -52,30 +52,31 @@ public static class DataProvider
         using (MySqlCommand mc = new(query, Database.SqlConnection))
         using (MySqlDataReader dr = mc.ExecuteReader())
         {
-            if (dr.Read())
-            {
-                user = new(dr.GetDecimal(nameof(user.Balance)),
-                           dr.GetDecimal(nameof(user.WastedMoney)),
-                           dr.GetDecimal(nameof(user.RecievedMoney)))
-                {
-                    Password = dr.GetString(nameof(user.Password))
-                };
+            if (!dr.HasRows) return null!;
 
-                user.ID = dr.GetGuid(nameof(user.ID));
-                user.FirstName = dr.GetString(nameof(user.FirstName));
-                user.Surname = dr.GetString(nameof(user.Surname));
-                user.LastName = dr.GetString(nameof(user.LastName));
-                user.Birthday = dr.GetString(nameof(user.Birthday));
-                user.PhoneNumber = dr.GetString(nameof(user.PhoneNumber));
-                user.IsBanned = dr.GetBoolean(nameof(user.IsBanned));
-            }
+            dr.Read();
+
+            user = new(dr.GetDecimal(nameof(user.Balance)),
+                        dr.GetDecimal(nameof(user.WastedMoney)),
+                        dr.GetDecimal(nameof(user.RecievedMoney)))
+            {
+                Password = dr.GetString(nameof(user.Password))
+            };
+
+            user.ID = dr.GetGuid(nameof(user.ID));
+            user.FirstName = dr.GetString(nameof(user.FirstName));
+            user.Surname = dr.GetString(nameof(user.Surname));
+            user.LastName = dr.GetString(nameof(user.LastName));
+            user.Birthday = dr.GetString(nameof(user.Birthday));
+            user.PhoneNumber = dr.GetString(nameof(user.PhoneNumber));
+            user.IsBanned = dr.GetBoolean(nameof(user.IsBanned));            
         }
 
         Database.CloseConnection();
 
-        user?.InitPayments(false);
+        user.InitPayments(false);
 
-        return user!;
+        return user;
     }
 
     public static List<Transaction> GetTransactions(Guid id)
@@ -94,8 +95,8 @@ public static class DataProvider
                 Transaction transaction = new();
 
                 transaction.ID = dr.GetGuid(nameof(transaction.ID));
-                transaction.SenderID = dr.GetGuid(nameof(transaction.SenderID));
-                transaction.RecieverID = dr.GetGuid(nameof(transaction.RecieverID));
+                transaction.SenderID = dr.SafeGetGuid(nameof(transaction.SenderID));
+                transaction.RecieverID = dr.SafeGetGuid(nameof(transaction.RecieverID));
                 transaction.Sum = dr.GetDecimal(nameof(transaction.Sum));
                 transaction.Message = dr.GetString(nameof(transaction.Message));
 
@@ -109,6 +110,11 @@ public static class DataProvider
         {
             t.Sender = TryGetUserByID(t.SenderID);
             t.Reciever = TryGetUserByID(t.RecieverID);
+
+            if (t.Sender is null)
+                t.Sender = User.Empty;
+            if (t.Reciever is null)
+                t.Reciever = User.Empty;
         }
 
         return transactions;
@@ -125,28 +131,29 @@ public static class DataProvider
         using (MySqlCommand mc = new(query, Database.SqlConnection))
         using (MySqlDataReader dr = mc.ExecuteReader())
         {
-            if (dr.Read())
-            {
-                user = new(dr.GetDecimal(nameof(user.Balance)),
-                           dr.GetDecimal(nameof(user.WastedMoney)),
-                           dr.GetDecimal(nameof(user.RecievedMoney)))
-                {
-                    Password = dr.GetString(nameof(user.Password))
-                };
+            if (!dr.HasRows) return null!;
 
-                user.ID = dr.GetGuid(nameof(user.ID));
-                user.FirstName = dr.GetString(nameof(user.FirstName));
-                user.Surname = dr.GetString(nameof(user.Surname));
-                user.LastName = dr.GetString(nameof(user.LastName));
-                user.Birthday = dr.GetString(nameof(user.Birthday));
-                user.PhoneNumber = dr.GetString(nameof(user.PhoneNumber));
-                user.IsBanned = dr.GetBoolean(nameof(user.IsBanned));
-            }
+            dr.Read();
+
+            user = new(dr.GetDecimal(nameof(user.Balance)),
+                       dr.GetDecimal(nameof(user.WastedMoney)),
+                       dr.GetDecimal(nameof(user.RecievedMoney)))
+            {
+                Password = dr.GetString(nameof(user.Password))
+            };
+
+            user.ID = dr.GetGuid(nameof(user.ID));
+            user.FirstName = dr.GetString(nameof(user.FirstName));
+            user.Surname = dr.GetString(nameof(user.Surname));
+            user.LastName = dr.GetString(nameof(user.LastName));
+            user.Birthday = dr.GetString(nameof(user.Birthday));
+            user.PhoneNumber = dr.GetString(nameof(user.PhoneNumber));
+            user.IsBanned = dr.GetBoolean(nameof(user.IsBanned));
         }
 
         Database.CloseConnection();
 
-        return user!;
+        return user;
     }
 
     public static void Insert<T>(T value) where T : Entity

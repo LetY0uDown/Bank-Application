@@ -2,6 +2,7 @@
 using Bank.Core.Tools;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.RegularExpressions;
 
 namespace Bank.Models;
 
@@ -15,6 +16,13 @@ public class User : Entity
         WastedMoney = wasted;
         RecievedMoney = recieved;
     }
+
+    public static User Empty { get; } = new(0M, 0M, 0M)
+    {
+        FirstName = null,
+        Surname = "Удалено",
+        LastName = null
+    };
 
     [Column(nameof(PhoneNumber))]   public string?  PhoneNumber     { get; set; }
     [Column(nameof(Password))]      public string?  Password        { get; init; }
@@ -32,12 +40,17 @@ public class User : Entity
 
     [Column(nameof(IsBanned))]      public bool     IsBanned        { get; set; }
 
+    public static Regex BirthdayRegex { get; } = new(@"^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$");
+    public static Regex PhoneNumberRegex { get; } = new(@"^\+?[0-9]-?[0-9]{3}-?[0-9]{3}-?[0-9]{2}-?[0-9]{2}$");
+    public static Regex NameRegex { get; } = new(@"^[А-Я][а-я]+$");
+    public static Regex PasswordRegex { get; } = new(@"^[A-Za-z1234567890!@#$%^&*\-_+=]{6,20}$");
+
     public List<Payment>? Payments { get; private set; }
 
     public List<Transaction>? SendedTransactions { get; private set; }
     public List<Transaction>? RecievedTransactions { get; private set; } 
 
-    public override string ToString() => $"{Surname} {FirstName![0]}. {LastName![0]}.";
+    public override string ToString() =>  $"{Surname} {FirstName?[0]}. {LastName?[0]}.";
 
     public bool Pay(string type, decimal sum)
     {

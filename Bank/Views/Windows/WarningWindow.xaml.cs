@@ -13,9 +13,9 @@ public partial class WarningWindow : Window
         Message = message;
     }
 
-    public static string? MessageTitle { get; set; }
+    public static string? MessageTitle { get; private set; }
 
-    public static string? Message { get; set; }
+    public static string? Message { get; private set; }
 
     private void ExitButton_Click(object sender, RoutedEventArgs e) => Hide();
 }

@@ -1,7 +1,7 @@
-﻿using Bank.Views.Windows;
-using Bank.Properties;
+﻿using Bank.Properties;
 using MySql.Data.MySqlClient;
 using System;
+using Bank.Core.Tools;
 
 namespace Bank.Core.Objects;
 
@@ -35,7 +35,7 @@ public static class Database
         }
         catch (Exception e)
         {
-            new WarningWindow("Ошибка базы данных", e.Message).ShowDialog();
+            WarningBox.Show("Ошибка базы данных", e.Message);
         }
 
         return false;
@@ -49,7 +49,7 @@ public static class Database
         }
         catch (Exception e)
         {
-            new WarningWindow("Ошибка базы данных", e.Message).ShowDialog(); ;
+            WarningBox.Show("Ошибка базы данных", e.Message);
         }
     }
 

@@ -2,11 +2,12 @@
 using Bank.Core.Objects;
 using Bank.Core.Objects.Abstract;
 using Bank.Core.Tools;
+using Bank.Models;
 using Bank.Properties;
-using Bank.Views.Windows;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Windows;
 
 namespace Bank.ViewModels;
 
@@ -16,14 +17,14 @@ public sealed class SettingsPageViewModel : ObservableObject
     {
         SaveAccountCommand = new(o =>
         {
-            if (!ValidateProperties()) return;
+            if (!IsPropertiesValid()) return;
 
             App.CurrentUser.Birthday = Birthday;
             DataProvider.Update(App.CurrentUser);
 
             App.CurrentUser.SetTransactions(DataProvider.GetTransactions(App.CurrentUser.ID));
 
-            new WarningWindow("Успшено!", "Данные вашего аккаунта успешно сохранены").ShowDialog();
+            WarningBox.Show("Успшено!", "Данные вашего аккаунта успешно сохранены");
 
         }, b => !string.IsNullOrEmpty(App.CurrentUser?.PhoneNumber)
                 && !string.IsNullOrEmpty(App.CurrentUser?.FirstName)
@@ -33,9 +34,6 @@ public sealed class SettingsPageViewModel : ObservableObject
 
         DepositMoneyCommand = new(o => DepositMoney(500));
     }
-
-    private readonly Regex _birthdayRegex = new(@"^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$");
-    private readonly Regex _phoneRegex = new(@"^\+?[0-9]-[0-9]{3}-[0-9]{3}-[0-9]{2}-[0-9]{2}$");
 
     public static bool IsDraggable
     {
@@ -58,21 +56,44 @@ public sealed class SettingsPageViewModel : ObservableObject
     }
 
     public Command SaveAccountCommand { get; }
-    public Command? DeleteAccountCommand { get; }
+    public Command DeleteAccountCommand { get; } = new(o =>
+    {
+        Application.Current.MainWindow.Hide();
+
+        Settings.Default.SavedPhoneNumber = string.Empty;
+        Settings.Default.SavedPassword = string.Empty;
+        Settings.Default.Save();
+
+        foreach (var p in App.CurrentUser.Payments!)
+            DataProvider.Delete(p);
+
+        DataProvider.Delete(App.CurrentUser);
+        App.CurrentUser = null;
+
+        App.ShowLoginWindow();
+    });
 
     public Command DepositMoneyCommand { get; }
 
-    private bool ValidateProperties()
+    private bool IsPropertiesValid()
     {
-        if (!_birthdayRegex.IsMatch(Birthday))
+        if (!User.BirthdayRegex.IsMatch(Birthday))
         {
-            new WarningWindow("Ошибка ввода даты", "Дата введена в неверном формате. Попробуйте ввести её в одном из приведённых ниже форматов:\nДД.ММ.ГГГГ\nДД-ММ-ГГГГ\nДД/ММ/ГГГГ").Show();
+            WarningBox.Show("Ошибка ввода даты", "Дата введена в неверном формате. Попробуйте ввести её в одном из приведённых ниже форматов:\nДД.ММ.ГГГГ\nДД-ММ-ГГГГ\nДД/ММ/ГГГГ");
             return false;
         }
 
-        if (!_phoneRegex.IsMatch(App.CurrentUser!.PhoneNumber!))
+        if (!User.PhoneNumberRegex.IsMatch(App.CurrentUser!.PhoneNumber!))
         {
-            new WarningWindow("Ошибка формата ввода номера телефона", "Номер телефона, вероятно, введён неверно. Попобуйте ввести в подобном формате:\t+0-000-000-00-00").Show();
+            WarningBox.Show("Ошибка формата ввода номера телефона", "Номер телефона, вероятно, введён неверно. Попобуйте ввести в подобном формате:\t+0-000-000-00-00");
+            return false;
+        }
+
+        if (!User.NameRegex.IsMatch(App.CurrentUser.FirstName!) &&
+            !User.NameRegex.IsMatch(App.CurrentUser.Surname!) &&
+            !User.NameRegex.IsMatch(App.CurrentUser.LastName!))
+        {
+            WarningBox.Show("Ошибка ввода данных", "Фамилия/Имя/Отчество должны быть написани с большой буквы, используя только символы русского алфавита");
             return false;
         }
 

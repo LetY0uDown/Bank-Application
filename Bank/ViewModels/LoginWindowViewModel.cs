@@ -20,13 +20,13 @@ public sealed class LoginWindowViewModel : ObservableObject
 
             if (user is null)
             {
-                new WarningWindow("Ошибка входа", "Неверный номер телефона. Попробуйте ввести его ещё раз").ShowDialog();
+                WarningBox.Show("Ошибка входа", "Неверный номер телефона. Попробуйте ввести его ещё раз");
                 return;
             }
 
             if (user.IsBanned)
             {
-                new WarningWindow("Ошибка доступа", "К сожалению, ваш аккаунт заблокирован из-за подозрений в мошенничестве. Но вы можете создать новый").ShowDialog();
+                WarningBox.Show("Ошибка доступа", "К сожалению, ваш аккаунт заблокирован из-за подозрений в мошенничестве. Но вы можете создать новый");
                 return;
             }
 

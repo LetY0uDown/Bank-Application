@@ -3,7 +3,6 @@ using Bank.Core.Tools;
 using Bank.Models;
 using Bank.Properties;
 using Bank.Views.Windows;
-using System.Text.RegularExpressions;
 using System.Windows;
 
 namespace Bank.ViewModels;
@@ -14,7 +13,15 @@ public sealed class RegistrationWindowViewModel
     {
         CreateAccountCommand = new(o =>
         {
-            if (!ValidateProperties()) return;
+            if (!IsPropertiesValid()) return;
+
+            bool isUserExist = DataProvider.TryGetUserByPhoneNumber(PhoneNumber!) is not null;
+
+            if (isUserExist)
+            {
+                WarningBox.Show("Ошибка регистрации", "Пользователь с таким номером телефона уже существует!");
+                return;
+            }
 
             User user = new()
             {
@@ -42,8 +49,6 @@ public sealed class RegistrationWindowViewModel
                 !string.IsNullOrEmpty(Birthday) &&
                 !string.IsNullOrEmpty(Password) && !string.IsNullOrEmpty(SecondPassword));
     }
-    private readonly Regex _birthdayRegex = new(@"^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$");
-    private readonly Regex _phoneRegex = new(@"^\+?[0-9]-?[0-9]{3}-?[0-9]{3}-?[0-9]{2}-?[0-9]{2}$");
 
     public string? PhoneNumber { get; set; }
 
@@ -51,10 +56,10 @@ public sealed class RegistrationWindowViewModel
     public string? Surname { get; set; }
     public string? LastName { get; set; }
 
-    public string? Birthday { get; set; } 
+    public string? Birthday { get; set; }
 
     public static string? Password { get; set; }
-    public static string? SecondPassword { get; set; } 
+    public static string? SecondPassword { get; set; }
 
     public Command? CreateAccountCommand { get; }
     public Command GoBackCommand { get; } = new(o =>
@@ -63,29 +68,35 @@ public sealed class RegistrationWindowViewModel
         Application.Current.MainWindow.Show();
     });
 
-    public bool ValidateProperties()
+    public bool IsPropertiesValid()
     {
-        if (!_birthdayRegex.IsMatch(Birthday!))
+        if (!User.BirthdayRegex.IsMatch(Birthday!))
         {
-            new WarningWindow("Ошибка формата ввода даты", "Дата введена в неверном формате. Попробуйте ввести её в одном из приведённых ниже форматов:\nДД.ММ.ГГГГ\nДД-ММ-ГГГГ\nДД/ММ/ГГГГ").Show();
+            WarningBox.Show("Ошибка формата ввода даты", "Дата введена в неверном формате. Попробуйте ввести её в одном из приведённых ниже форматов:\nДД.ММ.ГГГГ\nДД-ММ-ГГГГ\nДД/ММ/ГГГГ");
             return false;
         }
 
-        if (!_phoneRegex.IsMatch(PhoneNumber!))
+        if (!User.PhoneNumberRegex.IsMatch(PhoneNumber!))
         {
-            new WarningWindow("Ошибка формата ввода номера телефона", "Номер телефона, вероятно, введён неверно. Попобуйте ввести в подобном формате:\t+0-000-000-00-00").Show();
+            WarningBox.Show("Ошибка формата ввода номера телефона", "Номер телефона, вероятно, введён неверно. Попобуйте ввести в подобном формате:\t+0-000-000-00-00");
             return false;
         }
 
-        if (Password!.Length < 6)
+        if (!User.PasswordRegex.IsMatch(Password!))
         {
-            new WarningWindow("Ошибка ввода пароля", "Пароль должен быть минимум 6 символов длинной").Show();
+            WarningBox.Show("Ошибка ввода пароля", "Пароль должен быть от 6 до 20 символов длинной");
+            return false;
+        }
+
+        if (!User.NameRegex.IsMatch(FirstName!) && !User.NameRegex.IsMatch(Surname!) && !User.NameRegex.IsMatch(LastName!))
+        {
+            WarningBox.Show("Ошибка при вводе данных", "Фамилия/Имя/Отчество должны быть написани с большой буквы, используя только символы русского алфавита");
             return false;
         }
 
         if (!Password!.Equals(SecondPassword))
         {
-            new WarningWindow("Ошибка при вводе паролей", "Введённые пароли не совпадают! Попробуйте ввести их заного").Show();
+            WarningBox.Show("Ошибка при вводе паролей", "Введённые пароли не совпадают! Попробуйте ввести их заного");
             return false;
         }
 

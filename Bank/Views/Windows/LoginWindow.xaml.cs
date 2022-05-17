@@ -11,11 +11,11 @@ public partial class LoginWindow : Window
         InitializeComponent();
 
         if (LoginWindowViewModel.RememberUser)
-            _passwordBox.Password = Settings.Default.SavedPassword.ToString();
+            _passwordBox.Password = Settings.Default.SavedPassword;
     }
 
     private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
     {
-        LoginWindowViewModel.Password = _passwordBox.Password.ToString();
+        LoginWindowViewModel.Password = _passwordBox.Password;
     }
 }
