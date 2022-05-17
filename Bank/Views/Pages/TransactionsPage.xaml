@@ -74,11 +74,11 @@
         <StackPanel HorizontalAlignment="Right" Margin="0 25 25 0">
 
             <TextBlock Text="Совершить оплату" Foreground="{DynamicResource AppForeground}"
-                       FontSize="26" HorizontalAlignment="Center" Margin="0 0 0 10"/>
+                       FontSize="26" HorizontalAlignment="Center"/>
 
             <Border Background="{DynamicResource AppThirdBackground}"
                     Width="450" Height="auto" CornerRadius="25"
-                    MinHeight="280">
+                    MinHeight="280" Margin="0 5 0 0">
                 <StackPanel>
 
                     <Grid Margin="15 15 15 10">
