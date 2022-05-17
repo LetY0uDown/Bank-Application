@@ -16,7 +16,7 @@ public partial class PasswordChangeWindow : Window
         {
             if (!IsPasswordsValid()) return;
 
-            if (App.CurrentUser!.ChangePassword(Password!, NewPassword!))
+            if (!App.CurrentUser!.ChangePassword(Password!, NewPassword!))
             {
                 WarningBox.Show("Введённый пароль не совпадает с нынешним!");
                 return;
