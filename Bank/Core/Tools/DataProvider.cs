@@ -109,8 +109,8 @@ public static class DataProvider
             t.Sender = TryGetUserByID(t.SenderID);
             t.Reciever = TryGetUserByID(t.RecieverID);
 
-            if (t.Reciever is null)
-                t.Reciever = User.Empty;
+            if (t.Sender is null)
+                t.Sender = User.Empty;
         }
 
         return transactions;
