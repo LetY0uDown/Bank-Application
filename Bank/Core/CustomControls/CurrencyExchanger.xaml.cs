@@ -31,4 +31,9 @@ public partial class CurrencyExchangerControl : UserControl, INotifyPropertyChan
     public string? SecondCurrencyAmount { get; set; } 
 
     public event PropertyChangedEventHandler? PropertyChanged;
+    
+    private void TextBox_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+    {
+        if (e.Text[0].Equals('-')) e.Handled = true;
+    }
 }
