@@ -30,7 +30,8 @@
 
                 <TextBox Style="{StaticResource CurrencyTextBox}" Width="150"
                          Text="{Binding ExchangableCurrencyAmount, 
-                                        UpdateSourceTrigger=PropertyChanged}"/>
+                                        UpdateSourceTrigger=PropertyChanged}"
+                         PreviewTextInput="TextBox_PreviewTextInput"/>
             </StackPanel>
 
             <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Right"
