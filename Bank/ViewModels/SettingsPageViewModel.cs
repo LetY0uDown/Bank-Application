@@ -24,7 +24,7 @@ public sealed class SettingsPageViewModel : ObservableObject
 
             App.CurrentUser.SetTransactions(DataProvider.GetTransactions(App.CurrentUser.ID));
 
-            WarningBox.Show("Успшено!", "Данные вашего аккаунта успешно сохранены");
+            WarningBox.Show("Успешно!", "Данные вашего аккаунта успешно сохранены");
 
         }, b => !string.IsNullOrEmpty(App.CurrentUser?.PhoneNumber)
                 && !string.IsNullOrEmpty(App.CurrentUser?.FirstName)
