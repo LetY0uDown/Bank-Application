@@ -11,6 +11,7 @@ public partial class CurrencyExchangerControl : UserControl, INotifyPropertyChan
         InitializeComponent();
         DataContext = this;        
     }
+    private static readonly Regex _numberRegex = new("^[0-9]*$");
     private CurrencyExchanger? exchanger;
 
     public string? FirstCurrency { get; set; }
@@ -34,6 +35,6 @@ public partial class CurrencyExchangerControl : UserControl, INotifyPropertyChan
     
     private void TextBox_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
     {
-        if (e.Text[0].Equals('-')) e.Handled = true;
+        if (!_numberRegex.IsMatch(e.Text)) e.Handled = true;
     }
 }
