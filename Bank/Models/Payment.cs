@@ -13,7 +13,7 @@ public class Payment : Entity
         Type = type;
         Number = PaymentTypes.IndexOf(Type!);
     }
-    public Payment(Guid id, string type) : this(type) => UserID = id;
+    public Payment(Guid id, string type) : this(type) => ID = id;
 
     [Column(nameof(UserID))]
     public Guid UserID { get; set; }
